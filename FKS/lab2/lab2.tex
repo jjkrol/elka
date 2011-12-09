@@ -1,0 +1,414 @@
+\documentclass[10pt,a4paper]{article}
+
+%\usepackage{mathptmx}
+
+%\usepackage[a4paper]{geometry} % du¿o miejsca
+\usepackage{fullpage}
+\usepackage{booktabs}
+\usepackage{graphicx} %grafiki
+\usepackage[all]{xy} % do prostych diagramów
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{color}
+\usepackage{amsmath} % matematyka
+\usepackage{mathtools} % matematyka
+\usepackage{amssymb} % symbole, np. triangleeq
+\usepackage{caption}
+\usepackage{subfig}
+%\numberwithin{equation}{section} % numerowanie w sekcjach
+
+% z analizy
+%---\usepackage{fullpage}
+\usepackage[OT4]{polski}
+\usepackage[cp1250]{inputenc}
+%\usepackage{amsfonts}
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{txfonts}
+%\usepackage{pxfonts}
+%\usepackage{verbatim}
+%\usepackage{multicol}
+% --
+
+
+
+% komendy
+\renewcommand{\arraystretch}{1.5}
+\newcommand*{\wylicz}[2]{#1_1,#1_2,\dots,#1_{#2}} 
+\newcommand*{\wyliczn}[2]{\{#1_1,#1_2,\dots,#1_{#2}\}} 
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
+\makeatother
+%
+
+
+\begin{document}
+\title{MPS - wyk³ad - przyk³ady}
+%\author{Jakub Król}
+\date{Semestr zimowy 2011}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Wydzia³ & \multicolumn{2}{l|}{Dzien/godzina}& Nr. zespo³u\\
+EiTI & \multicolumn{2}{l|}{Wtorek 8.15-11.00}& 2\\
+\cline{2-3}
+& \multicolumn{2}{l|}{Data: 08.11.2011}& \\
+\hline
+Nazwisko i Imiê & Ocena z przygotowania & Ocena ze sprawozdania & Ocena\\
+\hline
+1. Król Jakub & & & \\
+2. Obszañski Grzegorz & & & \\
+3. Zawiœla Mateusz & & & \\
+\hline
+\multicolumn{2}{|l|}{Prowadz¹cy} & \multicolumn{2}{l|}{Podpis prowadz¹cego}\\
+\multicolumn{2}{|l|}{} & \multicolumn{2}{l|}{}\\
+\multicolumn{2}{|l|}{Jaros³aw Suszek:} & \multicolumn{2}{l|}{}\\
+\multicolumn{2}{|l|}{} & \multicolumn{2}{l|}{}\\
+\multicolumn{2}{|l|}{} & \multicolumn{2}{l|}{}\\\hline
+ \end{tabular}
+ \vspace{3cm}
+\section{Wstêp teoretyczny}
+\subsection{Hallotron}
+Hallotron, to cienka warstwa pó³przewodnika naparowana na nieprzewodz¹ce pod³o¿e. Jej wymiary:
+\begin{itemize}
+\item $d$ - gruboœæ naparowanej warstwy
+\item $c$ - d³ugoœæ naparowanej warstwy
+\item $l$ - szerokoœæ naparowanej warstwy
+\end{itemize}
+\subsection{Efekt Halla}
+Je¿eli hallotron w³¹czymy w obwód pr¹du sta³ego o natê¿eniu $I_s$ (pr¹d steruj¹cy) i umieœcimy w polu magnetycznym, o indukcji $B$, to miêdzy punktami na bocznych powierzchniach p³ytki wytworzy siê ró¿nica potencja³ów $U_H$, zwana napiêciem Halla. 
+\subsection{Wyjaœnienie efektu }
+Na ³adunek elektryczny $q$ poruszaj¹cy siê z prêdkoœci¹ $v$ w tym polu magnetycznym dzia³a si³a Lorentza $F_L$:
+\begin{equation}
+F_L = q\vec{v}\times \vec{B}
+\end{equation}
+ze wzoru 1 wynika, ¿e si³a $F_L$ jest prostopad³a do obu wektorów. Si³a Lorentza dzia³aj¹ca na elektrony zak³óca ich ruch wzd³u¿ linii pola elektrycznego. Noœniki te odchylaj¹ siê w kierunku dzia³ania si³y Lorentza. Gromadz¹ siê do momentu, kiedy dzia³anie ich pola elektrycznego równowa¿y si³ê Lorentza.\\
+Wspomniane pole elektryczne dzia³a na ³adunki noœników pr¹du $I_s$ si³¹ 
+\begin{equation}
+F_E = \frac{qU_h}{c}
+\end{equation}
+Zatem w/w moment, nastêpuje gdy $F_E=F_L$
+\begin{equation}
+\frac{qU_H}{c} = qvB
+\end{equation}
+St¹d
+\begin{equation}
+\label{fig:uhvcd}
+U_H = vcd
+\end{equation} 
+Niech $n$ bêdzie liczb¹ noœników pr¹du a $e$ ³adunkiem elementarnym noœnika pr¹du. Z definicji natê¿enia pr¹du:
+\begin{equation}
+\begin{split}
+I_s & =\frac{Q}{t}\\
+Q & = nVe = ncdle\\
+\end{split}
+\end{equation} 
+\begin{equation}
+\label{fig:isfrac}
+I_s  = \frac{ncdle}{t} = ncdev
+\end{equation} 
+\begin{equation}
+v  = \frac{I_s}{ncde}
+\end{equation} 
+Wstawiaj¹c wyliczone $v$ do wzoru \ref{fig:uhvcd} otrzymujemy
+\begin{equation}
+\label{fig:uhbis}
+U_H = \frac{BI_s}{ned}
+\end{equation} 
+Z prawa Ohma: 
+\begin{equation}
+v = \mu \frac{U}{I}
+\end{equation} 
+Gdzie $\mu$ - ruchliwoœæ noœników pr¹du, $U$ - spadek napiêcia wzd³u¿ hallotronu\\
+Po wstawieniu do wzoru ~\ref{fig:isfrac} dostajemy
+\begin{equation}
+\label{fig:isnevdc}
+I_s=ne\left( \mu\frac{U}{I}\right) dc
+\end{equation} 
+Dziêki pomiarowi napiêcia Halla jesteœmy w stanie wyznaczyæ koncentracjê noœników oraz ich ruchliwoœæ. Ze wzorów ~\ref{fig:uhbis} i ~\ref{fig:isnevdc} wyprowadzamy ich zale¿noœci od ³atwo mierzalnych wielkoœci.
+\begin{equation}
+\label{fig:nwzor}
+n =\frac{I_sB}{edU_H}
+\end{equation} 
+\begin{equation}
+\label{fig:muwzor}
+\mu = \frac{U_H I}{UcB}
+\end{equation}
+\begin{equation}
+\label{fig:rhwzor}
+R_H = \frac{I}{ne\mu cd}
+\end{equation} 
+\newpage
+
+\section{Wykaz przyrz¹dów i schemat pomiarowy}
+\subsection{Wykaz przyrz¹dów}
+\begin{itemize}
+\item Hallotron - wymiary \begin{itemize}
+\item $d = 0,2 \mu m$ 
+\item $l = 40 \mu m$
+\item $c = 150 \mu m$
+\end{itemize}
+\item elektromagnes
+\item zasilacz elektromagnesu i zasilacz stabilizowany
+\item 3 woltomierze i amperomierz (multimetry cyfrowe)
+\item adapter hallotronu
+\end{itemize}
+\subsection{Schemat pomiarowy}
+\includegraphics[width=10cm]{schemat.png}
+\section{Prezentacja wyników pomiarów}
+\begin{table}
+\subfloat[Dla $I = 0,1A$, $B = 0,0125T$]{
+\begin{tabular}{c|c|c|c|c}
+n & $U_H [mV]$ & $U$ & $I_s$ & $U_{100\Omega}$ \\\hline
+1 & 0.0010 & 0.0158 & 0.04 & \\
+2 & 0.0075 & 0.1229 & 0.32 & \\
+3 & 0.0141 & 0.231 & 0.61 & \\
+4 & 0.0176 & 0.286 & 0.76 & \\
+5 & 0.0227 & 0.369 & 0.98 & \\
+6 & 0.0279 & 0.456 & 1.21 & \\
+7 & 0.0325 & 0.530 & 1.41 & \\
+8 & 0.0375 & 0.611 & 1.64 & \\
+9 & 0.0423 & 0.691 & 1.86 & \\
+10 & 0.0473 & 0.772 & 2.09 & \\
+11 & 0.0520 & 0.849 & 2.31 & \\
+12 & 0.0567 & 0.926 & 2.53 & \\
+13 & 0.0612 & 1.00 & 2.75 & \\
+14 & 0.0659 & 1.07 & 2.98 & \\
+15 & 0.0703 & 1.14 & 3.20 & 0.313\\
+16 & 0.0745 & 1.21 & 3.42 & \\
+17 & 0.0790 & 1.29 & 3.65 & \\
+18 & 0.0830 & 1.36 & 3.87 & \\
+19 & 0.0870 & 1.42 & 4.09 & \\
+20 & 0.0909 & 1.48 & 4.31 & \\
+21 & 0.0946 & 1.55 & 4.53 & \\
+22 & 0.0986 & 1.61 & 4.76 & \\
+23 & 0.1021 & 1.67 & 4.98 & \\
+24 & 0.1056 & 1.73 & 5.21 & \\
+25 & 0.1090 & 1.79 & 5.43 & \\
+26 & 0.1123 & 1.84 & 5.66 & \\
+27 & 0.1155 & 1.90 & 5.88 & \\
+28 & 0.1185 & 1.95 & 6.11 & \\
+29 & 0.1216 & 2.00 & 6.33 & \\
+30 & 0.1246 & 2.05 & 6.56 & \\
+\end{tabular}
+}
+\subfloat[Dla $I = 0,2A$, $B =0,025T $]{
+\begin{tabular}{c|c|c|c|c}
+n & $U_H [mV]$ & $U$ & $I_s$ & $U_{100\Omega}$ \\\hline
+1 & 0.0023 & 0.0160 & 0.040 & \\
+2 & 0.0181 & 0.1230 & 0.315 & \\
+3 & 0.0348 & 0.238 & 0.613 & \\
+4 & 0.0435 & 0.298 & 0.768 & \\
+5 & 0.0553 & 0.377 & 0.975 & \\
+6 & 0.0680 & 0.466 & 1.208 & \\
+7 & 0.0796 & 0.546 & 1.418 & \\
+8 & 0.0922 & 0.631 & 1.645 & \\
+9 & 0.1037 & 0.710 & 1.859 & \\
+10 & 0.1156 & 0.793 & 2.09 & \\
+11 & 0.1270 & 0.872 & 2.31 & \\
+12 & 0.1386 & 0.951 & 2.53 & \\
+13 & 0.1496 & 1.028 & 2.75 & \\
+14 & 0.1610 & 1.108 & 2.98 & \\
+15 & 0.1714 & 1.180 & 3.20 & 0.314\\
+16 & 0.1816 & 1.249 & 3.42 & \\
+17 & 0.1922 & 1.325 & 3.65 & \\
+18 & 0.201 & 1.391 & 3.86 & \\
+19 & 0.212 & 1.465 & 4.10 & \\
+20 & 0.222 & 1.531 & 4.32 & \\
+21 & 0.230 & 1.590 & 4.54 & \\
+22 & 0.239 & 1.653 & 4.76 & \\
+23 & 0.247 & 1.718 & 4.99 & \\
+24 & 0.255 & 1.774 & 5.20 & \\
+25 & 0.265 & 1.840 & 5.44 & \\
+26 & 0.271 & 1.889 & 5.65 & \\
+27 & 0.281 & 1.945 & 5.88 & \\
+28 & 0.288 & 2.00 & 6.11 & \\
+29 & 0.296 & 2.05 & 6.34 & \\
+30 & 0.302 & 2.10 & 6.55 & \\
+\end{tabular}
+}
+\end{table}
+\begin{table}
+\subfloat[Dla $I = 0,3A$, $B = 0,04T$]{
+\begin{tabular}{c|c|c|c|c}
+n & $U_H [mV]$ & $U$ & $I_s$ & $U_{100\Omega}$ \\\hline
+1 & 0.0037 & 0.0179 & 0.044 & \\
+2 & 0.0281 & 0.1345 & 0.332 & \\
+3 & 0.0517 & 0.246 & 0.610 & \\
+4 & 0.0650 & 0.305 & 0.756 & \\
+5 & 0.0828 & 0.393 & 0.977 & \\
+6 & 0.1017 & 0.484 & 1.205 & \\
+7 & 0.1193 & 0.568 & 1.420 & \\
+8 & 0.1370 & 0.652 & 1.642 & \\
+9 & 0.1548 & 0.740 & 1.864 & \\
+10 & 0.1734 & 0.828 & 2.10 & \\
+11 & 0.1898 & 0.905 & 2.30 & \\
+12 & 0.207 & 0.989 & 2.53 & \\
+13 & 0.224 & 1.068 & 2.75 & \\
+14 & 0.241 & 1.147 & 2.98 & \\
+15 & 0.256 & 1.223 & 3.19 & 0.313\\
+16 & 0.271 & 1.299 & 3.43 & \\
+17 & 0.287 & 1.369 & 3.64 & \\
+18 & 0.302 & 1.445 & 3.87 & \\
+19 & 0.317 & 1.513 & 4.08 & \\
+20 & 0.331 & 1.583 & 4.32 & \\
+21 & 0.344 & 1.648 & 4.54 & \\
+22 & 0.357 & 1.717 & 4.77 & \\
+23 & 0.370 & 1.775 & 4.97 & \\
+24 & 0.383 & 1.835 & 5.20 & \\
+25 & 0.396 & 1.899 & 5.43 & \\
+26 & 0.408 & 1.957 & 5.66 & \\
+27 & 0.418 & 2.01 & 5.89 & \\
+28 & 0.429 & 2.06 & 6.11 & \\
+29 & 0.439 & 2.12 & 6.34 & \\
+30 & 0.450 & 2.17 & 6.57 & \\
+\end{tabular}
+}
+\hfill
+\subfloat[Dla $I = 0,4A$, $B = 0,05T$]{
+\begin{tabular}{c|c|c|c|c}
+n & $U_H [mV]$ & $U$ & $I_s$ & $U_{100\Omega}$ \\\hline
+1 & 0.0048 & 0.0178 & 0.042 & \\
+2 & 0.0385 & 0.1435 & 0.336 & \\
+3 & 0.0697 & 0.260 & 0.610 & \\
+4 & 0.0863 & 0.321 & 0.756 & \\
+5 & 0.1109 & 0.413 & 0.975 & \\
+6 & 0.1358 & 0.506 & 1.198 & \\
+7 & 0.1632 & 0.598 & 1.419 & \\
+8 & 0.1857 & 0.693 & 1.651 & \\
+9 & 0.208 & 0.777 & 1.861 & \\
+10 & 0.232 & 0.865 & 2.08 & \\
+11 & 0.257 & 0.958 & 2.32 & \\
+12 & 0.278 & 1.038 & 2.53 & \\
+13 & 0.300 & 1.120 & 2.74 & \\
+14 & 0.322 & 1.203 & 2.97 & \\
+15 & 0.344 & 1.285 & 3.20 & 0.314\\
+16 & 0.364 & 1.362 & 3.42 & \\
+17 & 0.385 & 1.438 & 3.64 & \\
+18 & 0.404 & 1.511 & 3.86 & \\
+19 & 0.424 & 1.586 & 4.09 & \\
+20 & 0.446 & 1.657 & 4.31 & \\
+21 & 0.462 & 1.726 & 4.53 & \\
+22 & 0.480 & 1.796 & 4.76 & \\
+23 & 0.496 & 1.858 & 4.97 & \\
+24 & 0.513 & 1.924 & 5.21 & \\
+25 & 0.528 & 1.981 & 5.42 & \\
+26 & 0.544 & 2.04 & 5.65 & \\
+27 & 0.558 & 2.10 & 5.88 & \\
+28 & 0.574 & 2.15 & 6.10 & \\
+29 & 0.587 & 2.21 & 6.32 & \\
+30 & 0.600 & 2.26 & 6.55 & \\
+\end{tabular}
+}
+\end{table}
+\newpage
+\section{Obliczenia i wykresy}
+Obliczeñ dokonaliœmy metod¹ najmniejszych kwadratów. Wykresy sporz¹dzone za pomoc¹ tych obliczeñ znajduj¹ siê poni¿ej. Niepewnoœæ miernika liczyliœmy wed³ug wzoru
+\begin{equation}
+1,2\% \cdot \text{ wartoœæ } + 0,001 [V]
+\end{equation} 
+$R_h$ liczyliœmy dwoma sposobami: z proporcji
+\begin{equation}
+R_h = \frac{U\cdot 100\Omega}{U_{w 100\Omega}}
+\end{equation} 
+i ze wzoru ~\ref{fig:rhwzor}. Wartoœci policzone dwoma sposobami dla ka¿dego podpunktu s¹ do siebie zbli¿one.
+
+%Korzystaj¹c ze wzorów ~\ref{fig:nwzor} i ~\ref{fig:muwzor} oraz obliczaj¹c niepewnoœæ standardow¹ za pomoc¹ wzorów ~\ref{fig:niep1} i ~\ref{fig:niep2}
+
+%Wykresy sporz¹dzone na podstawie wyników powy¿szych obliczeñ. Niepewnoœæ miernika liczona wed³ug wzoru $1,2\% \cdot \text{ wartoœæ } + 0,001 [V] $
+\subsection{$I_m=0,1$}
+\begin{equation}
+n = \frac{51,997 \cdot 10^{-3} \cdot 0,0125T }{ 0,2\mu m \cdot 1,602 \cdot 10^{-19}C} = 2,029(0,032)\cdot10^{22}
+\end{equation} 
+\begin{equation}
+\mu = \frac{0,0609\cdot0,1A }{40\cdot10^{-6}m \cdot 0,0125T} = 12180(19)\frac{A}{mT}
+\end{equation} 
+Z proporcji
+\begin{equation}
+R_h = \frac{1,14V * 100\Omega}{0,313V} = 364,22(3,38)\Omega
+\end{equation} 
+\begin{equation}
+R_h = \frac{0,1}{2,029\cdot 10^{22} \cdot 1,602\cdot10^{-19} \cdot 12180 \cdot 40 \cdot 0,2 \cdot 10^{-12}} = 315,73(2,96) \Omega
+\end{equation} 
+
+\includegraphics[width=10cm]{21.png}
+\captionof{figure}{Wykres $U_H(I_S)$ dla $I_m=0,1 $}
+\includegraphics[width=10cm]{11.png}
+\captionof{figure}{Wykres $U_H(U)$ dla $I_m=0,1 $}
+
+
+% 2 
+\subsection{$I_m=0,2$}
+\begin{equation}
+n = 1,675(0,027)\cdot 10^{22}
+\end{equation} 
+\begin{equation}
+\mu = 28720(42)\frac{A}{mT}
+\end{equation} 
+Z proporcji:
+\begin{equation}
+R_h = 375,80(3,52)\Omega
+\end{equation} 
+\begin{equation}
+R_h = 324,3981(3,06)\Omega
+\end{equation} 
+
+\includegraphics[width=10cm]{22.png}
+\captionof{figure}{Wykres $U_H(I_S)$ dla $I_m=0,2 $}
+\includegraphics[width=10cm]{12.png}
+\captionof{figure}{Wykres $U_H(U)$ dla $I_m=0,2 $}
+
+% 3
+\subsection{$I_m=0,3$}
+\begin{equation}
+n = 1,796(0,023)\cdot 10^{22}
+\end{equation} 
+\begin{equation}
+\mu = 38925(51)\frac{A}{mT}
+\end{equation} 
+Z proporcji:
+\begin{equation}
+R_h = 390,73(3,66)\Omega
+\end{equation} 
+\begin{equation}
+R_h = 334,8373(3,12)\Omega
+\end{equation} 
+
+\includegraphics[width=10cm]{23.png}
+\captionof{figure}{Wykres $U_H(I_S)$ dla $I_m=0,3 $}
+\includegraphics[width=10cm]{13.png}
+\captionof{figure}{Wykres $U_H(U)$ dla $I_m=0,3 $}
+
+% 4
+\subsection{$I_m=0,4$}
+\begin{equation}
+n = 1,678(0,024)\cdot 10^{22}
+\end{equation} 
+\begin{equation}
+\mu = 53194(73)\frac{A}{mT}
+\end{equation} 
+Z proporcji:
+\begin{equation}
+R_h = 409,24(4,02)\Omega
+\end{equation} 
+\begin{equation}
+R_h = 349,6656(3,21)\Omega
+\end{equation} 
+
+\includegraphics[width=10cm]{24.png}
+\captionof{figure}{Wykres $U_H(I_S)$ dla $I_m=0,4 $}
+\includegraphics[width=10cm]{14.png}
+\captionof{figure}{Wykres $U_H(U)$ dla $I_m=0,4 $}
+
+\section{Wnioski}
+
+W æwiczeniu zapoznaliœmy siê ze zjawiskiem efektu Halla. Zgodnie z przewidywaniami teoretycznymi, napiêcie Halla $U_H$ w naszych pomiarach jest proporcjonalne do wielkoœci indukcji magnetycznej oraz natê¿enia pr¹du steruj¹cego.\\
+
+Wyznaczona przez nas koncentracja elektronów swobodnych $n = wstawic $ daje nam mo¿liwoœæ ustalenia w³aœciwoœci elektrycznych metalu, z którego wykonana zosta³a p³ytka hallotronu. Zajêcia laboratoryjne da³y nam odpowiedŸ na pytnie o powód tak szerokiego zastosowania hallotronu w praktyce.\\
+
+Przeprowadzone æwiczenia potwierdzi³y liniowoœæ zale¿noœci \underline{(wykresy niemal¿e liniowe)}, a wiêc zgodnoœæ z za³o¿eniami teoretycznymi.
+
+\end{document}
+ 

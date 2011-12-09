@@ -1,0 +1,244 @@
+\documentclass[10pt,a4paper]{article}
+
+%\usepackage{mathptmx}
+
+%\usepackage[a4paper]{geometry} % du¿o miejsca
+\usepackage{fullpage}
+\usepackage{booktabs}
+\usepackage{graphicx} %grafiki
+\usepackage[all]{xy} % do prostych diagramów
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{color}
+\usepackage{amsmath} % matematyka
+\usepackage{mathtools} % matematyka
+\usepackage{amssymb} % symbole, np. triangleeq
+\usepackage{caption}
+\usepackage{subfig}
+%\numberwithin{equation}{section} % numerowanie w sekcjach
+
+% z analizy
+%---\usepackage{fullpage}
+\usepackage[OT4]{polski}
+\usepackage[cp1250]{inputenc}
+%\usepackage{amsfonts}
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{txfonts}
+%\usepackage{pxfonts}
+%\usepackage{verbatim}
+%\usepackage{multicol}
+% --
+
+
+
+% komendy
+\renewcommand{\arraystretch}{1.5}
+\newcommand*{\wylicz}[2]{#1_1,#1_2,\dots,#1_{#2}} 
+\newcommand*{\wyliczn}[2]{\{#1_1,#1_2,\dots,#1_{#2}\}} 
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
+\makeatother
+%
+
+
+\begin{document}
+\title{MPS - wyk³ad - przyk³ady}
+%\author{Jakub Król}
+\date{Semestr zimowy 2011}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Wydzia³ & \multicolumn{2}{l|}{Dzien/godzina}& Nr. zespo³u\\
+EiTI & \multicolumn{2}{l|}{Wtorek 8.15-11.00}& 2\\
+\cline{2-3}
+& \multicolumn{2}{l|}{Data: 29.11.2011}& \\
+\hline
+Nazwisko i Imiê & Ocena z przygotowania & Ocena ze sprawozdania & Ocena\\
+\hline
+1. Król Jakub & & & \\
+2. Obszañski Grzegorz & & & \\
+3. Zawiœla Mateusz & & & \\
+\hline
+\multicolumn{2}{|l|}{Prowadz¹cy:} & \multicolumn{2}{l|}{Podpis prowadz¹cego}\\
+\multicolumn{2}{|l|}{} & \multicolumn{2}{l|}{}\\
+\multicolumn{2}{|l|}{Jaros³aw Suszek} & \multicolumn{2}{l|}{}\\
+\multicolumn{2}{|l|}{} & \multicolumn{2}{l|}{}\\
+\multicolumn{2}{|l|}{} & \multicolumn{2}{l|}{}\\\hline
+ \end{tabular}
+ \vspace{3cm}
+\section{Wstêp teoretyczny}
+\subsection{Polaryzacja i prawo Malusa}
+Jeœli kierunek drgañ wektorów natê¿enia pola elektrycznego i magnetycznego zmienia jest w danym punkcie sta³y, lub zmienia siê w sposób œciœle okreœlony, mówimy, ¿e fala elektromagnetyczna jest spolaryzowana. 
+Wystêpuj¹ ró¿ne rodzaje polaryzacji: liniowe, ko³owa lub eliptyczna.
+
+Œwiat³o mo¿e zostaæ spolaryzowane za pomoc¹ elementów przepuszczaj¹cych œwiat³o o okreœlonym kierunku polaryzacji, nazywanych \emph{polaryzatorami}. 
+Wed³ug \emph{Prawa Malusa} natê¿enie œwiat³a przechodz¹cego przez polaryzator wynosi
+\begin{equation}
+I = I_0\cos^2{\theta}
+\end{equation} 
+gdzie $I_0$ a $\theta$ jest k¹tem, który tworzy kierunek polaryzacji z osi¹ polaryzatora.
+
+\subsection{Prawo Snelliusa}
+Œwiat³o przechodz¹ce miêdzy dwoma oœrodkami ulega za³amaniu i odbiciu. K¹ty za³amania i odbicia s¹ œciœle okreœlone. K¹t odbicia jest równy k¹towi padania, a k¹t za³amania opisuje praw Snelliusa:
+\begin{equation}
+n_1\sin\alpha = n_2\sin\beta
+\end{equation} 
+Gdzie $\alpha$ jest k¹tem pdania jednego oœrodka, a $n_1$ jego wspó³czynnikiem za³amania, a $\beta$ i $n_2$ s¹ odpowiednio k¹tem za³amania i wspó³czynnikiem za³amania drugiego oœrodka.
+\subsection{K¹t Brewstera}
+Kiedy k¹t za³amania $\beta$ bêdzie pod k¹tem $90^\circ$ do k¹ta odbicia $\alpha_B$ nie wystêpuje fala odbita. K¹t ten nazywamy \emph{k¹tem Brewstera} i wyznaczamy go z warunku
+\begin{equation}
+\beta = 90^\circ - \alpha_B
+\end{equation} 
+A wiêc
+\begin{equation}
+n_1\sin\alpha_B = n_2\cos\alpha_B
+\end{equation} 
+\begin{equation}
+\tg\alpha_B = \frac{n_2}{n_1}
+\end{equation} 
+\subsection{Zjawisko ca³kowitego wewnêtrznego odbicia}
+W momencie kiedy k¹t fali po za³amaniu ($\beta$) przekroczy $90^\circ$ mo¿emy zaobserwowaæ zjawisko ca³kowitego odbicia. Zachodzi ono dla k¹tów padania wiêkszych od $\alpha_{GR}$ wyznaczanego za pomoc¹
+\begin{equation}
+\sin\alpha_{GR} = \frac{n_2}{n_1}
+\end{equation} 
+K¹t graniczny wystêpuje wiêc, gdy $\frac{n_1}{n_2}>1$
+
+\section{Wykaz przyrz¹dów i schemat pomiarowy}
+\subsection{Wykaz przyrz¹dów}
+\begin{itemize}
+\item amperomierz analogowy UM-110B
+\item dielektryk
+\item 2 polaryzatory
+\item laser
+\item goniometr
+\end{itemize}
+
+\subsection{Schemat pomiarowy}
+
+\section{Zadanie 1.}
+\subsection{Wyniki pomiarów}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+$\alpha_w[^\circ]$ & I & zakres & 1 dzia³ka & wynik & $u(I)$ & $u(\Theta)[^\circ]$ \\\hline
+5 & 30 & 10mA & 0,2mA & 6 & 0,1702 & 4\\
+10 & 32 & 10mA& 0,2mA& 6,4 & 0,1702 & 4\\
+15 & 30 & 10mA& 0,2mA& 6 & 0,1702 & 4\\
+20 & 30 & 10mA& 0,2mA& 6 & 0,1702 & 4\\
+25 & 30 & 10mA& 0,2mA& 6 & 0,1702 & 4\\
+30 & 28 & 10mA& 0,2mA& 5,6 & 0,1702 & 4\\
+35 & 28 & 10mA& 0,2mA& 5,6 & 0,1702 & 4\\
+40 & 26 & 10mA& 0,2mA& 5,2 & 0,1702 & 4\\
+45 & 24 & 10mA& 0,2mA& 4,8 & 0,1702 & 4\\
+50 & 22 & 10mA& 0,2mA& 4,4 & 0,1702 & 4\\
+55 & 20 & 10mA& 0,2mA& 4,0 & 0,1702 & 4\\
+60 & 18 & 10mA& 0,2mA& 3,6 & 0,1702 & 4\\
+65 & 16 & 10mA& 0,2mA& 3,2 & 0,1702 & 4\\
+70 & 10 & 10mA& 0,2mA& 2,0 & 0,1702 & 4\\
+75 & 8 & 10mA& 0,2mA& 1,6 & 0,1702 & 4\\
+80 & 6 & 10mA& 0,2mA& 1,2 & 0,1702 & 4\\
+85 & 4 & 3mA & 0,05mA & 0,2 & 0,621 & 4\\
+90 & 1,5 & 3mA& 0,05mA & 0,075 & 0,621 & 4\\
+95 & 7 & 0,3mA & 0,005mA & 0,035 & 0,281 & 4\\
+100 & 4 & 0,3mA& 0,005mA & 0,02 & 0,281 & 4\\
+105 & 11,5 & 0,3mA& 0,005mA & 0,0575 & 0,281 & 4\\
+110 & 3 & 3mA & 0,05mA & 0,15 & 0,621 & 4\\
+115 & 5 & 3mA&  0,05mA& 0,25 & 0,621 & 4\\
+120 & 8,5 & 3mA&  0,05mA& 0,42 & 0,621 & 4\\
+125 & 11,5 & 3mA& 0,05mA & 0,575 & 0,621 & 4\\
+130 & 15 & 3mA& 0,05mA & 0,75 & 0,621 & 4\\
+135 & 18 & 3mA& 0,05mA & 0,9 & 0,621 & 4\\
+140 & 21 & 3mA& 0,05mA & 1,05 & 0,621 & 4\\
+145 & 23,5 & 3mA& 0,05mA & 1,175 & 0,621 & 4\\
+150 & 25,5 & 3mA& 0,05mA & 1,275 & 0,621 & 4\\
+\end{tabular}
+
+
+\subsection{Wykres}
+\includegraphics[width=15cm]{iodkat.png}
+\subsection{Wnioski}
+Ró¿nice pomiêdzy wynikami pomiarów a przewidywaniami teoretycznymi mog¹ byæ spowodowane wystêpowaniem w obwodzie w³¹czonej lampki oœwietlaj¹cej biurko. Jednakowo¿ wyniki s¹ podobne do przewidywañ, co potwierdza prawo Malusa.
+\section{Zadanie 2.}
+\subsection{Wyniki pomiarów}
+\begin{tabular}{|c|c|c|}
+$\alpha[^\circ]$ & $\beta[^\circ]$ & $u(\beta)[^\circ]$ \\\hline
+10 & 6 & 1 \\
+15 & 9 & 1\\
+20 & 13 & 1\\
+25 & 16 & 1\\
+30 & 19 & 1\\
+35 & 22 & 1\\
+40 & 25 & 1\\
+45 & 28 & 1\\
+50 & 30 & 1\\
+55 & 32 & 1\\
+60 & 34 & 2 \\
+65 & 36 & 2\\
+70 & 37 & 3\\
+75 & 38 & 3\\
+80 & 37 & 4\\
+\end{tabular}
+\subsection{Wykres}
+\includegraphics[width=15cm]{sinasinb.png}
+\subsection{Obliczenia}
+\begin{equation}
+n_2 = \frac{\sin\alpha}{\sin\beta}=\text{ wspó³czynnik kierunkowy prostej } +u(n_2) = 1,561 \pm 0,028
+\end{equation} 
+Ostatecznie
+\begin{equation}
+n_2 = 1,561 \pm 0,028
+\end{equation} 
+\section{Zadanie 3. - badanie k¹ta Brewstera}
+\subsection{Wyniki pomiarów}
+\begin{equation}
+\alpha_\beta = 57^\circ
+\end{equation} 
+\begin{equation}
+\beta = 33^\circ
+\end{equation} 
+\begin{equation}
+\alpha_\beta + \beta = 90^\circ
+\end{equation} 
+\subsection{Obliczenia}
+\begin{equation}
+n_2 = \tg{\alpha_\beta}
+\end{equation} 
+\begin{equation}
+n_2 = \tg{57^\circ} = 1,5398
+\end{equation} 
+\begin{equation}
+u(n_2) = |\frac{u(\alpha_\beta)}{\cos^2{\alpha_\beta}} |= 0,117 
+\end{equation} 
+Ostatecznie
+\begin{equation}
+n_2 = 1,54 \pm 0,12
+\end{equation} 
+\section{Zadanie 4.}
+\subsection{Wyniki pomiarów}
+\begin{equation}
+\alpha_{gr} = 43^\circ \pm 5^\circ
+\end{equation} 
+\subsection{Obliczenia}
+\begin{equation}
+n_2 = \frac{1}{\sin{\alpha_{gr}}} = 1,466279
+\end{equation} 
+\begin{equation}
+u(n_2) = |\frac{-\cos{\alpha_{gr}}}{\sin^2{\alpha_{gr}}}\cdot u(\alpha_{gr})| = 0,14 
+\end{equation} 
+Ostatecznie
+\begin{equation}
+n_2 = 1.46 \pm 0,14
+\end{equation} 
+\section{Wnioski}
+Æwiczenie laboratoryjne mia³o na celu badanie zjawisk optycznych. Tematem przewodnim wykonywanych zadañ by³a obserwacja odbicia œwiat³a od powierzchni dielektryka. Przeprowadzone doœwiadczenia pozwoli³y nam pog³êbiæ swoj¹ wiedzê i poszerzyæ horyzonty, potwierdzaj¹c prawa Malusa i Snelliusa, które sta³y siê dla nas jasne po wczeœniejszym wstêpie teoretycznym.
+
+Pomiary da³y nam satysfakcjonuj¹ce wyniki, zgodne z przewidywaniami postawionymi dziêki teoretycznym przes³ankom.
+Nieca³kowita zbie¿noœæ widoczna w zestawieniu powy¿szych danych mo¿e mieæ podstawy w wielorakich czynnikach zewnêtrznych, do których mog¹ nale¿eæ na przyk³ad wp³yw urz¹dzeñ laboratoryjnych niebêd¹cych czêœci¹ badanych uk³adów (takich jak lampka oœwietlaj¹ca stó³), b¹dŸ niedok³adnoœc odczytu z urz¹dzeñ pomiarowych.
+
+Doœwiadenia, które mia³y miejsce w Centralnym Laboratorium Fizycznym mia³y na celu tak¿e wyznaczenie \emph{k¹ta Brewstera}, dla którego odbita wi¹zka œwiat³a zanika i ustêpuje miejsca efektowi wewnêtrznego odbicia.
+
+Wszystkie powy¿sze dzia³ania prowadzi³y jednak do innego szerzej zdefiniowanego celu, który przyœwieca³ nam przez ca³y czas pracy, a mianowicie znalezienia wspó³czynnika za³amania œwiat³a badanego dielektryka. Uda³o nam siê wyznaczyæ tê wartoœæ na trzy sposoby, z których najdok³adniejszy okaza³ siê ten wykorzystuj¹cy metodê Snelliusa.
+
+\end{document}
+ 
