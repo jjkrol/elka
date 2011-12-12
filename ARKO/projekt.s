@@ -1,10 +1,12 @@
 	.data
 hello:	.asciiz "Wyszukiwanie\n"
 input:	.asciiz "dane.dat"
-sig:	.asciiz "Bf"
-sigsize:.word 3
-bytemask:.byte 0
-buffer:	.space 2421	
+sig:	.word	22287 
+sigsize:.word	10	
+bytemask:.byte	0
+buffer:	.space	2421	
+bajt:	.asciiz "Znaleziono od bajtu:\n"
+bit:	.asciiz "\n Bit: \n"
 
 	.text
 	.globl main
@@ -71,7 +73,7 @@ blunsucont:
 blcont: 
 	# kontynuuj petle
 	srl	$t3,$t3, 1 	# przesun maske, zeby badac nastepny bit
-	addi	$s5, 1		# inkrementuj licznik przesuniec (usunac) TODO
+	addi	$s5, 1		# inkrementuj licznik przesuniec 
 	b byteloop 		# salto
 
 byteloopend:
@@ -88,6 +90,10 @@ bscont:
 # dzieki temu bedziemy badac nastepny bit. Zwiekszamy tylko licznik
 # zeby jesli jednak dopasowanie sie nie uda, moc wrocic do odpowiedniej pozycji
 	addi	$s6, 1
+# kontroluj, czy nie skonczyla sie sygnatura (dlugosc okreslona w sigsize)
+	la	$t9, sigsize		# 
+	lb	$s7, ($t9)
+	beq	$s7, $s6, success
 # kontroluj, czy nie skonczyl sie juz bajt sygnatury. Jesli tak, zaladuj nastepny
 	beq	$s6, 8, nextbyte#j jesli doszedl do 8 (caly bit sie przesunal)
 	b blcont
@@ -103,9 +109,28 @@ firstsuc:
 	move	$t8, $t3	# zapisz maske
 	b	bscont
 
-#success:
-#	move	$t5, $t1 #tu znalezlismy
-#	move	$t6, $t2
+success:
+#wypisz ciag	
+	li	$v0, 4
+	la	$a0, bajt
+	syscall
+
+#wypisz ktory bajt	
+	li	$v0, 1
+	move	$a0, $t6
+	syscall
+
+#wypisz ciag	
+	li	$v0, 4
+	la	$a0, bit
+	syscall
+
+#wypisz ktory bit	
+	li	$v0, 1
+	move	$a0, $t7
+	syscall
+
+	b end
 #successloop:
 #	addi	$t6, 1
 #	addi	$t5, 1 #nastepny znak
