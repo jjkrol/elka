@@ -1,7 +1,5 @@
 lab1:
 
-lab2:
+lab2: 6/6 
 
-lab3:
-konspekt 
-realizacja
+lab3: 6/6
