@@ -1,0 +1,83 @@
+/**************************************************************************
+Autor:
+Jakub Krol
+Data:
+27.10.2010
+Opis:
+Program liczacy wartosc cosinusa kata x z przyblizeniem n i liczacy
+wartosc bledu wzglednego tego wyniku w stosunku do wartosci uzyskanej
+przy pomocy funkcji bibliotecznej C
+**************************************************************************/
+#include <stdio.h>
+#include <math.h>
+#include<unistd.h>
+#include<stdlib.h>
+#include<arpa/inet.h>
+
+double element(int n, double x);
+int main(){
+	double wynik=1;//wynik koncowy
+	double czastkowy;//przechowuje i-ty element szeregu
+	int i=1;//do petli for sumujacej szereg
+	int plusminus=-1;//zmiana znaku w szeregu
+	int n; //dokladnosc
+	double x; //kat
+	float blad;//wartosc bledu wzglednego
+	int wczytane;
+	int error;
+	const double ludolfina=3.14159265351189793; 
+	system("clear");//wyczysc ekran
+	printf("#########################################################\n");
+	printf("# Program liczacy cosinus                               #\n");
+	printf("#########################################################\n\n");
+	printf("Podaj kat: ");
+	if(scanf("%lf",&x)!=1){
+		error=1;
+		}
+	printf("Podaj dokladnosc: ");
+	if(scanf("%d",&n)!=1){
+		error=1;
+		}
+	if(n<0||error==1){//sprawdz, czy liczby sa wieksze od zera
+		printf("\nBlad!\n");
+		exit(1);
+		}
+	printf("\n Wprowadzone liczby to: %lf i %d\n",x,n);
+	//redukcja kata do sensownego zakresu
+	if(fabs(x)>2*ludolfina){
+		x=fmod(x,2*ludolfina);
+		}
+	printf("Kat zredukowany: %lf",x);	
+	for(i=1;i<=n;i++){
+//		printf("aktualny wynik: %lf\n",wynik);
+		if(i==1){
+			czastkowy=x*x/2;
+			}
+		else{
+			czastkowy=czastkowy*x*x/(2*i*(2*i-1));
+			}
+		if(fabs(wynik-(wynik+(plusminus*czastkowy)))<0.00000000000001){
+			printf("\nZbyt mala dokladnosc, koniec obliczen\n");
+			break;
+			}
+//		printf("czastkowy: %lf\n",czastkowy);
+		wynik=wynik+(plusminus*czastkowy);//zmien wynik o nowy element szeregu
+		plusminus=plusminus*(-1);
+		}
+	printf("Wynik ostateczny:\t %lf\n",wynik);//wypisz wynik
+	printf("Wynik z funkcji:\t %lf\n", cos(x));//wypisz wynik z funkcji bilbiotecznej
+	blad=(wynik-cos(x))/cos(x)*100;//oblicz blad
+	printf("Blad wzgledny:\t\t %f \n",blad);//wypisz blad
+	return 0;
+	}
+
+double element(int i, double x){//oblicz i-ty element szeregu
+	double element=1;
+	int j;
+	
+	for (j=1;j<=(2*i);j++){//to dzialanie daje w ostatecznym rozrachunku
+		element=element*x/j;//x^2n/2n! (2n razy mnozymy x przez siebie
+		}//i 2n kolejnych liczb mnozymy przez siebie)
+	return element;
+	}
+

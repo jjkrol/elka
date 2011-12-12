@@ -1,0 +1,321 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=windows-1250">
+<title>AISDI Cwiczenie struktury liniowe: Dokumentacja struktury ListNode</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Wygenerowano przez Doxygen 1.4.5 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>Strona&nbsp;główna</span></a></li>
+    <li id="current"><a href="annotated.html"><span>Klasy</span></a></li>
+    <li><a href="files.html"><span>Pliki</span></a></li>
+    <li><a href="pages.html"><span>Dodatkowe&nbsp;strony</span></a></li>
+  </ul></div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>Lista&nbsp;klas</span></a></li>
+    <li><a href="classes.html"><span>Lista&nbsp;alfabetyczna</span></a></li>
+    <li><a href="hierarchy.html"><span>Hierarchia&nbsp;klas</span></a></li>
+    <li><a href="functions.html"><span>Składowe&nbsp;klas</span></a></li>
+  </ul></div>
+<h1>Dokumentacja struktury ListNode</h1><!-- doxytag: class="ListNode" --><!-- doxytag: inherits="CCount" -->Klasa opakowywująca dane.  
+<a href="#_details">Więcej...</a>
+<p>
+<code>#include &lt;<a class="el" href="_list_map_8h-source.html">ListMap.h</a>&gt;</code>
+<p>
+Diagram dziedziczenia dla ListNode<p><center><img src="struct_list_node__inherit__graph.png" border="0" usemap="#_list_node__inherit__map" alt="Inheritance graph"></center>
+<map name="_list_node__inherit__map">
+<area href="class_c_count.html" shape="rect" coords="11,7,77,34" alt="">
+</map>
+<center><font size="2">[<a href="graph_legend.html">legenda</a>]</font></center>Diagram współpracy dla ListNode:<p><center><img src="struct_list_node__coll__graph.png" border="0" usemap="#_list_node__coll__map" alt="Collaboration graph"></center>
+<map name="_list_node__coll__map">
+<area href="class_c_count.html" shape="rect" coords="9,97,76,124" alt="">
+</map>
+<center><font size="2">[<a href="graph_legend.html">legenda</a>]</font></center><a href="struct_list_node-members.html">Lista wszystkich składowych.</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Typy publiczne</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef std::pair&lt; int, std::string &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_list_node.html#b9ece18c950afbfa6b0fdbfa4ff731d3">T</a></td></tr>
+
+<tr><td colspan="2"><br><h2>Metody publiczne</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_list_node.html#a274e3083bbc125a7cb3824cc538c6e8">ListNode</a> (const std::pair&lt; int, std::string &gt; &amp;d)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_list_node.html#3a0391dfff1833d2d68162811d6b4b27">ListNode</a> (const std::pair&lt; int, std::string &gt; &amp;d, <a class="el" href="struct_list_node.html">ListNode</a> *n, <a class="el" href="struct_list_node.html">ListNode</a> *p)</td></tr>
+
+<tr><td colspan="2"><br><h2>Statyczne metody publiczne</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_count.html#68b1e82502beaa137b00477d034627d5">getCount</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Publiczna metoda do pobierania wartości licznika.  <a href="#68b1e82502beaa137b00477d034627d5"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Atrybuty publiczne</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="struct_list_node.html">ListNode</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_list_node.html#d0cab90d8d20d57e2f2b9be52f7dd25d">next</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Wskaźnik na kolejny element na liście/pierścieniu.  <a href="#d0cab90d8d20d57e2f2b9be52f7dd25d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="struct_list_node.html">ListNode</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_list_node.html#fcb08b164ac83e09964deb24f2d2e80b">prev</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Wskaźnik na poprzedni element nal liście/pierścieniu.  <a href="#fcb08b164ac83e09964deb24f2d2e80b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="struct_list_node.html#b9ece18c950afbfa6b0fdbfa4ff731d3">T</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_list_node.html#8d777f385d3dfec8815d20f7496026dc">data</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Dane.  <a href="#8d777f385d3dfec8815d20f7496026dc"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_list_node.html#ecad4ff928fc324e64636c7e912525f8">internalDataPointer</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">wskaźnik pomocniczy  <a href="#ecad4ff928fc324e64636c7e912525f8"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>Opis szczegółowy</h2>
+Klasa opakowywująca dane. 
+<p>
+
+<p>
+Definicja w linii <a class="el" href="_list_map_8h-source.html#l00059">59</a> pliku <a class="el" href="_list_map_8h-source.html">ListMap.h</a>.<hr><h2>Dokumentacja składowych definicji typu</h2>
+<a class="anchor" name="b9ece18c950afbfa6b0fdbfa4ff731d3"></a><!-- doxytag: member="ListNode::T" ref="b9ece18c950afbfa6b0fdbfa4ff731d3" args="" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="md" nowrap valign="top">typedef std::pair&lt;int,std::string&gt; <a class="el" href="struct_list_node.html#b9ece18c950afbfa6b0fdbfa4ff731d3">ListNode::T</a>          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+
+<p>
+Definicja w linii <a class="el" href="_list_map_8h-source.html#l00061">61</a> pliku <a class="el" href="_list_map_8h-source.html">ListMap.h</a>.    </td>
+  </tr>
+</table>
+<hr><h2>Dokumentacja konstruktora i destruktora</h2>
+<a class="anchor" name="a274e3083bbc125a7cb3824cc538c6e8"></a><!-- doxytag: member="ListNode::ListNode" ref="a274e3083bbc125a7cb3824cc538c6e8" args="(const std::pair&lt; int, std::string &gt; &amp;d)" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="md" nowrap valign="top">ListNode::ListNode           </td>
+          <td class="md" valign="top">(&nbsp;</td>
+          <td class="md" nowrap valign="top">const std::pair&lt; int, std::string &gt; &amp;&nbsp;</td>
+          <td class="mdname1" valign="top" nowrap> <em>d</em>          </td>
+          <td class="md" valign="top">&nbsp;)&nbsp;</td>
+          <td class="md" nowrap><code> [inline]</code></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+
+<p>
+Definicja w linii <a class="el" href="_list_map_8h-source.html#l00066">66</a> pliku <a class="el" href="_list_map_8h-source.html">ListMap.h</a>.    </td>
+  </tr>
+</table>
+<a class="anchor" name="3a0391dfff1833d2d68162811d6b4b27"></a><!-- doxytag: member="ListNode::ListNode" ref="3a0391dfff1833d2d68162811d6b4b27" args="(const std::pair&lt; int, std::string &gt; &amp;d, ListNode *n, ListNode *p)" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="md" nowrap valign="top">ListNode::ListNode           </td>
+          <td class="md" valign="top">(&nbsp;</td>
+          <td class="md" nowrap valign="top">const std::pair&lt; int, std::string &gt; &amp;&nbsp;</td>
+          <td class="mdname" nowrap> <em>d</em>, </td>
+        </tr>
+        <tr>
+          <td class="md" nowrap align="right"></td>
+          <td class="md"></td>
+          <td class="md" nowrap><a class="el" href="struct_list_node.html">ListNode</a> *&nbsp;</td>
+          <td class="mdname" nowrap> <em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="md" nowrap align="right"></td>
+          <td class="md"></td>
+          <td class="md" nowrap><a class="el" href="struct_list_node.html">ListNode</a> *&nbsp;</td>
+          <td class="mdname" nowrap> <em>p</em></td>
+        </tr>
+        <tr>
+          <td class="md"></td>
+          <td class="md">)&nbsp;</td>
+          <td class="md" colspan="2"><code> [inline]</code></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+
+<p>
+Definicja w linii <a class="el" href="_list_map_8h-source.html#l00067">67</a> pliku <a class="el" href="_list_map_8h-source.html">ListMap.h</a>.    </td>
+  </tr>
+</table>
+<hr><h2>Dokumentacja funkcji składowych</h2>
+<a class="anchor" name="68b1e82502beaa137b00477d034627d5"></a><!-- doxytag: member="ListNode::getCount" ref="68b1e82502beaa137b00477d034627d5" args="()" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="md" nowrap valign="top">static int CCount::getCount           </td>
+          <td class="md" valign="top">(&nbsp;</td>
+          <td class="mdname1" valign="top" nowrap>          </td>
+          <td class="md" valign="top">&nbsp;)&nbsp;</td>
+          <td class="md" nowrap><code> [inline, static, inherited]</code></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+Publiczna metoda do pobierania wartości licznika. 
+<p>
+
+<p>
+Definicja w linii <a class="el" href="_list_map_8h-source.html#l00051">51</a> pliku <a class="el" href="_list_map_8h-source.html">ListMap.h</a>.
+<p>
+Odwołuje się do <a class="el" href="_list_map_8h-source.html#l00037">CCount::count</a>.    </td>
+  </tr>
+</table>
+<hr><h2>Dokumentacja atrybutów składowych</h2>
+<a class="anchor" name="8d777f385d3dfec8815d20f7496026dc"></a><!-- doxytag: member="ListNode::data" ref="8d777f385d3dfec8815d20f7496026dc" args="" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="md" nowrap valign="top"><a class="el" href="struct_list_node.html#b9ece18c950afbfa6b0fdbfa4ff731d3">T</a> <a class="el" href="struct_list_node.html#8d777f385d3dfec8815d20f7496026dc">ListNode::data</a>          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+Dane. 
+<p>
+
+<p>
+Definicja w linii <a class="el" href="_list_map_8h-source.html#l00064">64</a> pliku <a class="el" href="_list_map_8h-source.html">ListMap.h</a>.
+<p>
+Odwołania w <a class="el" href="_list_map_8h-source.html#l00150">ListMap::iterator::operator *()</a>, <a class="el" href="_list_map_8h-source.html#l00109">ListMap::const_iterator::operator *()</a>, <a class="el" href="_list_map_8h-source.html#l00154">ListMap::iterator::operator-&gt;()</a> i <a class="el" href="_list_map_8h-source.html#l00114">ListMap::const_iterator::operator-&gt;()</a>.    </td>
+  </tr>
+</table>
+<a class="anchor" name="ecad4ff928fc324e64636c7e912525f8"></a><!-- doxytag: member="ListNode::internalDataPointer" ref="ecad4ff928fc324e64636c7e912525f8" args="" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="md" nowrap valign="top">void* <a class="el" href="struct_list_node.html#ecad4ff928fc324e64636c7e912525f8">ListNode::internalDataPointer</a>          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+wskaźnik pomocniczy 
+<p>
+
+<p>
+Definicja w linii <a class="el" href="_list_map_8h-source.html#l00065">65</a> pliku <a class="el" href="_list_map_8h-source.html">ListMap.h</a>.    </td>
+  </tr>
+</table>
+<a class="anchor" name="d0cab90d8d20d57e2f2b9be52f7dd25d"></a><!-- doxytag: member="ListNode::next" ref="d0cab90d8d20d57e2f2b9be52f7dd25d" args="" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="md" nowrap valign="top"><a class="el" href="struct_list_node.html">ListNode</a>* <a class="el" href="struct_list_node.html#d0cab90d8d20d57e2f2b9be52f7dd25d">ListNode::next</a>          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+Wskaźnik na kolejny element na liście/pierścieniu. 
+<p>
+
+<p>
+Definicja w linii <a class="el" href="_list_map_8h-source.html#l00062">62</a> pliku <a class="el" href="_list_map_8h-source.html">ListMap.h</a>.    </td>
+  </tr>
+</table>
+<a class="anchor" name="fcb08b164ac83e09964deb24f2d2e80b"></a><!-- doxytag: member="ListNode::prev" ref="fcb08b164ac83e09964deb24f2d2e80b" args="" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="md" nowrap valign="top"><a class="el" href="struct_list_node.html">ListNode</a>* <a class="el" href="struct_list_node.html#fcb08b164ac83e09964deb24f2d2e80b">ListNode::prev</a>          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+Wskaźnik na poprzedni element nal liście/pierścieniu. 
+<p>
+
+<p>
+Definicja w linii <a class="el" href="_list_map_8h-source.html#l00063">63</a> pliku <a class="el" href="_list_map_8h-source.html">ListMap.h</a>.    </td>
+  </tr>
+</table>
+<hr>Dokumentacja dla tej struktury została wygenerowana z pliku:<ul>
+<li><a class="el" href="_list_map_8h-source.html">ListMap.h</a></ul>
+<hr size="1"><address style="align: right;"><small>Wygenerowano Fri Mar 10 00:09:37 2006 dla AISDI Cwiczenie struktury liniowe programem&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.5 </small></address>
+</body>
+</html>

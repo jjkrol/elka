@@ -1,0 +1,6 @@
+MSG : Wstawiam i sprawdzam   - insert, find, read
+MSG : Wstawiam i zmieniam    - insert, operator[], find
+MSG : Wstawiam i kasuje      - insert, erase, find
+MSG : Porownanie pustych     - info_eq, struct_eq
+MSG : Wstawiam i porownuje   - insert, operator[], info_eq, struct_eq, find
+MSG : Wstawiam i przypisuje  - insert, operator=, info_eq, find

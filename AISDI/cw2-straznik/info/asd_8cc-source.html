@@ -1,0 +1,304 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=windows-1250">
+<title>AISDI Cwiczenie struktury liniowe: Plik Ľródłowy asd.cc</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Wygenerowano przez Doxygen 1.4.5 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>Strona&nbsp;główna</span></a></li>
+    <li><a href="annotated.html"><span>Klasy</span></a></li>
+    <li id="current"><a href="files.html"><span>Pliki</span></a></li>
+    <li><a href="pages.html"><span>Dodatkowe&nbsp;strony</span></a></li>
+  </ul></div>
+<div class="tabs">
+  <ul>
+    <li><a href="files.html"><span>Lista&nbsp;plików</span></a></li>
+    <li><a href="globals.html"><span>Składowe&nbsp;plików</span></a></li>
+  </ul></div>
+<h1>asd.cc</h1><a href="asd_8cc.html">Idź do dokumentacji tego pliku.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00051"></a>00051 <span class="preprocessor">#include &lt;assert.h&gt;</span>
+<a name="l00052"></a>00052 <span class="preprocessor">#include &lt;algorithm&gt;</span>
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 <span class="preprocessor">#ifdef _SUNOS</span>
+<a name="l00057"></a>00057 <span class="preprocessor"></span><span class="preprocessor">#include "/home/common/dyd/aisdi/liniowe/ListMap.h"</span> 
+<a name="l00058"></a>00058 <span class="preprocessor">#else</span>
+<a name="l00059"></a>00059 <span class="preprocessor"></span><span class="preprocessor">#include "<a class="code" href="_list_map_8h.html">ListMap.h</a>"</span>
+<a name="l00060"></a>00060 <span class="preprocessor">#endif</span>
+<a name="l00061"></a>00061 <span class="preprocessor"></span>
+<a name="l00063"></a>00063 <span class="comment">// ListMap and ListMap::iterator methods</span>
+<a name="l00065"></a>00065 <span class="comment"></span>
+<a name="l00066"></a><a class="code" href="class_list_map.html#88c2c3f96eb7e66015e05384d6972c30">00066</a> <a class="code" href="class_list_map.html#88c2c3f96eb7e66015e05384d6972c30">ListMap::ListMap</a>()
+<a name="l00067"></a>00067 {
+<a name="l00068"></a>00068    <a class="code" href="class_list_map.html#8b04d5e3775d298e78455efc5ca404d5">first</a> = NULL;
+<a name="l00069"></a>00069 };
+<a name="l00070"></a>00070 
+<a name="l00071"></a><a class="code" href="class_list_map.html#96aa91f1742e9f9401b684189c765785">00071</a> <a class="code" href="class_list_map.html#88c2c3f96eb7e66015e05384d6972c30">ListMap::ListMap</a>( <span class="keyword">const</span> <a class="code" href="class_list_map.html">ListMap</a>&amp; m )
+<a name="l00072"></a>00072 {
+<a name="l00074"></a>00074 };
+<a name="l00075"></a>00075 
+<a name="l00076"></a><a class="code" href="class_list_map.html#29a5cb7c14dc1140748a9b58460c1011">00076</a> <a class="code" href="class_list_map.html#29a5cb7c14dc1140748a9b58460c1011">ListMap::~ListMap</a>()
+<a name="l00077"></a>00077 {
+<a name="l00078"></a>00078    <a class="code" href="class_list_map.html#3616b8000a015689fed4b46c19c06ea2">clear</a>();
+<a name="l00079"></a>00079 };
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081 <span class="comment">// Wstawienie elementu do mapy.</span>
+<a name="l00082"></a>00082 <span class="comment">// @returns Para, której komponent bool jest równy true gdy wstawienie zostało</span>
+<a name="l00083"></a>00083 <span class="comment">//          dokonane, równy false gdy element identyfikowany przez klucz</span>
+<a name="l00084"></a>00084 <span class="comment">//          już istniał w mapie. Iterator ustawiony jest na ten wstawiony </span>
+<a name="l00085"></a>00085 <span class="comment">//          lub istniejący już w mapie element.</span>
+<a name="l00086"></a><a class="code" href="class_list_map.html#94500a970d082e87b838a94fed333521">00086</a> std::pair&lt;ListMap::iterator, bool&gt; <a class="code" href="class_list_map.html#94500a970d082e87b838a94fed333521">ListMap::insert</a>(<span class="keyword">const</span> std::pair&lt;Key, Val&gt;&amp; entry)
+<a name="l00087"></a>00087 {
+<a name="l00089"></a>00089    <a class="code" href="class_list_map_1_1iterator.html">iterator</a> i;
+<a name="l00090"></a>00090    <span class="keywordflow">for</span>(i=<a class="code" href="class_list_map.html#4b1a01a7db76e79c6194363c78d33615">begin</a>(); i!=<a class="code" href="class_list_map.html#f34c4b013e5d012ab5f1bfef486d630f">end</a>(); ++i)
+<a name="l00091"></a>00091    {
+<a name="l00092"></a>00092       <span class="keywordflow">if</span>(i-&gt;first==entry.first)
+<a name="l00093"></a>00093         <span class="keywordflow">return</span> std::make_pair(i, (<span class="keywordtype">bool</span>)<span class="keyword">false</span>);
+<a name="l00094"></a>00094    }
+<a name="l00095"></a>00095         <span class="keywordflow">return</span> std::make_pair(i, (<span class="keywordtype">bool</span>)<span class="keyword">false</span>);
+<a name="l00096"></a>00096 }
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 <span class="comment">// Wstawienie elementu do mapy.</span>
+<a name="l00099"></a>00099 <span class="comment">// Matoda zakłada, że w mapie nie występuje element identyfikowany przez key</span>
+<a name="l00100"></a><a class="code" href="class_list_map.html#9b42b72518de2845832b80e44424fab3">00100</a> <a class="code" href="class_list_map_1_1iterator.html">ListMap::iterator</a> <a class="code" href="class_list_map.html#9b42b72518de2845832b80e44424fab3">ListMap::unsafe_insert</a>(<span class="keyword">const</span> std::pair&lt;Key, Val&gt;&amp; entry)
+<a name="l00101"></a>00101 {
+<a name="l00103"></a>00103    assert(0);
+<a name="l00104"></a>00104    <span class="keywordflow">return</span> <a class="code" href="class_list_map_1_1iterator.html">iterator</a>(<a class="code" href="class_list_map.html#8b04d5e3775d298e78455efc5ca404d5">first</a>);
+<a name="l00105"></a>00105 }
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107 <span class="comment">// Zwraca iterator addresujący element w mapie dla którego klucz jest równy </span>
+<a name="l00108"></a>00108 <span class="comment">// szukanemu kluczowi lub element za ostatnim gdy szukanego klucza brak w mapie.</span>
+<a name="l00109"></a><a class="code" href="class_list_map.html#da5bc54e6c1da79235e9160ee021b9f5">00109</a> <a class="code" href="class_list_map_1_1iterator.html">ListMap::iterator</a> <a class="code" href="class_list_map.html#da5bc54e6c1da79235e9160ee021b9f5">ListMap::find</a>(<span class="keyword">const</span> <a class="code" href="class_list_map.html#897356954c2cd3d41b221e3f24f99bba">Key</a>&amp; k)
+<a name="l00110"></a>00110 {
+<a name="l00112"></a>00112    assert(0);
+<a name="l00113"></a>00113    <span class="keywordflow">return</span> <a class="code" href="class_list_map.html#f34c4b013e5d012ab5f1bfef486d630f">end</a>();
+<a name="l00114"></a>00114 }
+<a name="l00115"></a>00115 
+<a name="l00116"></a><a class="code" href="class_list_map.html#732153e7bc56dacafa2411864b548219">00116</a> <a class="code" href="class_list_map_1_1const__iterator.html">ListMap::const_iterator</a> <a class="code" href="class_list_map.html#da5bc54e6c1da79235e9160ee021b9f5">ListMap::find</a>(<span class="keyword">const</span> <a class="code" href="class_list_map.html#897356954c2cd3d41b221e3f24f99bba">Key</a>&amp; k)<span class="keyword"> const</span>
+<a name="l00117"></a>00117 <span class="keyword"></span>{
+<a name="l00119"></a>00119    assert(0);
+<a name="l00120"></a>00120    <span class="keywordflow">return</span> <a class="code" href="class_list_map.html#f34c4b013e5d012ab5f1bfef486d630f">end</a>();
+<a name="l00121"></a>00121 }
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123 <span class="comment">// Udostępnia wartość powiązaną z kluczem key. Wstawia element do mapy jeśli </span>
+<a name="l00124"></a>00124 <span class="comment">// nie istniał.</span>
+<a name="l00125"></a>00125 <span class="comment">// @returns Referencje do wartości powiązanej z kluczem.</span>
+<a name="l00126"></a><a class="code" href="class_list_map.html#ce20a84b60c9bcce43c37cb75d29fe50">00126</a> <a class="code" href="class_list_map.html#5988c20a047cfe063999787584b0aca7">ListMap::Val</a>&amp; <a class="code" href="class_list_map.html#ce20a84b60c9bcce43c37cb75d29fe50">ListMap::operator[]</a>(<span class="keyword">const</span> <a class="code" href="class_list_map.html#897356954c2cd3d41b221e3f24f99bba">Key</a>&amp; k)
+<a name="l00127"></a>00127 {
+<a name="l00129"></a>00129    assert(0);
+<a name="l00130"></a>00130    <a class="code" href="class_list_map_1_1iterator.html">iterator</a> i;
+<a name="l00131"></a>00131    <span class="keywordflow">return</span> i-&gt;second;
+<a name="l00132"></a>00132 }
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134 <span class="comment">// Sprawdzenie czy mapa jest pusta.</span>
+<a name="l00135"></a><a class="code" href="class_list_map.html#ea1ddff44da5abff286d8b01793eb7ee">00135</a> <span class="keywordtype">bool</span> <a class="code" href="class_list_map.html#ea1ddff44da5abff286d8b01793eb7ee">ListMap::empty</a>( )<span class="keyword"> const</span>
+<a name="l00136"></a>00136 <span class="keyword"></span>{
+<a name="l00137"></a>00137    <span class="keywordflow">return</span> <a class="code" href="class_list_map.html#8b04d5e3775d298e78455efc5ca404d5">first</a>==NULL;
+<a name="l00138"></a>00138 }
+<a name="l00139"></a>00139 
+<a name="l00140"></a>00140 <span class="comment">// Zwraca ilość elementów w mapie.</span>
+<a name="l00141"></a><a class="code" href="class_list_map.html#5a9421972c178b3c37b99f953470c6f6">00141</a> <a class="code" href="class_list_map.html#3eb1f9410d79d28273ccc045cf8e6478">ListMap::size_type</a> <a class="code" href="class_list_map.html#5a9421972c178b3c37b99f953470c6f6">ListMap::size</a>( )<span class="keyword"> const</span>
+<a name="l00142"></a>00142 <span class="keyword"></span>{
+<a name="l00144"></a>00144    assert(0);
+<a name="l00145"></a>00145    <span class="keywordflow">return</span> 0;
+<a name="l00146"></a>00146 }
+<a name="l00147"></a>00147 
+<a name="l00148"></a>00148 <span class="comment">// Zwraza ilość elementów skojarzonych z kluczem key.</span>
+<a name="l00149"></a><a class="code" href="class_list_map.html#1d79deabb6ad2a93ef5358356055ee3b">00149</a> <a class="code" href="class_list_map.html#3eb1f9410d79d28273ccc045cf8e6478">ListMap::size_type</a> <a class="code" href="class_list_map.html#1d79deabb6ad2a93ef5358356055ee3b">ListMap::count</a>(<span class="keyword">const</span> <a class="code" href="class_list_map.html#897356954c2cd3d41b221e3f24f99bba">Key</a>&amp; _Key)<span class="keyword"> const</span>
+<a name="l00150"></a>00150 <span class="keyword"></span>{
+<a name="l00152"></a>00152    <span class="keywordflow">return</span> 1;  <span class="comment">// this is not a multimap</span>
+<a name="l00153"></a>00153 }
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155 <span class="comment">// Usuwa element z mapy.</span>
+<a name="l00156"></a>00156 <span class="comment">// @returns iterator adresujący pierwszy element za usuwanym.</span>
+<a name="l00157"></a><a class="code" href="class_list_map.html#99d178e178a2d0a71c1f5698c5879dcf">00157</a> <a class="code" href="class_list_map_1_1iterator.html">ListMap::iterator</a> <a class="code" href="class_list_map.html#99d178e178a2d0a71c1f5698c5879dcf">ListMap::erase</a>(<a class="code" href="class_list_map_1_1iterator.html">ListMap::iterator</a> i)
+<a name="l00158"></a>00158 {
+<a name="l00160"></a>00160    assert(0);
+<a name="l00161"></a>00161    <span class="keywordflow">return</span> <a class="code" href="class_list_map.html#f34c4b013e5d012ab5f1bfef486d630f">end</a>();
+<a name="l00162"></a>00162 }
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164 <span class="comment">// Usuwa zakres elementów z mapy.</span>
+<a name="l00165"></a>00165 <span class="comment">// Zakres jest zdefiniowany poprzez iteratory first i last</span>
+<a name="l00166"></a>00166 <span class="comment">// first jest określa pierwszy element do usunięcia, a last określa element </span>
+<a name="l00167"></a>00167 <span class="comment">// po ostatnim usuniętym elemencie.</span>
+<a name="l00168"></a>00168 <span class="comment">// @returns iterator adresujący pierwszy element za usuwanym.</span>
+<a name="l00169"></a><a class="code" href="class_list_map.html#4c750f4eb7c25898376b2945bceb60a3">00169</a> <a class="code" href="class_list_map_1_1iterator.html">ListMap::iterator</a> <a class="code" href="class_list_map.html#99d178e178a2d0a71c1f5698c5879dcf">ListMap::erase</a>(<a class="code" href="class_list_map_1_1iterator.html">ListMap::iterator</a> f, <a class="code" href="class_list_map_1_1iterator.html">ListMap::iterator</a> l)
+<a name="l00170"></a>00170 {
+<a name="l00172"></a>00172    assert(0);
+<a name="l00173"></a>00173    <span class="keywordflow">return</span> <a class="code" href="class_list_map.html#f34c4b013e5d012ab5f1bfef486d630f">end</a>();
+<a name="l00174"></a>00174 }
+<a name="l00175"></a>00175 
+<a name="l00176"></a>00176 <span class="comment">// Usuwa element z mapy.</span>
+<a name="l00177"></a>00177 <span class="comment">// @returns Ilość usuniętych elementów.</span>
+<a name="l00178"></a>00178 <span class="comment">//          (nie jest to multimapa, więć może być to wartość 1 lub 0 )</span>
+<a name="l00179"></a><a class="code" href="class_list_map.html#f768666a08bb3f9bf6d59af014dc8a79">00179</a> <a class="code" href="class_list_map.html#3eb1f9410d79d28273ccc045cf8e6478">ListMap::size_type</a> <a class="code" href="class_list_map.html#99d178e178a2d0a71c1f5698c5879dcf">ListMap::erase</a>(<span class="keyword">const</span> <a class="code" href="class_list_map.html#897356954c2cd3d41b221e3f24f99bba">Key</a>&amp; key)
+<a name="l00180"></a>00180 {
+<a name="l00182"></a>00182    assert(0);
+<a name="l00183"></a>00183    <span class="keywordflow">return</span> 0;
+<a name="l00184"></a>00184 }
+<a name="l00185"></a>00185 
+<a name="l00186"></a>00186 <span class="comment">// Usunięcie wszystkich elementów z mapy.</span>
+<a name="l00187"></a><a class="code" href="class_list_map.html#3616b8000a015689fed4b46c19c06ea2">00187</a> <span class="keywordtype">void</span> <a class="code" href="class_list_map.html#3616b8000a015689fed4b46c19c06ea2">ListMap::clear</a>( )
+<a name="l00188"></a>00188 {
+<a name="l00190"></a>00190    assert(0);
+<a name="l00191"></a>00191 }
+<a name="l00192"></a>00192 
+<a name="l00193"></a>00193 <span class="comment">// Porównanie strukturalne map.</span>
+<a name="l00194"></a>00194 <span class="comment">// Czy reprezentacja danych jest identyczna.</span>
+<a name="l00195"></a>00195 <span class="comment">// Zwraca true jeśli wewnętrzne struktury map są identyczne.</span>
+<a name="l00196"></a><a class="code" href="class_list_map.html#2661be861c21b9513edfd9ab4771ba9e">00196</a> <span class="keywordtype">bool</span> <a class="code" href="class_list_map.html#2661be861c21b9513edfd9ab4771ba9e">ListMap::struct_eq</a>(<span class="keyword">const</span> <a class="code" href="class_list_map.html">ListMap</a>&amp; another)<span class="keyword"> const</span>
+<a name="l00197"></a>00197 <span class="keyword"></span>{
+<a name="l00199"></a>00199    assert(0);
+<a name="l00200"></a>00200    <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00201"></a>00201 }
+<a name="l00202"></a>00202 
+<a name="l00203"></a>00203 <span class="comment">// Porównanie informacyjne map.</span>
+<a name="l00204"></a>00204 <span class="comment">// Czy informacje trzymane w mapach są identyczne.</span>
+<a name="l00205"></a>00205 <span class="comment">// Zwraca true jeśli mapy zwierają takie same pary klucz-wartość.</span>
+<a name="l00206"></a><a class="code" href="class_list_map.html#daa92d412adfeef4521566bf886b6b90">00206</a> <span class="keywordtype">bool</span> <a class="code" href="class_list_map.html#daa92d412adfeef4521566bf886b6b90">ListMap::info_eq</a>(<span class="keyword">const</span> <a class="code" href="class_list_map.html">ListMap</a>&amp; another)<span class="keyword"> const</span>
+<a name="l00207"></a>00207 <span class="keyword"></span>{
+<a name="l00209"></a>00209    assert(0);
+<a name="l00210"></a>00210    <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00211"></a>00211 }
+<a name="l00212"></a>00212 
+<a name="l00213"></a>00213 
+<a name="l00214"></a>00214 <span class="comment">// preincrementacja</span>
+<a name="l00215"></a><a class="code" href="class_list_map_1_1const__iterator.html#879fb570af328b721ed45fe254b0a582">00215</a> <a class="code" href="class_list_map_1_1const__iterator.html">ListMap::const_iterator</a>&amp; <a class="code" href="class_list_map_1_1const__iterator.html#879fb570af328b721ed45fe254b0a582">ListMap::const_iterator::operator++</a>()
+<a name="l00216"></a>00216 {
+<a name="l00218"></a>00218    <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00219"></a>00219 }
+<a name="l00220"></a>00220 
+<a name="l00221"></a>00221 <span class="comment">// postincrementacja</span>
+<a name="l00222"></a><a class="code" href="class_list_map_1_1const__iterator.html#5d4681e027a07e3fb51ab21bef0dcc3d">00222</a> <a class="code" href="class_list_map_1_1const__iterator.html">ListMap::const_iterator</a> <a class="code" href="class_list_map_1_1const__iterator.html#879fb570af328b721ed45fe254b0a582">ListMap::const_iterator::operator++</a>(<span class="keywordtype">int</span>)
+<a name="l00223"></a>00223 {
+<a name="l00225"></a>00225    <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00226"></a>00226 }
+<a name="l00227"></a>00227 
+<a name="l00228"></a><a class="code" href="class_list_map_1_1const__iterator.html#08e169f7d9d8a763281a98d478c20a02">00228</a> <a class="code" href="class_list_map_1_1const__iterator.html">ListMap::const_iterator</a>&amp; <a class="code" href="class_list_map_1_1const__iterator.html#08e169f7d9d8a763281a98d478c20a02">ListMap::const_iterator::operator--</a>()
+<a name="l00229"></a>00229 {
+<a name="l00231"></a>00231    <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00232"></a>00232 }
+<a name="l00233"></a>00233 
+<a name="l00234"></a>00234 <span class="comment">// postincrementacja</span>
+<a name="l00235"></a><a class="code" href="class_list_map_1_1const__iterator.html#12332c0f3ca9f1be40bf725d24d260ef">00235</a> <a class="code" href="class_list_map_1_1const__iterator.html">ListMap::const_iterator</a> <a class="code" href="class_list_map_1_1const__iterator.html#08e169f7d9d8a763281a98d478c20a02">ListMap::const_iterator::operator--</a>(<span class="keywordtype">int</span>)
+<a name="l00236"></a>00236 {
+<a name="l00238"></a>00238    <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00239"></a>00239 }
+<a name="l00240"></a>00240 
+<a name="l00242"></a><a class="code" href="class_list_map.html#4b1a01a7db76e79c6194363c78d33615">00242</a> <a class="code" href="class_list_map_1_1iterator.html">ListMap::iterator</a> <a class="code" href="class_list_map.html#4b1a01a7db76e79c6194363c78d33615">ListMap::begin</a>()
+<a name="l00243"></a>00243 { 
+<a name="l00245"></a>00245    <span class="keywordflow">return</span> <a class="code" href="class_list_map_1_1iterator.html">iterator</a>(NULL); 
+<a name="l00246"></a>00246 }
+<a name="l00247"></a>00247 
+<a name="l00249"></a><a class="code" href="class_list_map.html#6c34e3a8894af3a2160a3c0baa7e6fad">00249</a> <a class="code" href="class_list_map_1_1const__iterator.html">ListMap::const_iterator</a> <a class="code" href="class_list_map.html#4b1a01a7db76e79c6194363c78d33615">ListMap::begin</a>()<span class="keyword"> const</span>
+<a name="l00250"></a>00250 <span class="keyword"></span>{ 
+<a name="l00252"></a>00252    <span class="keywordflow">return</span> <a class="code" href="class_list_map_1_1iterator.html">iterator</a>(NULL);
+<a name="l00253"></a>00253 }
+<a name="l00254"></a>00254 
+<a name="l00256"></a><a class="code" href="class_list_map.html#f34c4b013e5d012ab5f1bfef486d630f">00256</a> <a class="code" href="class_list_map_1_1iterator.html">ListMap::iterator</a> <a class="code" href="class_list_map.html#f34c4b013e5d012ab5f1bfef486d630f">ListMap::end</a>()
+<a name="l00257"></a>00257 { 
+<a name="l00259"></a>00259    <span class="keywordflow">return</span> <a class="code" href="class_list_map_1_1iterator.html">iterator</a>(NULL);
+<a name="l00260"></a>00260 }
+<a name="l00261"></a>00261 
+<a name="l00263"></a><a class="code" href="class_list_map.html#37d6974af8ee6af64f7b4f71330853cb">00263</a> <a class="code" href="class_list_map_1_1const__iterator.html">ListMap::const_iterator</a> <a class="code" href="class_list_map.html#f34c4b013e5d012ab5f1bfef486d630f">ListMap::end</a>()<span class="keyword"> const</span>
+<a name="l00264"></a>00264 <span class="keyword"></span>{ 
+<a name="l00266"></a>00266    <span class="keywordflow">return</span> <a class="code" href="class_list_map_1_1iterator.html">iterator</a>(NULL);
+<a name="l00267"></a>00267 }
+<a name="l00268"></a>00268 
+<a name="l00270"></a>00270 <span class="comment">// SmallMap</span>
+<a name="l00272"></a>00272 <span class="comment"></span>
+<a name="l00276"></a>00276 <span class="keyword">template</span> &lt;<span class="keyword">class</span> Key, <span class="keyword">class</span> Val&gt;
+<a name="l00277"></a><a class="code" href="class_small_map.html">00277</a> <span class="keyword">class </span><a class="code" href="class_small_map.html">SmallMap</a>
+<a name="l00278"></a>00278 {
+<a name="l00279"></a><a class="code" href="class_small_map.html#23ce4f50bdec9ef60ab36b7471f64a8c">00279</a>    std::pair&lt;Key, Val&gt; <a class="code" href="class_small_map.html#23ce4f50bdec9ef60ab36b7471f64a8c">tab</a>[2];
+<a name="l00280"></a><a class="code" href="class_small_map.html#17fa3be49cbe8114cd223df3870ee6ec">00280</a>    <span class="keywordtype">int</span> <a class="code" href="class_small_map.html#17fa3be49cbe8114cd223df3870ee6ec">isOcupied</a>[2];
+<a name="l00281"></a>00281 <span class="keyword">public</span>:
+<a name="l00282"></a>00282 
+<a name="l00283"></a><a class="code" href="class_small_map.html#b89297416320453125abfe623563460f">00283</a>    <a class="code" href="class_small_map.html#b89297416320453125abfe623563460f">SmallMap</a>()
+<a name="l00284"></a>00284    {
+<a name="l00285"></a>00285       <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> i=0; i&lt;2; ++i)
+<a name="l00286"></a>00286       {
+<a name="l00287"></a>00287          <a class="code" href="class_small_map.html#17fa3be49cbe8114cd223df3870ee6ec">isOcupied</a>[i]=0;
+<a name="l00288"></a>00288       }
+<a name="l00289"></a>00289    }
+<a name="l00290"></a>00290 
+<a name="l00291"></a><a class="code" href="class_small_map.html#420cec00303cf5ff3ee30bf824fc1427">00291</a>    <span class="keyword">typedef</span> std::pair&lt;Key, Val&gt;* <a class="code" href="class_small_map.html#420cec00303cf5ff3ee30bf824fc1427">iterator</a>;   
+<a name="l00292"></a>00292 
+<a name="l00293"></a><a class="code" href="class_small_map.html#4b1a01a7db76e79c6194363c78d33615">00293</a>    <a class="code" href="class_small_map.html#420cec00303cf5ff3ee30bf824fc1427">iterator</a> <a class="code" href="class_small_map.html#4b1a01a7db76e79c6194363c78d33615">begin</a>() { <span class="keywordflow">return</span> <a class="code" href="class_small_map.html#23ce4f50bdec9ef60ab36b7471f64a8c">tab</a>; }
+<a name="l00294"></a><a class="code" href="class_small_map.html#f34c4b013e5d012ab5f1bfef486d630f">00294</a>    <a class="code" href="class_small_map.html#420cec00303cf5ff3ee30bf824fc1427">iterator</a> <a class="code" href="class_small_map.html#f34c4b013e5d012ab5f1bfef486d630f">end</a>() { <span class="keywordflow">return</span> <a class="code" href="class_small_map.html#23ce4f50bdec9ef60ab36b7471f64a8c">tab</a>+2; }
+<a name="l00295"></a>00295 
+<a name="l00296"></a><a class="code" href="class_small_map.html#ce20a84b60c9bcce43c37cb75d29fe50">00296</a>    Val&amp; <a class="code" href="class_small_map.html#ce20a84b60c9bcce43c37cb75d29fe50">operator[]</a>(<span class="keyword">const</span> Key&amp; k)
+<a name="l00297"></a>00297    {
+<a name="l00298"></a>00298       <span class="keyword">static</span> Val val;
+<a name="l00299"></a>00299       <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> i=0; i&lt;2; ++i)
+<a name="l00300"></a>00300       {
+<a name="l00301"></a>00301          <span class="keywordflow">if</span>(<a class="code" href="class_small_map.html#17fa3be49cbe8114cd223df3870ee6ec">isOcupied</a>[i]&amp;&amp;<a class="code" href="class_small_map.html#23ce4f50bdec9ef60ab36b7471f64a8c">tab</a>[i].first==k)
+<a name="l00302"></a>00302             <span class="keywordflow">return</span> <a class="code" href="class_small_map.html#23ce4f50bdec9ef60ab36b7471f64a8c">tab</a>[i].second;
+<a name="l00303"></a>00303       }
+<a name="l00304"></a>00304       <span class="comment">// create</span>
+<a name="l00305"></a>00305       <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> i=0; i&lt;2; ++i)
+<a name="l00306"></a>00306       {
+<a name="l00307"></a>00307          <span class="keywordflow">if</span>(!<a class="code" href="class_small_map.html#17fa3be49cbe8114cd223df3870ee6ec">isOcupied</a>[i])
+<a name="l00308"></a>00308          {
+<a name="l00309"></a>00309             <a class="code" href="class_small_map.html#23ce4f50bdec9ef60ab36b7471f64a8c">tab</a>[i].first=k;
+<a name="l00310"></a>00310             <a class="code" href="class_small_map.html#17fa3be49cbe8114cd223df3870ee6ec">isOcupied</a>[i]=1;
+<a name="l00311"></a>00311             <span class="keywordflow">return</span> <a class="code" href="class_small_map.html#23ce4f50bdec9ef60ab36b7471f64a8c">tab</a>[i].second;
+<a name="l00312"></a>00312          }
+<a name="l00313"></a>00313       }
+<a name="l00314"></a>00314       <span class="comment">//std::cout&lt;&lt;"Out of space! You should not put more than two Key-Value pairs into the SmallMap.\n";</span>
+<a name="l00315"></a>00315       std::cerr&lt;&lt;<span class="stringliteral">"Out of space! You should not put more than two Key-Value pairs into the SmallMap.\n"</span>;
+<a name="l00316"></a>00316       <span class="comment">//assert(0);</span>
+<a name="l00317"></a>00317       <span class="keywordflow">return</span> val;   <span class="comment">// Mało sensowne, ale to jest tylko przykłąd</span>
+<a name="l00318"></a>00318    }
+<a name="l00319"></a>00319 };
+<a name="l00320"></a>00320       
+<a name="l00321"></a>00321 
+<a name="l00323"></a>00323 <span class="comment">// Testy</span>
+<a name="l00325"></a>00325 <span class="comment"></span>
+<a name="l00327"></a><a class="code" href="asd_8cc.html#e29929e8b88737e614f6df9a0f9b6def">00327</a> <span class="keywordtype">void</span> <a class="code" href="asd_8cc.html#e29929e8b88737e614f6df9a0f9b6def">print</a>(<span class="keyword">const</span> std::pair&lt;int, std::string&gt;&amp; p)
+<a name="l00328"></a>00328 {
+<a name="l00329"></a>00329    std::cout&lt;&lt;p.first&lt;&lt;<span class="stringliteral">", "</span>&lt;&lt;p.second&lt;&lt;std::endl;
+<a name="l00330"></a>00330 }
+<a name="l00331"></a>00331 
+<a name="l00332"></a>00332 <span class="preprocessor">#include &lt;map&gt;</span>
+<a name="l00333"></a>00333 
+<a name="l00335"></a><a class="code" href="main_8cc.html#5af26b3a0b1f8425bfcd62bcfe8991cc">00335</a> <span class="keywordtype">void</span> <a class="code" href="asd_8cc.html#5af26b3a0b1f8425bfcd62bcfe8991cc">test</a>()
+<a name="l00336"></a>00336 {
+<a name="l00337"></a>00337    <span class="comment">// A typedef used by the test.</span>
+<a name="l00338"></a>00338    <span class="keyword">typedef</span> std::map&lt;int, std::string&gt; TEST_MAP;
+<a name="l00339"></a>00339    <span class="comment">//typedef SmallMap&lt;int, std::string&gt; TEST_MAP;</span>
+<a name="l00340"></a>00340    <span class="comment">//typedef ListMap TEST_MAP;</span>
+<a name="l00341"></a>00341 
+<a name="l00342"></a>00342    std::cout &lt;&lt; <span class="stringliteral">"Testy uzytkownika"</span> &lt;&lt; std::endl;
+<a name="l00343"></a>00343 
+<a name="l00344"></a>00344         TEST_MAP m;  
+<a name="l00345"></a>00345    
+<a name="l00346"></a>00346    m[2] = <span class="stringliteral">"Merry"</span>;
+<a name="l00347"></a>00347    m[4] = <span class="stringliteral">"Jane"</span>;
+<a name="l00348"></a>00348    m[8] = <span class="stringliteral">"Korwin"</span>;
+<a name="l00349"></a>00349    m[4] = <span class="stringliteral">"Magdalena"</span>;
+<a name="l00350"></a>00350 
+<a name="l00351"></a>00351    for_each(m.begin(), m.end(), <a class="code" href="asd_8cc.html#e29929e8b88737e614f6df9a0f9b6def">print</a> );
+<a name="l00352"></a>00352    <span class="comment">//system("PAUSE");</span>
+<a name="l00353"></a>00353 
+<a name="l00354"></a>00354 }
+<a name="l00355"></a>00355 
+<a name="l00357"></a>00357 <span class="comment">// main - jest w pliku /home/common/dyd/aisdi/z2/main.cc</span>
+<a name="l00359"></a>00359 <span class="comment"></span>
+<a name="l00360"></a>00360 <span class="comment">//int main()</span>
+<a name="l00361"></a>00361 <span class="comment">//{</span>
+<a name="l00362"></a>00362 <span class="comment">//   std::cout &lt;&lt; "AISDI cwiczenie 2: wchodze do funkcji main." &lt;&lt; std::endl;</span>
+<a name="l00363"></a>00363 <span class="comment">//   test();</span>
+<a name="l00364"></a>00364 <span class="comment">//   // Biblioteka z bardziej rygorystyczna wersja tych testow bedzie udostepniona na nastepnych zajeciach.</span>
+<a name="l00365"></a>00365 <span class="comment">//   Test2();</span>
+<a name="l00366"></a>00366 <span class="comment">//   //system("PAUSE");</span>
+<a name="l00367"></a>00367 <span class="comment">//   return EXIT_SUCCESS;</span>
+<a name="l00368"></a>00368 <span class="comment">//}</span>
+</pre></div><hr size="1"><address style="align: right;"><small>Wygenerowano Fri Mar 10 00:09:37 2006 dla AISDI Cwiczenie struktury liniowe programem&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.5 </small></address>
+</body>
+</html>

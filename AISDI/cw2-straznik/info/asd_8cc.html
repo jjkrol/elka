@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=windows-1250">
+<title>AISDI Cwiczenie struktury liniowe: Dokumentacja pliku asd.cc</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Wygenerowano przez Doxygen 1.4.5 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>Strona&nbsp;główna</span></a></li>
+    <li><a href="annotated.html"><span>Klasy</span></a></li>
+    <li id="current"><a href="files.html"><span>Pliki</span></a></li>
+    <li><a href="pages.html"><span>Dodatkowe&nbsp;strony</span></a></li>
+  </ul></div>
+<div class="tabs">
+  <ul>
+    <li><a href="files.html"><span>Lista&nbsp;plików</span></a></li>
+    <li><a href="globals.html"><span>Składowe&nbsp;plików</span></a></li>
+  </ul></div>
+<h1>Dokumentacja pliku asd.cc</h1>Plik do modyfikacji w ramach cwiczenia z AISDI. <a href="#_details">Więcej...</a>
+<p>
+<code>#include &lt;assert.h&gt;</code><br>
+<code>#include &lt;algorithm&gt;</code><br>
+<code>#include &lt;iostream&gt;</code><br>
+<code>#include &quot;<a class="el" href="_list_map_8h-source.html">ListMap.h</a>&quot;</code><br>
+<code>#include &lt;map&gt;</code><br>
+
+<p>
+Wykres zależności załączania dla asd.cc:<p><center><img src="asd_8cc__incl.png" border="0" usemap="#asd.cc_map" alt=""></center>
+<map name="asd.cc_map">
+<area href="_list_map_8h-source.html" shape="rect" coords="116,159,196,186" alt="">
+</map>
+
+<p>
+<a href="asd_8cc-source.html">Idź do kodu źródłowego tego pliku.</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Komponenty</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_small_map.html">SmallMap&lt; Key, Val &gt;</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Przykład map'y z implementacją podobną do std::map.  <a href="class_small_map.html#_details">Więcej...</a><br></td></tr>
+<tr><td colspan="2"><br><h2>Funkcje</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="asd_8cc.html#e29929e8b88737e614f6df9a0f9b6def">print</a> (const std::pair&lt; int, std::string &gt; &amp;p)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Funckcja pomocnicza do wypisania elementów.  <a href="#e29929e8b88737e614f6df9a0f9b6def"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="asd_8cc.html#5af26b3a0b1f8425bfcd62bcfe8991cc">test</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Testy użytkownika.  <a href="#5af26b3a0b1f8425bfcd62bcfe8991cc"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>Opis szczegółowy</h2>
+Plik do modyfikacji w ramach cwiczenia z AISDI. 
+<p>
+Zawiera niekompletne implementacje metod klasy <a class="el" href="class_list_map.html">ListMap</a>, oraz mape podobna koncepcyjnie do tej z cwicznia 1 (<a class="el" href="class_small_map.html">SmallMap</a>) zaimplementowana w jescze bardziej szczatkowy sposob. Jest tez prosta funkcja testujaca (void <a class="el" href="asd_8cc.html#5af26b3a0b1f8425bfcd62bcfe8991cc">test()</a>), ktora jest wolana w funkcji main. Mozna w niej zaimplementowac wlasne testy. NALEZY ZMODYFIKOWAC I UZUPELNIC CIALA METOD KLASY LISTMAP.<p>
+<dl compact><dt><b>Autor:</b></dt><dd>Pawel Cichocki, Michal Nowacki</dd></dl>
+<dl compact><dt><b>Data:</b></dt><dd>last revision<ul>
+<li>2006.01.06 Michal Nowacki: wersja polska</li><li>2005.11.17 Michal Nowacki: constructor</li><li>2005.11.04 Pawel Cichocki: copied comments from the header</li><li>2005.11.03 Pawel Cichocki: const_iterator done properly now</li><li>2005.10.27 Pawel Cichocki: cosmetic changes</li><li>2005.10.26 Michal Nowacki: removed some method bodies</li><li>2005.10.25 Pawel Cichocki: wrote it</li></ul>
+</dd></dl>
+COPYRIGHT: Copyright (c) 2005 Instytut Informatyki, Politechnika Warszawska ALL RIGHTS RESERVED 
+<p>
+Definicja w pliku <a class="el" href="asd_8cc-source.html">asd.cc</a>.<hr><h2>Dokumentacja funkcji</h2>
+<a class="anchor" name="e29929e8b88737e614f6df9a0f9b6def"></a><!-- doxytag: member="asd.cc::print" ref="e29929e8b88737e614f6df9a0f9b6def" args="(const std::pair&lt; int, std::string &gt; &amp;p)" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="md" nowrap valign="top">void print           </td>
+          <td class="md" valign="top">(&nbsp;</td>
+          <td class="md" nowrap valign="top">const std::pair&lt; int, std::string &gt; &amp;&nbsp;</td>
+          <td class="mdname1" valign="top" nowrap> <em>p</em>          </td>
+          <td class="md" valign="top">&nbsp;)&nbsp;</td>
+          <td class="md" nowrap></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+Funckcja pomocnicza do wypisania elementów. 
+<p>
+
+<p>
+Definicja w linii <a class="el" href="asd_8cc-source.html#l00327">327</a> pliku <a class="el" href="asd_8cc-source.html">asd.cc</a>.
+<p>
+Odwołania w <a class="el" href="asd_8cc-source.html#l00335">test()</a>.    </td>
+  </tr>
+</table>
+<a class="anchor" name="5af26b3a0b1f8425bfcd62bcfe8991cc"></a><!-- doxytag: member="asd.cc::test" ref="5af26b3a0b1f8425bfcd62bcfe8991cc" args="()" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="md" nowrap valign="top">void test           </td>
+          <td class="md" valign="top">(&nbsp;</td>
+          <td class="mdname1" valign="top" nowrap>          </td>
+          <td class="md" valign="top">&nbsp;)&nbsp;</td>
+          <td class="md" nowrap></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+Testy użytkownika. 
+<p>
+
+<p>
+Definicja w linii <a class="el" href="asd_8cc-source.html#l00335">335</a> pliku <a class="el" href="asd_8cc-source.html">asd.cc</a>.
+<p>
+Odwołuje się do <a class="el" href="asd_8cc-source.html#l00327">print()</a>.
+<p>
+Odwołania w <a class="el" href="main_8cc-source.html#l00033">main()</a>.    </td>
+  </tr>
+</table>
+<hr size="1"><address style="align: right;"><small>Wygenerowano Fri Mar 10 00:09:37 2006 dla AISDI Cwiczenie struktury liniowe programem&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.5 </small></address>
+</body>
+</html>

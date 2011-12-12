@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=windows-1250">
+<title>AISDI Cwiczenie struktury liniowe: Plik Ľródłowy ListMap.h</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Wygenerowano przez Doxygen 1.4.5 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>Strona&nbsp;główna</span></a></li>
+    <li><a href="annotated.html"><span>Klasy</span></a></li>
+    <li id="current"><a href="files.html"><span>Pliki</span></a></li>
+    <li><a href="pages.html"><span>Dodatkowe&nbsp;strony</span></a></li>
+  </ul></div>
+<div class="tabs">
+  <ul>
+    <li><a href="files.html"><span>Lista&nbsp;plików</span></a></li>
+    <li><a href="globals.html"><span>Składowe&nbsp;plików</span></a></li>
+  </ul></div>
+<h1>ListMap.h</h1><a href="_list_map_8h.html">Idź do dokumentacji tego pliku.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;assert.h&gt;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &lt;iterator&gt;</span>
+<a name="l00030"></a>00030 
+<a name="l00031"></a>00031 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00032"></a>00032 
+<a name="l00034"></a><a class="code" href="class_c_count.html">00034</a> <span class="keyword">class </span><a class="code" href="class_c_count.html">CCount</a>
+<a name="l00035"></a>00035 {
+<a name="l00036"></a>00036 <span class="keyword">private</span>:
+<a name="l00037"></a><a class="code" href="class_c_count.html#e2942a04780e223b215eb8b663cf5353">00037</a>   <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_c_count.html#e2942a04780e223b215eb8b663cf5353">count</a>;
+<a name="l00038"></a><a class="code" href="class_c_count.html#56b8d3879a6fedc1932c5c2733eb7655">00038</a>   <a class="code" href="class_c_count.html#56b8d3879a6fedc1932c5c2733eb7655">CCount</a>() {<a class="code" href="class_c_count.html#e2942a04780e223b215eb8b663cf5353">count</a>++;}
+<a name="l00039"></a><a class="code" href="class_c_count.html#46a9e57e83393ebb6451f597d02d2338">00039</a>   <a class="code" href="class_c_count.html#46a9e57e83393ebb6451f597d02d2338">~CCount</a>()
+<a name="l00040"></a>00040   {
+<a name="l00041"></a>00041      assert(<a class="code" href="class_c_count.html#e2942a04780e223b215eb8b663cf5353">count</a>&gt;0);
+<a name="l00042"></a>00042      <span class="comment">//if(count&gt;0) </span>
+<a name="l00043"></a>00043         <a class="code" href="class_c_count.html#e2942a04780e223b215eb8b663cf5353">count</a>--;
+<a name="l00044"></a>00044      <span class="comment">//else</span>
+<a name="l00045"></a>00045      <span class="comment">//   cerr&lt;&lt;"ERROR (CCount): More destructors than constructors called!"&lt;&lt;std::endl;</span>
+<a name="l00046"></a>00046   }
+<a name="l00047"></a><a class="code" href="class_c_count.html#aa7a691e778a2d06f819f0383daadec6">00047</a>   <span class="keyword">friend</span> <span class="keyword">struct </span><a class="code" href="struct_list_node.html">ListNode</a>;
+<a name="l00048"></a>00048   <span class="comment">//friend int Test2();</span>
+<a name="l00049"></a>00049 <span class="keyword">public</span>:
+<a name="l00051"></a><a class="code" href="class_c_count.html#68b1e82502beaa137b00477d034627d5">00051</a>    <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_c_count.html#68b1e82502beaa137b00477d034627d5">getCount</a>() { <span class="keywordflow">return</span> <a class="code" href="class_c_count.html#e2942a04780e223b215eb8b663cf5353">count</a>; }
+<a name="l00052"></a>00052 };
+<a name="l00053"></a>00053 
+<a name="l00055"></a>00055 <span class="comment">// ListMap i związane klasy</span>
+<a name="l00057"></a>00057 <span class="comment"></span>
+<a name="l00059"></a><a class="code" href="struct_list_node.html">00059</a> <span class="keyword">struct </span><a class="code" href="struct_list_node.html">ListNode</a> : <a class="code" href="class_c_count.html">CCount</a>
+<a name="l00060"></a>00060 {
+<a name="l00061"></a><a class="code" href="struct_list_node.html#b9ece18c950afbfa6b0fdbfa4ff731d3">00061</a>    <span class="keyword">typedef</span> std::pair&lt;int,std::string&gt; <a class="code" href="struct_list_node.html#b9ece18c950afbfa6b0fdbfa4ff731d3">T</a>;
+<a name="l00062"></a><a class="code" href="struct_list_node.html#d0cab90d8d20d57e2f2b9be52f7dd25d">00062</a>    <a class="code" href="struct_list_node.html">ListNode</a>* <a class="code" href="struct_list_node.html#d0cab90d8d20d57e2f2b9be52f7dd25d">next</a>;   
+<a name="l00063"></a><a class="code" href="struct_list_node.html#fcb08b164ac83e09964deb24f2d2e80b">00063</a>    <a class="code" href="struct_list_node.html">ListNode</a>* <a class="code" href="struct_list_node.html#fcb08b164ac83e09964deb24f2d2e80b">prev</a>;   
+<a name="l00064"></a><a class="code" href="struct_list_node.html#8d777f385d3dfec8815d20f7496026dc">00064</a>    <a class="code" href="struct_list_node.html#b9ece18c950afbfa6b0fdbfa4ff731d3">T</a> <a class="code" href="struct_list_node.html#8d777f385d3dfec8815d20f7496026dc">data</a>;           
+<a name="l00065"></a><a class="code" href="struct_list_node.html#ecad4ff928fc324e64636c7e912525f8">00065</a>    <span class="keywordtype">void</span>* <a class="code" href="struct_list_node.html#ecad4ff928fc324e64636c7e912525f8">internalDataPointer</a>;   
+<a name="l00066"></a><a class="code" href="struct_list_node.html#a274e3083bbc125a7cb3824cc538c6e8">00066</a>    <a class="code" href="struct_list_node.html#a274e3083bbc125a7cb3824cc538c6e8">ListNode</a>(<span class="keyword">const</span> std::pair&lt;int,std::string&gt;&amp; d) : <a class="code" href="struct_list_node.html#d0cab90d8d20d57e2f2b9be52f7dd25d">next</a>(NULL), <a class="code" href="struct_list_node.html#fcb08b164ac83e09964deb24f2d2e80b">prev</a>(NULL), <a class="code" href="struct_list_node.html#8d777f385d3dfec8815d20f7496026dc">data</a>(d) {}
+<a name="l00067"></a><a class="code" href="struct_list_node.html#3a0391dfff1833d2d68162811d6b4b27">00067</a>    <a class="code" href="struct_list_node.html#a274e3083bbc125a7cb3824cc538c6e8">ListNode</a>(<span class="keyword">const</span> std::pair&lt;int,std::string&gt;&amp; d, <a class="code" href="struct_list_node.html">ListNode</a>* n, <a class="code" href="struct_list_node.html">ListNode</a>* p) : <a class="code" href="struct_list_node.html#d0cab90d8d20d57e2f2b9be52f7dd25d">next</a>(n), <a class="code" href="struct_list_node.html#fcb08b164ac83e09964deb24f2d2e80b">prev</a>(p), <a class="code" href="struct_list_node.html#8d777f385d3dfec8815d20f7496026dc">data</a>(d) {}
+<a name="l00068"></a>00068 };
+<a name="l00069"></a>00069 
+<a name="l00073"></a><a class="code" href="class_list_map.html">00073</a> <span class="keyword">class </span><a class="code" href="class_list_map.html">ListMap</a>
+<a name="l00074"></a>00074 {
+<a name="l00075"></a>00075 <span class="keyword">public</span>:
+<a name="l00076"></a><a class="code" href="class_list_map.html#897356954c2cd3d41b221e3f24f99bba">00076</a>    <span class="keyword">typedef</span> <span class="keywordtype">int</span> <a class="code" href="class_list_map.html#897356954c2cd3d41b221e3f24f99bba">Key</a>;
+<a name="l00077"></a><a class="code" href="class_list_map.html#5988c20a047cfe063999787584b0aca7">00077</a>    <span class="keyword">typedef</span> std::string <a class="code" href="class_list_map.html#5988c20a047cfe063999787584b0aca7">Val</a>;
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 <span class="keyword">protected</span>:
+<a name="l00080"></a><a class="code" href="class_list_map.html#6c3a6944a808a7c0bbb6788dbec54a9f">00080</a>    <span class="keyword">typedef</span> <a class="code" href="struct_list_node.html">ListNode</a><span class="comment">/*&lt;Key, Value&gt;*/</span> <a class="code" href="struct_list_node.html">Node</a>;
+<a name="l00081"></a><a class="code" href="class_list_map.html#8b04d5e3775d298e78455efc5ca404d5">00081</a>    <a class="code" href="struct_list_node.html">Node</a>* <a class="code" href="class_list_map.html#8b04d5e3775d298e78455efc5ca404d5">first</a>;
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 <span class="keyword">public</span>:
+<a name="l00084"></a><a class="code" href="class_list_map.html#3eb1f9410d79d28273ccc045cf8e6478">00084</a>    <span class="keyword">typedef</span> size_t <a class="code" href="class_list_map.html#3eb1f9410d79d28273ccc045cf8e6478">size_type</a>;
+<a name="l00085"></a><a class="code" href="class_list_map.html#44c29edb103a2872f519ad0c9a0fdaaa">00085</a>    <span class="keyword">typedef</span> std::pair&lt;Key, Val&gt; <a class="code" href="class_list_map.html#44c29edb103a2872f519ad0c9a0fdaaa">P</a>;
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087    <a class="code" href="class_list_map.html#88c2c3f96eb7e66015e05384d6972c30">ListMap</a>();
+<a name="l00088"></a>00088    <a class="code" href="class_list_map.html#88c2c3f96eb7e66015e05384d6972c30">ListMap</a>( <span class="keyword">const</span> <a class="code" href="class_list_map.html">ListMap</a>&amp; );
+<a name="l00089"></a>00089    <a class="code" href="class_list_map.html#29a5cb7c14dc1140748a9b58460c1011">~ListMap</a>();
+<a name="l00090"></a>00090 
+<a name="l00093"></a><a class="code" href="class_list_map_1_1const__iterator.html">00093</a>    <span class="keyword">class </span><a class="code" href="class_list_map_1_1const__iterator.html">const_iterator</a> : <span class="keyword">public</span> std::<a class="code" href="class_list_map_1_1iterator.html">iterator</a>&lt;std::forward_iterator_tag,
+<a name="l00094"></a>00094                                                std::pair&lt;Key, Val&gt; &gt;
+<a name="l00095"></a>00095    {
+<a name="l00096"></a>00096    <span class="keyword">public</span>:
+<a name="l00097"></a><a class="code" href="class_list_map_1_1const__iterator.html#b9ece18c950afbfa6b0fdbfa4ff731d3">00097</a>       <span class="keyword">typedef</span> std::pair&lt;Key, Val&gt; <a class="code" href="class_list_map_1_1const__iterator.html#b9ece18c950afbfa6b0fdbfa4ff731d3">T</a>;
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099    <span class="keyword">protected</span>:
+<a name="l00101"></a><a class="code" href="class_list_map_1_1const__iterator.html#36c4536996ca5615dcf9911f068786dc">00101</a>       <a class="code" href="struct_list_node.html">Node</a>* <a class="code" href="class_list_map_1_1const__iterator.html#36c4536996ca5615dcf9911f068786dc">node</a>;
+<a name="l00102"></a><a class="code" href="class_list_map_1_1const__iterator.html#3fd6c9537a67444aa5f87902d8ea23d5">00102</a>       <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="class_list_map.html">ListMap</a>;
+<a name="l00103"></a>00103 
+<a name="l00104"></a><a class="code" href="class_list_map_1_1const__iterator.html#27f123de1dda4c35c67d132f620c5b7a">00104</a>       <a class="code" href="class_list_map_1_1const__iterator.html#645ef348f77c435481d85152ee348aa2">const_iterator</a>(<a class="code" href="struct_list_node.html">Node</a>* x) : <a class="code" href="class_list_map_1_1const__iterator.html#36c4536996ca5615dcf9911f068786dc">node</a>(x) {}
+<a name="l00105"></a>00105    <span class="keyword">public</span>:
+<a name="l00106"></a><a class="code" href="class_list_map_1_1const__iterator.html#645ef348f77c435481d85152ee348aa2">00106</a>       <a class="code" href="class_list_map_1_1const__iterator.html#645ef348f77c435481d85152ee348aa2">const_iterator</a>() {}
+<a name="l00107"></a><a class="code" href="class_list_map_1_1const__iterator.html#6e845f4990b76b6659a5e525ee7c917e">00107</a>       <a class="code" href="class_list_map_1_1const__iterator.html#645ef348f77c435481d85152ee348aa2">const_iterator</a>(<span class="keyword">const</span> <a class="code" href="class_list_map_1_1const__iterator.html">const_iterator</a>&amp; a) : <a class="code" href="class_list_map_1_1const__iterator.html#36c4536996ca5615dcf9911f068786dc">node</a>(a.<a class="code" href="class_list_map_1_1const__iterator.html#36c4536996ca5615dcf9911f068786dc">node</a>) {}
+<a name="l00108"></a>00108 
+<a name="l00109"></a><a class="code" href="class_list_map_1_1const__iterator.html#f7a39cedb9cf2cea096b6e77b4794aa2">00109</a>       <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="class_list_map_1_1const__iterator.html#b9ece18c950afbfa6b0fdbfa4ff731d3">T</a>&amp; <a class="code" href="class_list_map_1_1const__iterator.html#f7a39cedb9cf2cea096b6e77b4794aa2">operator*</a>()<span class="keyword"> const</span>
+<a name="l00110"></a>00110 <span class="keyword">      </span>{
+<a name="l00111"></a>00111          <span class="keywordflow">return</span> <a class="code" href="class_list_map_1_1const__iterator.html#36c4536996ca5615dcf9911f068786dc">node</a>-&gt;<a class="code" href="struct_list_node.html#8d777f385d3dfec8815d20f7496026dc">data</a>;
+<a name="l00112"></a>00112       }
+<a name="l00113"></a>00113 
+<a name="l00114"></a><a class="code" href="class_list_map_1_1const__iterator.html#0435166b505820018f60233eb3f00662">00114</a>       <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="class_list_map_1_1const__iterator.html#b9ece18c950afbfa6b0fdbfa4ff731d3">T</a>* <a class="code" href="class_list_map_1_1const__iterator.html#0435166b505820018f60233eb3f00662">operator-&gt;</a>()<span class="keyword"> const</span>
+<a name="l00115"></a>00115 <span class="keyword">      </span>{
+<a name="l00116"></a>00116          <span class="keywordflow">return</span> &amp;(<a class="code" href="class_list_map_1_1const__iterator.html#36c4536996ca5615dcf9911f068786dc">node</a>-&gt;<a class="code" href="struct_list_node.html#8d777f385d3dfec8815d20f7496026dc">data</a>);
+<a name="l00117"></a>00117       }
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119       <span class="comment">// preincrementacja</span>
+<a name="l00120"></a>00120       <span class="comment">/*inline*/</span> <a class="code" href="class_list_map_1_1const__iterator.html">const_iterator</a>&amp; <span class="keyword">operator</span>++();
+<a name="l00121"></a>00121       <span class="comment">// postincrementacja</span>
+<a name="l00122"></a>00122       <span class="comment">/*inline*/</span> <a class="code" href="class_list_map_1_1const__iterator.html">const_iterator</a> <a class="code" href="class_list_map_1_1const__iterator.html#879fb570af328b721ed45fe254b0a582">operator++</a>(<span class="keywordtype">int</span>);
+<a name="l00123"></a>00123       <span class="comment">// predekrementacja</span>
+<a name="l00124"></a>00124       <span class="comment">/*inline*/</span> <a class="code" href="class_list_map_1_1const__iterator.html">const_iterator</a>&amp; <a class="code" href="class_list_map_1_1const__iterator.html#08e169f7d9d8a763281a98d478c20a02">operator--</a>();
+<a name="l00125"></a>00125       <span class="comment">// postdekrementacja</span>
+<a name="l00126"></a>00126       <span class="comment">/*inline*/</span> <a class="code" href="class_list_map_1_1const__iterator.html">const_iterator</a> <a class="code" href="class_list_map_1_1const__iterator.html#08e169f7d9d8a763281a98d478c20a02">operator--</a>(<span class="keywordtype">int</span>);
+<a name="l00127"></a>00127 
+<a name="l00128"></a><a class="code" href="class_list_map_1_1const__iterator.html#af10f269139a928a53584bc453003226">00128</a>       <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_list_map_1_1const__iterator.html#af10f269139a928a53584bc453003226">operator==</a>(<span class="keyword">const</span> <a class="code" href="class_list_map_1_1const__iterator.html">const_iterator</a>&amp; a)<span class="keyword"> const</span>
+<a name="l00129"></a>00129 <span class="keyword">      </span>{
+<a name="l00130"></a>00130          <span class="keywordflow">return</span> <a class="code" href="class_list_map_1_1const__iterator.html#36c4536996ca5615dcf9911f068786dc">node</a> == a.<a class="code" href="class_list_map_1_1const__iterator.html#36c4536996ca5615dcf9911f068786dc">node</a>;
+<a name="l00131"></a>00131       }
+<a name="l00132"></a>00132 
+<a name="l00133"></a><a class="code" href="class_list_map_1_1const__iterator.html#1afff81678307f558fa6ed1eadd24c40">00133</a>       <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_list_map_1_1const__iterator.html#1afff81678307f558fa6ed1eadd24c40">operator!=</a>(<span class="keyword">const</span> <a class="code" href="class_list_map_1_1const__iterator.html">const_iterator</a>&amp; a)<span class="keyword"> const</span>
+<a name="l00134"></a>00134 <span class="keyword">      </span>{
+<a name="l00135"></a>00135          <span class="keywordflow">return</span> <a class="code" href="class_list_map_1_1const__iterator.html#36c4536996ca5615dcf9911f068786dc">node</a> != a.<a class="code" href="class_list_map_1_1const__iterator.html#36c4536996ca5615dcf9911f068786dc">node</a>;
+<a name="l00136"></a>00136       }
+<a name="l00137"></a>00137    };
+<a name="l00138"></a>00138 
+<a name="l00140"></a><a class="code" href="class_list_map_1_1iterator.html">00140</a>    <span class="keyword">class </span><a class="code" href="class_list_map_1_1iterator.html">iterator</a> : <span class="keyword">public</span> <a class="code" href="class_list_map_1_1const__iterator.html">const_iterator</a>
+<a name="l00141"></a>00141    {
+<a name="l00142"></a><a class="code" href="class_list_map_1_1iterator.html#4869ea6e94137dd3c8ead09023ab2a3f">00142</a>       <a class="code" href="class_list_map_1_1iterator.html">iterator</a>(<a class="code" href="struct_list_node.html">Node</a>* x) : <a class="code" href="class_list_map_1_1const__iterator.html">const_iterator</a>(x) {}
+<a name="l00143"></a><a class="code" href="class_list_map_1_1iterator.html#3fd6c9537a67444aa5f87902d8ea23d5">00143</a>       <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="class_list_map.html">ListMap</a>;
+<a name="l00144"></a>00144 
+<a name="l00145"></a>00145    <span class="keyword">public</span>:
+<a name="l00146"></a><a class="code" href="class_list_map_1_1iterator.html#c49f9eff2ae38470827eedc5b90f1eb1">00146</a>       <a class="code" href="class_list_map_1_1iterator.html">iterator</a>() {}
+<a name="l00147"></a><a class="code" href="class_list_map_1_1iterator.html#f0f6d6b5b544eb701ae3d015e6133e1e">00147</a>       <a class="code" href="class_list_map_1_1iterator.html">iterator</a>(<span class="keyword">const</span> <a class="code" href="class_list_map_1_1const__iterator.html">const_iterator</a>&amp; a) : <a class="code" href="class_list_map_1_1const__iterator.html">const_iterator</a>(a) {}
+<a name="l00148"></a><a class="code" href="class_list_map_1_1iterator.html#5c297ca07cf2a75a9b0227b654c196d9">00148</a>       <a class="code" href="class_list_map_1_1iterator.html">iterator</a>(<span class="keyword">const</span> <a class="code" href="class_list_map_1_1iterator.html">iterator</a>&amp; a) { <a class="code" href="class_list_map_1_1const__iterator.html#36c4536996ca5615dcf9911f068786dc">node</a> = a.<a class="code" href="class_list_map_1_1const__iterator.html#36c4536996ca5615dcf9911f068786dc">node</a>; }
+<a name="l00149"></a>00149 
+<a name="l00150"></a><a class="code" href="class_list_map_1_1iterator.html#f7a39cedb9cf2cea096b6e77b4794aa2">00150</a>       <span class="keyword">inline</span> <a class="code" href="class_list_map_1_1const__iterator.html#b9ece18c950afbfa6b0fdbfa4ff731d3">T</a>&amp; <a class="code" href="class_list_map_1_1const__iterator.html#f7a39cedb9cf2cea096b6e77b4794aa2">operator*</a>()<span class="keyword"> const</span>
+<a name="l00151"></a>00151 <span class="keyword">      </span>{
+<a name="l00152"></a>00152          <span class="keywordflow">return</span> <a class="code" href="class_list_map_1_1const__iterator.html#36c4536996ca5615dcf9911f068786dc">node</a>-&gt;<a class="code" href="struct_list_node.html#8d777f385d3dfec8815d20f7496026dc">data</a>;
+<a name="l00153"></a>00153       }
+<a name="l00154"></a><a class="code" href="class_list_map_1_1iterator.html#0435166b505820018f60233eb3f00662">00154</a>       <span class="keyword">inline</span> <a class="code" href="class_list_map_1_1const__iterator.html#b9ece18c950afbfa6b0fdbfa4ff731d3">T</a>* <a class="code" href="class_list_map_1_1const__iterator.html#0435166b505820018f60233eb3f00662">operator-&gt;</a>()<span class="keyword"> const</span>
+<a name="l00155"></a>00155 <span class="keyword">      </span>{
+<a name="l00156"></a>00156          <span class="keywordflow">return</span> &amp;(<a class="code" href="class_list_map_1_1const__iterator.html#36c4536996ca5615dcf9911f068786dc">node</a>-&gt;<a class="code" href="struct_list_node.html#8d777f385d3dfec8815d20f7496026dc">data</a>);
+<a name="l00157"></a>00157       }
+<a name="l00158"></a>00158 
+<a name="l00159"></a><a class="code" href="class_list_map_1_1iterator.html#879fb570af328b721ed45fe254b0a582">00159</a>       <a class="code" href="class_list_map_1_1iterator.html">iterator</a>&amp; <span class="keyword">operator</span>++()
+<a name="l00160"></a>00160       {  <span class="comment">// preincrementacja</span>
+<a name="l00161"></a>00161          ++(*(<a class="code" href="class_list_map_1_1const__iterator.html">const_iterator</a>*)<span class="keyword">this</span>);
+<a name="l00162"></a>00162          <span class="keywordflow">return</span> (*<span class="keyword">this</span>);
+<a name="l00163"></a>00163       }
+<a name="l00164"></a>00164 
+<a name="l00165"></a><a class="code" href="class_list_map_1_1iterator.html#5d4681e027a07e3fb51ab21bef0dcc3d">00165</a>       <a class="code" href="class_list_map_1_1iterator.html">iterator</a> <a class="code" href="class_list_map_1_1const__iterator.html#879fb570af328b721ed45fe254b0a582">operator++</a>(<span class="keywordtype">int</span>)
+<a name="l00166"></a>00166       {  <span class="comment">// postincrementacja</span>
+<a name="l00167"></a>00167          <a class="code" href="class_list_map_1_1iterator.html">iterator</a> temp = *<span class="keyword">this</span>;
+<a name="l00168"></a>00168          ++*<span class="keyword">this</span>;
+<a name="l00169"></a>00169          <span class="keywordflow">return</span> temp;
+<a name="l00170"></a>00170       }
+<a name="l00171"></a>00171 
+<a name="l00172"></a><a class="code" href="class_list_map_1_1iterator.html#08e169f7d9d8a763281a98d478c20a02">00172</a>       <a class="code" href="class_list_map_1_1iterator.html">iterator</a>&amp; <a class="code" href="class_list_map_1_1const__iterator.html#08e169f7d9d8a763281a98d478c20a02">operator--</a>()
+<a name="l00173"></a>00173       {  <span class="comment">// predekrementacja</span>
+<a name="l00174"></a>00174          --(*(<a class="code" href="class_list_map_1_1const__iterator.html">const_iterator</a>*)<span class="keyword">this</span>);
+<a name="l00175"></a>00175          <span class="keywordflow">return</span> (*<span class="keyword">this</span>);
+<a name="l00176"></a>00176       }
+<a name="l00177"></a>00177 
+<a name="l00178"></a><a class="code" href="class_list_map_1_1iterator.html#12332c0f3ca9f1be40bf725d24d260ef">00178</a>       <a class="code" href="class_list_map_1_1iterator.html">iterator</a> <a class="code" href="class_list_map_1_1const__iterator.html#08e169f7d9d8a763281a98d478c20a02">operator--</a>(<span class="keywordtype">int</span>)
+<a name="l00179"></a>00179       {  <span class="comment">// postdekrementacja</span>
+<a name="l00180"></a>00180          <a class="code" href="class_list_map_1_1iterator.html">iterator</a> temp = *<span class="keyword">this</span>;
+<a name="l00181"></a>00181          --*<span class="keyword">this</span>;
+<a name="l00182"></a>00182          <span class="keywordflow">return</span> temp;
+<a name="l00183"></a>00183       }
+<a name="l00184"></a>00184    };
+<a name="l00185"></a>00185    
+<a name="l00187"></a>00187    <span class="keyword">inline</span> <a class="code" href="classstd_1_1iterator.html">iterator</a> <a class="code" href="class_list_map.html#4b1a01a7db76e79c6194363c78d33615">begin</a>();
+<a name="l00188"></a>00188    <span class="keyword">inline</span> <a class="code" href="class_list_map_1_1const__iterator.html#645ef348f77c435481d85152ee348aa2">const_iterator</a> <a class="code" href="class_list_map.html#4b1a01a7db76e79c6194363c78d33615">begin</a>() <span class="keyword">const</span>;
+<a name="l00189"></a>00189 
+<a name="l00191"></a>00191    <span class="keyword">inline</span> <a class="code" href="classstd_1_1iterator.html">iterator</a> <a class="code" href="class_list_map.html#f34c4b013e5d012ab5f1bfef486d630f">end</a>();
+<a name="l00192"></a>00192    <span class="keyword">inline</span> <a class="code" href="class_list_map_1_1const__iterator.html#645ef348f77c435481d85152ee348aa2">const_iterator</a> <a class="code" href="class_list_map.html#f34c4b013e5d012ab5f1bfef486d630f">end</a>() <span class="keyword">const</span>;
+<a name="l00193"></a>00193    
+<a name="l00199"></a>00199    std::pair&lt;iterator, bool&gt; <a class="code" href="class_list_map.html#94500a970d082e87b838a94fed333521">insert</a>(<span class="keyword">const</span> std::pair&lt;Key, Val&gt;&amp; entry);
+<a name="l00200"></a>00200 
+<a name="l00203"></a>00203    <a class="code" href="classstd_1_1iterator.html">iterator</a> <a class="code" href="class_list_map.html#9b42b72518de2845832b80e44424fab3">unsafe_insert</a>(<span class="keyword">const</span> std::pair&lt;Key, Val&gt;&amp; entry);
+<a name="l00204"></a>00204 
+<a name="l00207"></a>00207    <a class="code" href="classstd_1_1iterator.html">iterator</a> <a class="code" href="class_list_map.html#da5bc54e6c1da79235e9160ee021b9f5">find</a>(<span class="keyword">const</span> <a class="code" href="class_list_map.html#897356954c2cd3d41b221e3f24f99bba">Key</a>&amp; k);
+<a name="l00208"></a>00208    <a class="code" href="class_list_map_1_1const__iterator.html#645ef348f77c435481d85152ee348aa2">const_iterator</a> <a class="code" href="class_list_map.html#da5bc54e6c1da79235e9160ee021b9f5">find</a>(<span class="keyword">const</span> <a class="code" href="class_list_map.html#897356954c2cd3d41b221e3f24f99bba">Key</a>&amp; k) <span class="keyword">const</span>;
+<a name="l00209"></a>00209  
+<a name="l00213"></a>00213    <a class="code" href="class_list_map.html#5988c20a047cfe063999787584b0aca7">Val</a>&amp; <a class="code" href="class_list_map.html#ce20a84b60c9bcce43c37cb75d29fe50">operator[]</a>(<span class="keyword">const</span> <a class="code" href="class_list_map.html#897356954c2cd3d41b221e3f24f99bba">Key</a>&amp; k);   
+<a name="l00214"></a>00214 
+<a name="l00216"></a>00216    <span class="keywordtype">bool</span> <a class="code" href="class_list_map.html#ea1ddff44da5abff286d8b01793eb7ee">empty</a>( ) <span class="keyword">const</span>;
+<a name="l00217"></a>00217 
+<a name="l00219"></a>00219    <a class="code" href="class_list_map.html#3eb1f9410d79d28273ccc045cf8e6478">size_type</a> <a class="code" href="class_list_map.html#5a9421972c178b3c37b99f953470c6f6">size</a>() <span class="keyword">const</span>;
+<a name="l00220"></a>00220 
+<a name="l00222"></a>00222    <a class="code" href="class_list_map.html#3eb1f9410d79d28273ccc045cf8e6478">size_type</a> <a class="code" href="class_list_map.html#1d79deabb6ad2a93ef5358356055ee3b">count</a>(<span class="keyword">const</span> <a class="code" href="class_list_map.html#897356954c2cd3d41b221e3f24f99bba">Key</a>&amp; _Key) <span class="keyword">const</span>;
+<a name="l00223"></a>00223 
+<a name="l00226"></a>00226    <a class="code" href="classstd_1_1iterator.html">iterator</a> <a class="code" href="class_list_map.html#99d178e178a2d0a71c1f5698c5879dcf">erase</a>(<a class="code" href="classstd_1_1iterator.html">iterator</a> i);
+<a name="l00227"></a>00227    
+<a name="l00233"></a>00233    <a class="code" href="classstd_1_1iterator.html">iterator</a> <a class="code" href="class_list_map.html#99d178e178a2d0a71c1f5698c5879dcf">erase</a>(<a class="code" href="classstd_1_1iterator.html">iterator</a> <a class="code" href="class_list_map.html#8b04d5e3775d298e78455efc5ca404d5">first</a>, <a class="code" href="classstd_1_1iterator.html">iterator</a> last);
+<a name="l00234"></a>00234    
+<a name="l00238"></a>00238    <a class="code" href="class_list_map.html#3eb1f9410d79d28273ccc045cf8e6478">size_type</a> <a class="code" href="class_list_map.html#99d178e178a2d0a71c1f5698c5879dcf">erase</a>(<span class="keyword">const</span> <a class="code" href="class_list_map.html#897356954c2cd3d41b221e3f24f99bba">Key</a>&amp; key);
+<a name="l00239"></a>00239 
+<a name="l00241"></a>00241    <span class="keywordtype">void</span> <a class="code" href="class_list_map.html#3616b8000a015689fed4b46c19c06ea2">clear</a>( );
+<a name="l00242"></a>00242    
+<a name="l00246"></a>00246    <span class="keywordtype">bool</span> <a class="code" href="class_list_map.html#2661be861c21b9513edfd9ab4771ba9e">struct_eq</a>(<span class="keyword">const</span> <a class="code" href="class_list_map.html">ListMap</a>&amp; another) <span class="keyword">const</span>;
+<a name="l00250"></a>00250    <span class="keywordtype">bool</span> <a class="code" href="class_list_map.html#daa92d412adfeef4521566bf886b6b90">info_eq</a>(<span class="keyword">const</span> <a class="code" href="class_list_map.html">ListMap</a>&amp; another) <span class="keyword">const</span>;
+<a name="l00251"></a>00251 
+<a name="l00253"></a><a class="code" href="class_list_map.html#93d2e640de167719ca7306451fbd22fe">00253</a>    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_list_map.html#93d2e640de167719ca7306451fbd22fe">ListMap::operator==</a>(<span class="keyword">const</span> <a class="code" href="class_list_map.html">ListMap</a>&amp; a)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="class_list_map.html#daa92d412adfeef4521566bf886b6b90">info_eq</a>(a); }
+<a name="l00254"></a>00254 };
+<a name="l00255"></a>00255 
+</pre></div><hr size="1"><address style="align: right;"><small>Wygenerowano Fri Mar 10 00:09:37 2006 dla AISDI Cwiczenie struktury liniowe programem&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.5 </small></address>
+</body>
+</html>

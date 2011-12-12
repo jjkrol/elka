@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=windows-1250">
+<title>AISDI Cwiczenie struktury liniowe: Dokumentacja szablonu klasy SmallMap&lt; Key, Val &gt;</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Wygenerowano przez Doxygen 1.4.5 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>Strona&nbsp;główna</span></a></li>
+    <li id="current"><a href="annotated.html"><span>Klasy</span></a></li>
+    <li><a href="files.html"><span>Pliki</span></a></li>
+    <li><a href="pages.html"><span>Dodatkowe&nbsp;strony</span></a></li>
+  </ul></div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>Lista&nbsp;klas</span></a></li>
+    <li><a href="classes.html"><span>Lista&nbsp;alfabetyczna</span></a></li>
+    <li><a href="hierarchy.html"><span>Hierarchia&nbsp;klas</span></a></li>
+    <li><a href="functions.html"><span>Składowe&nbsp;klas</span></a></li>
+  </ul></div>
+<h1>Dokumentacja szablonu klasy SmallMap&lt; Key, Val &gt;</h1><!-- doxytag: class="SmallMap" -->Przykład map'y z implementacją podobną do std::map.  
+<a href="#_details">Więcej...</a>
+<p>
+Diagram współpracy dla SmallMap&lt; Key, Val &gt;:<p><center><img src="class_small_map__coll__graph.png" border="0" usemap="#_small_map_3_01_key_00_01_val_01_4__coll__map" alt="Collaboration graph"></center>
+<center><font size="2">[<a href="graph_legend.html">legenda</a>]</font></center><a href="class_small_map-members.html">Lista wszystkich składowych.</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Typy publiczne</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef std::pair&lt; Key, Val &gt; *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_small_map.html#420cec00303cf5ff3ee30bf824fc1427">iterator</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Każdy wskaźnik jest też iteratorem.  <a href="#420cec00303cf5ff3ee30bf824fc1427"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Metody publiczne</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_small_map.html#b89297416320453125abfe623563460f">SmallMap</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_small_map.html#420cec00303cf5ff3ee30bf824fc1427">iterator</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_small_map.html#4b1a01a7db76e79c6194363c78d33615">begin</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="class_small_map.html#420cec00303cf5ff3ee30bf824fc1427">iterator</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_small_map.html#f34c4b013e5d012ab5f1bfef486d630f">end</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">Val &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_small_map.html#ce20a84b60c9bcce43c37cb75d29fe50">operator[]</a> (const Key &amp;k)</td></tr>
+
+<tr><td colspan="2"><br><h2>Atrybuty prywatne</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">std::pair&lt; Key, Val &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_small_map.html#23ce4f50bdec9ef60ab36b7471f64a8c">tab</a> [2]</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_small_map.html#17fa3be49cbe8114cd223df3870ee6ec">isOcupied</a> [2]</td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>Opis szczegółowy</h2>
+<h3>template&lt;class Key, class Val&gt;<br>
+ class SmallMap&lt; Key, Val &gt;</h3>
+
+Przykład map'y z implementacją podobną do std::map. 
+<p>
+To jest jedynie przykład!!! Normalnie implementacja powinna opierać się o drzewo lub tablicę haszującą. 
+<p>
+
+<p>
+Definicja w linii <a class="el" href="asd_8cc-source.html#l00277">277</a> pliku <a class="el" href="asd_8cc-source.html">asd.cc</a>.<hr><h2>Dokumentacja składowych definicji typu</h2>
+<a class="anchor" name="420cec00303cf5ff3ee30bf824fc1427"></a><!-- doxytag: member="SmallMap::iterator" ref="420cec00303cf5ff3ee30bf824fc1427" args="" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="mdPrefix" colspan="4">
+template&lt;class Key, class Val&gt; </td>
+        </tr>
+        <tr>
+          <td class="md" nowrap valign="top">typedef std::pair&lt;Key, Val&gt;* <a class="el" href="class_small_map.html">SmallMap</a>&lt; Key, Val &gt;::<a class="el" href="class_small_map.html#420cec00303cf5ff3ee30bf824fc1427">iterator</a>          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+Każdy wskaźnik jest też iteratorem. 
+<p>
+
+<p>
+Definicja w linii <a class="el" href="asd_8cc-source.html#l00291">291</a> pliku <a class="el" href="asd_8cc-source.html">asd.cc</a>.    </td>
+  </tr>
+</table>
+<hr><h2>Dokumentacja konstruktora i destruktora</h2>
+<a class="anchor" name="b89297416320453125abfe623563460f"></a><!-- doxytag: member="SmallMap::SmallMap" ref="b89297416320453125abfe623563460f" args="()" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="mdPrefix" colspan="4">
+template&lt;class Key, class Val&gt; </td>
+        </tr>
+        <tr>
+          <td class="md" nowrap valign="top"><a class="el" href="class_small_map.html">SmallMap</a>&lt; Key, Val &gt;::<a class="el" href="class_small_map.html">SmallMap</a>           </td>
+          <td class="md" valign="top">(&nbsp;</td>
+          <td class="mdname1" valign="top" nowrap>          </td>
+          <td class="md" valign="top">&nbsp;)&nbsp;</td>
+          <td class="md" nowrap><code> [inline]</code></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+
+<p>
+Definicja w linii <a class="el" href="asd_8cc-source.html#l00283">283</a> pliku <a class="el" href="asd_8cc-source.html">asd.cc</a>.
+<p>
+Odwołuje się do <a class="el" href="asd_8cc-source.html#l00280">SmallMap&lt; Key, Val &gt;::isOcupied</a>.    </td>
+  </tr>
+</table>
+<hr><h2>Dokumentacja funkcji składowych</h2>
+<a class="anchor" name="4b1a01a7db76e79c6194363c78d33615"></a><!-- doxytag: member="SmallMap::begin" ref="4b1a01a7db76e79c6194363c78d33615" args="()" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="mdPrefix" colspan="4">
+template&lt;class Key, class Val&gt; </td>
+        </tr>
+        <tr>
+          <td class="md" nowrap valign="top"><a class="el" href="class_small_map.html#420cec00303cf5ff3ee30bf824fc1427">iterator</a> <a class="el" href="class_small_map.html">SmallMap</a>&lt; Key, Val &gt;::begin           </td>
+          <td class="md" valign="top">(&nbsp;</td>
+          <td class="mdname1" valign="top" nowrap>          </td>
+          <td class="md" valign="top">&nbsp;)&nbsp;</td>
+          <td class="md" nowrap><code> [inline]</code></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+
+<p>
+Definicja w linii <a class="el" href="asd_8cc-source.html#l00293">293</a> pliku <a class="el" href="asd_8cc-source.html">asd.cc</a>.
+<p>
+Odwołuje się do <a class="el" href="asd_8cc-source.html#l00279">SmallMap&lt; Key, Val &gt;::tab</a>.    </td>
+  </tr>
+</table>
+<a class="anchor" name="f34c4b013e5d012ab5f1bfef486d630f"></a><!-- doxytag: member="SmallMap::end" ref="f34c4b013e5d012ab5f1bfef486d630f" args="()" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="mdPrefix" colspan="4">
+template&lt;class Key, class Val&gt; </td>
+        </tr>
+        <tr>
+          <td class="md" nowrap valign="top"><a class="el" href="class_small_map.html#420cec00303cf5ff3ee30bf824fc1427">iterator</a> <a class="el" href="class_small_map.html">SmallMap</a>&lt; Key, Val &gt;::end           </td>
+          <td class="md" valign="top">(&nbsp;</td>
+          <td class="mdname1" valign="top" nowrap>          </td>
+          <td class="md" valign="top">&nbsp;)&nbsp;</td>
+          <td class="md" nowrap><code> [inline]</code></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+
+<p>
+Definicja w linii <a class="el" href="asd_8cc-source.html#l00294">294</a> pliku <a class="el" href="asd_8cc-source.html">asd.cc</a>.
+<p>
+Odwołuje się do <a class="el" href="asd_8cc-source.html#l00279">SmallMap&lt; Key, Val &gt;::tab</a>.    </td>
+  </tr>
+</table>
+<a class="anchor" name="ce20a84b60c9bcce43c37cb75d29fe50"></a><!-- doxytag: member="SmallMap::operator[]" ref="ce20a84b60c9bcce43c37cb75d29fe50" args="(const Key &amp;k)" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="mdPrefix" colspan="4">
+template&lt;class Key, class Val&gt; </td>
+        </tr>
+        <tr>
+          <td class="md" nowrap valign="top">Val&amp; <a class="el" href="class_small_map.html">SmallMap</a>&lt; Key, Val &gt;::operator[]           </td>
+          <td class="md" valign="top">(&nbsp;</td>
+          <td class="md" nowrap valign="top">const Key &amp;&nbsp;</td>
+          <td class="mdname1" valign="top" nowrap> <em>k</em>          </td>
+          <td class="md" valign="top">&nbsp;)&nbsp;</td>
+          <td class="md" nowrap><code> [inline]</code></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+
+<p>
+Definicja w linii <a class="el" href="asd_8cc-source.html#l00296">296</a> pliku <a class="el" href="asd_8cc-source.html">asd.cc</a>.
+<p>
+Odwołuje się do <a class="el" href="asd_8cc-source.html#l00280">SmallMap&lt; Key, Val &gt;::isOcupied</a> i <a class="el" href="asd_8cc-source.html#l00279">SmallMap&lt; Key, Val &gt;::tab</a>.    </td>
+  </tr>
+</table>
+<hr><h2>Dokumentacja atrybutów składowych</h2>
+<a class="anchor" name="17fa3be49cbe8114cd223df3870ee6ec"></a><!-- doxytag: member="SmallMap::isOcupied" ref="17fa3be49cbe8114cd223df3870ee6ec" args="[2]" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="mdPrefix" colspan="4">
+template&lt;class Key, class Val&gt; </td>
+        </tr>
+        <tr>
+          <td class="md" nowrap valign="top">int <a class="el" href="class_small_map.html">SmallMap</a>&lt; Key, Val &gt;::<a class="el" href="class_small_map.html#17fa3be49cbe8114cd223df3870ee6ec">isOcupied</a>[2]<code> [private]</code>          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+
+<p>
+Definicja w linii <a class="el" href="asd_8cc-source.html#l00280">280</a> pliku <a class="el" href="asd_8cc-source.html">asd.cc</a>.
+<p>
+Odwołania w <a class="el" href="asd_8cc-source.html#l00296">SmallMap&lt; Key, Val &gt;::operator[]()</a> i <a class="el" href="asd_8cc-source.html#l00283">SmallMap&lt; Key, Val &gt;::SmallMap()</a>.    </td>
+  </tr>
+</table>
+<a class="anchor" name="23ce4f50bdec9ef60ab36b7471f64a8c"></a><!-- doxytag: member="SmallMap::tab" ref="23ce4f50bdec9ef60ab36b7471f64a8c" args="[2]" --><p>
+<table class="mdTable" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="mdPrefix" colspan="4">
+template&lt;class Key, class Val&gt; </td>
+        </tr>
+        <tr>
+          <td class="md" nowrap valign="top">std::pair&lt;Key, Val&gt; <a class="el" href="class_small_map.html">SmallMap</a>&lt; Key, Val &gt;::<a class="el" href="class_small_map.html#23ce4f50bdec9ef60ab36b7471f64a8c">tab</a>[2]<code> [private]</code>          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing="5" cellpadding="0" border="0">
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+
+<p>
+Definicja w linii <a class="el" href="asd_8cc-source.html#l00279">279</a> pliku <a class="el" href="asd_8cc-source.html">asd.cc</a>.
+<p>
+Odwołania w <a class="el" href="asd_8cc-source.html#l00293">SmallMap&lt; Key, Val &gt;::begin()</a>, <a class="el" href="asd_8cc-source.html#l00294">SmallMap&lt; Key, Val &gt;::end()</a> i <a class="el" href="asd_8cc-source.html#l00296">SmallMap&lt; Key, Val &gt;::operator[]()</a>.    </td>
+  </tr>
+</table>
+<hr>Dokumentacja dla tej klasy została wygenerowana z pliku:<ul>
+<li><a class="el" href="asd_8cc-source.html">asd.cc</a></ul>
+<hr size="1"><address style="align: right;"><small>Wygenerowano Fri Mar 10 00:09:37 2006 dla AISDI Cwiczenie struktury liniowe programem&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.5 </small></address>
+</body>
+</html>
