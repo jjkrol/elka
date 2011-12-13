@@ -1,11 +1,18 @@
 	.data
-hello:	.asciiz "Wyszukiwanie\n"
-input:	.asciiz "dane.dat"
-sig:	.word 0x6E235423
-	.word 0x12345466	
-sigsize:.word	48		
+sig:	.byte 0x13
+	.byte 0x19
+	.byte 0x2D
+	.byte 0x52
+	.byte 0x9D
+	.byte 0xBE	
+	.byte 0x04
+	.byte 0x42
+sigsize:.word	34		
+mask:	.word	0xFFFFFFFF 
 buffer:	.space	2421	
 bajt:	.asciiz "Znaleziono tyle bitow od poczatku:\n"
+hello:	.asciiz "Wyszukiwanie\n"
+input:	.asciiz "dane.dat"
 
 	.text
 	.globl main
@@ -58,34 +65,35 @@ loop:
 	
 
 	# czy to nie koniec ciagu przeszukiwanego?
-	lb	$t6, ($t1)
-	beq	$t6, 0, loopend
+	beq	$t8, 75, loopend
 	bne 	$s1, $s4, nextloop	#jesli rozni sie pierwze slowo
-	move 	$s7, $s5		# tempdla $s5
+	move 	$s7, $s5		# temp dla $s5
 	or 	 $s5, $s5, $s3		# utnij s5
 	bne	$s5, $s3, nextloop	#drugie slowo rowne
 	b success
 
 nextloop:	# nie udalo sie, przesun o jeden
+	lw	$t6, mask
 	sll	$s4, $s4, 1	# przesun pierwsze slowo bufora o jeden	
+	and	$s4, $s4, $t6 
 	move	$t9, $s5	#temp
-	srl	$t9, $t9, 7	# wez ostatni
-	add	$s4, $s4, $t9	# wpisz pierwszy z s5 jako ostatni w s4
+	srl	$t9, $t9, 31	# wez ostatni
+	addu	$s4, $s4, $t9	# wpisz pierwszy z s5 jako ostatni w s4
 
 	sll	$s5, $s5, 1
 	move	$t9, $s6	# temp
-	srl	$t9, $t9, 7	# wez ostatni
-	add	$s5, $s5, $t9	# wpisz pierwszy z s6 jako ostatni w s5
+	srl	$t9, $t9, 31	# wez ostatni
+	addu	$s5, $s5, $t9	# wpisz pierwszy z s6 jako ostatni w s5
 
 	sll	$s6, $s6, 1 	#przesun s5
-	addi	$t8, 1
+	addiu	$t8, 1
 	beq	$t8, 32, nextword
 	# sprawdz, czy nie trzeba zaladowac nowego do s6
 
 	b loop
 
 nextword:
-	addi	$t1, 4
+	addiu	$t1, 4
 	lw	$s6, ($t1)
 	b loop
 
