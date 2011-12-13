@@ -1,12 +1,12 @@
 	.data
 hello:	.asciiz "Wyszukiwanie\n"
 input:	.asciiz "dane.dat"
-sig:	.word	57702 
+sig:	.word 0xFa 0xfb 0x45 0x58
+	.word 0x88
 sigsize:.word	10	
 bytemask:.byte	0
 buffer:	.space	2421	
-bajt:	.asciiz "Znaleziono od bajtu:\n"
-bit:	.asciiz "\n Bit: \n"
+bajt:	.asciiz "Znaleziono tyle bitow od poczatku:\n"
 
 	.text
 	.globl main
@@ -32,7 +32,7 @@ loop:
 	# s2 to bajt sygnatury
 	# s3 to temp dla buf AND maska
 	# s4 to temp dla sig AND maska
-	# s5 to kolejny pierdolony licznik, liczy w ktorym miejscu bajtu jestesmy
+	# s5 to kolejny licznik, liczy w ktorym miejscu bajtu jestesmy
 	# s6 to licznik dopasowania (czyli nty dopasowany bit)
 	
 
@@ -45,7 +45,7 @@ loop:
 	sllv	$s2, $s2, $t4	# przesun w lewo o tyle ile juz jest dopasowanych
 				# (przy ciagu dalszym dopasowania)
 	li	$t3, 128	# resetuj maske bitowa, niech bedzie 10000000
-	li	$s5, 0		# koljeny pierdolony licznik, liczy ile bitow
+	li	$s5, 0		# koljeny licznik, liczy ile bitow
 byteloop:
 	# tutaj przesuwamy sie w obrebie jednego bajtu
 	# robimy to przesuwajac maske bitowa (w ten sposob
@@ -111,59 +111,47 @@ firstsuc:
 	b	bscont
 
 success:
-#wypisz ciag	
-	li	$v0, 4
-	la	$a0, bajt
-	syscall
 
-#wypisz ktory bajt	
-	li	$v0, 1
-	move	$a0, $t6
-	syscall
+#wypisz ktory to bit	
+	la	$a1, buffer # zapisz poczatkowy bit 
+	move	$v0, $t6	# wpsiz bajt na ktorym znaleziono
+	subu	$v0, $v0, $a1	# odejmij
+	mulou	$v0, $v0, 8	# ile to bitow?
+	addu	$v0, $v0, $t7
+	jr	$ra
 
-#wypisz ciag	
-	li	$v0, 4
-	la	$a0, bit
-	syscall
-
-#wypisz ktory bit	
-	li	$v0, 1
-	move	$a0, $t7
-	syscall
-
-	b end
 #successloop:
 #	addi	$t6, 1
 #	addi	$t5, 1 #nastepny znak
 #	lbu	$t8, ($t6)
 #	beq	$t8, 0, loopend #kon, zwr
 loopend:
-	move	$v0, $t1
-	jr	$s3
+	li	$v0, -1
+	jr	$ra
 
 main:
 	li $v0, 4
-	la $a0, hello
+	la $a0, hello		# powitanie
 	syscall
-#open
+	# otworz plik
 	la	$a0, input
 	li 	$a1, 0		#flags
 	li	$a2, 0		#mode
 	li	$v0, 13
 	syscall
 
-#read
+	# czytaj
 	move	$a0, $v0
 	la	$a1, buffer
 	li	$a2, 2421
 	li	$v0, 14
 	syscall
 
-#close
+	# zamknij plik
 	li	$v0, 16
 	syscall
 
-#plik wczytany, nakurwiam salto
+#plik wczytany, salto
 	la	$a0, buffer 
 	la	$a1, sig
         la	$a2, bytemask	
@@ -171,8 +159,12 @@ main:
 	li	$t4, 0
 	jal	findsig
 	
-	move	$a0, $v0
-	li	$v0, 4
+	li	$v0, 4		# wypisz komunikat
+	la	$a0, bajt
+	syscall
+
+	move	$a0, $v0	# wypisz wynik
+	li	$v0, 1
 	syscall
 end:
 	li $v0, 10
