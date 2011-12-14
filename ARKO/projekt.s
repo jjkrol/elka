@@ -1,12 +1,12 @@
 	.data
-sig:	.byte 0x13
-	.byte 0x19
-	.byte 0x2D
-	.byte 0x52
-	.byte 0x9D
-	.byte 0xBE	
-	.byte 0x04
-	.byte 0x42
+sig:	.byte 0x11
+	.byte 0x31
+	.byte 0x92
+	.byte 0xD5
+	.byte 0x29
+	.byte 0xDB	
+	.byte 0xE0
+	.byte 0x44
 sigsize:.word	34		
 mask:	.word	0xFFFFFFFF 
 buffer:	.space	2421	
@@ -32,17 +32,82 @@ findsig:
 	
 	
 
-	lw	$s1, ($t2)	# pierwsze 4  bajty sygnatury
-	addi	$t2, 4		# przesun
-	lw	$s2, ($t2)	# zaladuj drugie 4 bajty sygnatury
-	or	$s2, $s2, $s3	# utnij drugie slowo sygnatury do dodlugosci
-	# maska dl sygnatury
+	lbu	$s1, ($t2)	# pierwsze 4  bajty sygnatury
+	addiu	$t2, $t2, 1
+	sll	$s1, $s1,8
+	lbu	$t9, ($t2)
+	addu	$s1, $s1, $t9
+	addiu	$t2, $t2, 1
+	sll	$s1, $s1,8
+	lbu	$t9, ($t2)
+	addu	$s1, $s1, $t9
+	addiu	$t2, $t2, 1
+	sll	$s1, $s1,8
+	lbu	$t9, ($t2)
+	addu	$s1, $s1, $t9
+	addiu	$t2, $t2, 1
 
-	lw	$s4, ($t1)	# zaladuj pierwsze 4 bajty bufora 
-	addi	$t1, 4		# przesun
-	lw	$s5, ($t1)	# zaladuj kolejne
-	addi	$t1, 4		# przesun
-	lw	$s6, ($t1)	# zaladuj kolejne	
+	lbu	$s2, ($t2)	# kolejne 4  bajty sygnatury
+	addiu	$t2, $t2, 1
+	sll	$s2, $s2,8
+	lbu	$t9, ($t2)
+	addu	$s2, $s2, $t9
+	addiu	$t2, $t2, 1
+	sll	$s2, $s2,8
+	lbu	$t9, ($t2)
+	addu	$s2, $s2, $t9
+	addiu	$t2, $t2, 1
+	sll	$s2, $s2,8
+	lbu	$t9, ($t2)
+	addu	$s2, $s2, $t9
+	addiu	$t2, $t2, 1
+	or	$s2, $s2, $s3	# utnij drugie slowo sygnatury do dodlugosci
+				# maska dl sygnatury
+
+	lbu	$s4, ($t1)	# kolejne 4  bajty sygnatury
+	addiu	$t1, $t1, 1
+	sll	$s4, $s4,8
+	lbu	$t9, ($t1)
+	addu	$s4, $s4, $t9
+	addiu	$t1, $t1, 1
+	sll	$s4, $s4,8
+	lbu	$t9, ($t1)
+	addu	$s4, $s4, $t9
+	addiu	$t1, $t1, 1
+	sll	$s4, $s4,8
+	lbu	$t9, ($t1)
+	addu	$s4, $s4, $t9
+	addiu	$t1, $t1, 1
+
+	lbu	$s5, ($t1)	# kolejne 4  bajty bufora
+	addiu	$t1, $t1, 1
+	sll	$s5, $s5,8
+	lbu	$t9, ($t1)
+	addu	$s5, $s5, $t9
+	addiu	$t1, $t1, 1
+	sll	$s5, $s5,8
+	lbu	$t9, ($t1)
+	addu	$s5, $s5, $t9
+	addiu	$t1, $t1, 1
+	sll	$s5, $s5,8
+	lbu	$t9, ($t1)
+	addu	$s5, $s5, $t9
+	addiu	$t1, $t1, 1
+
+	lbu	$s6, ($t1)	# kolejne 4  bajty sygnatury
+	addiu	$t1, $t1, 1
+	sll	$s6, $s6,8
+	lbu	$t9, ($t1)
+	addu	$s6, $s6, $t9
+	addiu	$t1, $t1, 1
+	sll	$s6, $s6,8
+	lbu	$t9, ($t1)
+	addu	$s6, $s6, $t9
+	addiu	$t1, $t1, 1
+	sll	$s6, $s6,8
+	lbu	$t9, ($t1)
+	addu	$s6, $s6, $t9
+	addiu	$t1, $t1, 1
 	
 	li	$t8, 0		# zeruj licznik przesuniecia
 
@@ -68,8 +133,8 @@ loop:
 	beq	$t8, 75, loopend
 	bne 	$s1, $s4, nextloop	#jesli rozni sie pierwze slowo
 	move 	$s7, $s5		# temp dla $s5
-	or 	 $s5, $s5, $s3		# utnij s5
-	bne	$s5, $s3, nextloop	#drugie slowo rowne
+	or 	 $s7, $s7, $s3		# utnij s5
+	bne	$s7, $s2, nextloop	#drugie slowo rowne
 	b success
 
 nextloop:	# nie udalo sie, przesun o jeden
@@ -93,18 +158,32 @@ nextloop:	# nie udalo sie, przesun o jeden
 	b loop
 
 nextword:
-	addiu	$t1, 4
-	lw	$s6, ($t1)
+	addiu	$t1, 1
+	lb	$s6, ($t1)	# kolejne 4  bajty sygnatury
+	addiu	$t1, $t1, 1
+	sll	$s6, $s2,8
+	lb	$t9, ($t1)
+	addu	$s6, $s2, $t9
+	addiu	$t1, $t1, 1
+	sll	$s6, $s2,8
+	lb	$t9, ($t1)
+	addu	$s6, $s2, $t9
+	addiu	$t1, $t1, 1
+	sll	$s6, $s2,8
+	lb	$t9, ($t1)
+	addu	$s6, $s2, $t9
+	addiu	$t1, $t1, 1
+
 	b loop
 
 
 success:
-	sub	$t1, 8		# przesun dopoczatku
+	sub	$t1, 12		# przesun do poczatku
 #wypisz ktory to bit	
 	la	$a1, buffer # zapisz poczatkowy bit 
 	move	$v0, $t1	# wpsiz bajt na ktorym znaleziono
 	subu	$v0, $v0, $a1	# odejmij
-	mulou	$v0, $v0, 32	# ile to bitow?
+	mulou	$v0, $v0, 8	# ile to bitow?
 	addu	$v0, $v0, $t8
 	jr	$ra
 
