@@ -64,7 +64,7 @@ findsig:
 	or	$s2, $s2, $s3	# utnij drugie slowo sygnatury do dodlugosci
 				# maska dl sygnatury
 
-	lbu	$s4, ($t1)	# kolejne 4  bajty sygnatury
+	lbu	$s4, ($t1)	# pierwsze 4 bajty bufora 
 	addiu	$t1, $t1, 1
 	sll	$s4, $s4,8
 	lbu	$t9, ($t1)
@@ -94,7 +94,7 @@ findsig:
 	addu	$s5, $s5, $t9
 	addiu	$t1, $t1, 1
 
-	lbu	$s6, ($t1)	# kolejne 4  bajty sygnatury
+	lbu	$s6, ($t1)	# kolejne 4 bajty bufora
 	addiu	$t1, $t1, 1
 	sll	$s6, $s6,8
 	lbu	$t9, ($t1)
@@ -118,7 +118,7 @@ loop:
 	# t4 licznik przesuniecia sygnatury
 	
 	# t8 licznik przesuniecia
-	# t9 temp dla
+	# t9 temp 
 
 	# s1 to 1 slowo sygnatury
 	# s2 drugie slowo sygnatury
@@ -133,15 +133,15 @@ loop:
 	beq	$t8, 75, loopend
 	bne 	$s1, $s4, nextloop	#jesli rozni sie pierwze slowo
 	move 	$s7, $s5		# temp dla $s5
-	or 	 $s7, $s7, $s3		# utnij s5
-	bne	$s7, $s2, nextloop	#drugie slowo rowne
+	or 	 $s7, $s7, $s3		# utnij do dlugosci sygnatury 
+	bne	$s7, $s2, nextloop	# drugie slowo tez rowne
 	b success
 
 nextloop:	# nie udalo sie, przesun o jeden
 	lw	$t6, mask
 	sll	$s4, $s4, 1	# przesun pierwsze slowo bufora o jeden	
 	and	$s4, $s4, $t6 
-	move	$t9, $s5	#temp
+	move	$t9, $s5	# temp
 	srl	$t9, $t9, 31	# wez ostatni
 	addu	$s4, $s4, $t9	# wpisz pierwszy z s5 jako ostatni w s4
 
@@ -159,7 +159,7 @@ nextloop:	# nie udalo sie, przesun o jeden
 
 nextword:
 	addiu	$t1, 1
-	lb	$s6, ($t1)	# kolejne 4  bajty sygnatury
+	lb	$s6, ($t1)	# kolejne 4  bajty bufora
 	addiu	$t1, $t1, 1
 	sll	$s6, $s2,8
 	lb	$t9, ($t1)
@@ -220,7 +220,7 @@ main:
 
 	la	$a0, buffer 
 	la	$a1, sig
-	la	$a2, sigsize		# 
+	la	$a2, sigsize		 
 	jal	findsig
 
 	move	$a0, $v0	# wypisz wynik
@@ -230,9 +230,4 @@ end:
 	li $v0, 10
 	syscall
 
-
-#wypisz ciag	
-#	li	$v0, 4
-#	la	$a0, buffer
-#	syscall
 
