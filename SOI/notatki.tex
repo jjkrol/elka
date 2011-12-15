@@ -1,8 +1,8 @@
-﻿\documentclass[12pt,a4paper]{article}
+\documentclass[12pt,a4paper]{article}
 
 \setcounter{secnumdepth}{-1} 
 \usepackage[OT4]{polski}
-\usepackage[cp1250]{inputenc}
+\usepackage[utf8x]{inputenc}
 \usepackage{ifthen}
 \usepackage{anysize}
 \usepackage{geometry}
@@ -186,6 +186,7 @@ S:=S+1
 	\paragraph{Mechanizmy z aktywnym oczekiwaniem} % (fold)
 	
 	\begin{itemize}
+		\item Blokowanie przerwań - źle, bo może zablokować i nie odblokować
 		\item Zmienne blokujące - źle, bo wyścig
 		\item Ścisłe następstwo - źle, bo zagłodzenie
 		\item Algorytm petersona - połączenie powyższych, kolejne trzymane w tablicy
@@ -216,4 +217,5 @@ S:=S+1
 	% paragraph Pięciu filozofów (end)
 	% section Synchronizacja (end)
 	% section Procesy i Wątki (end)
+
 \end{document}

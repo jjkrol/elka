@@ -1,22 +1,21 @@
 	.data
-sig:	.byte 0x11
-	.byte 0x31
-	.byte 0x92
-	.byte 0xD5
-	.byte 0x29
-	.byte 0xDB	
-	.byte 0xE0
-	.byte 0x44
-sigsize:.word	34		
-mask:	.word	0xFFFFFFFF 
+sig:	.byte 0x4B
+	.byte 0x0D
+	.byte 0x8E
+	.byte 0x64	
+	.byte 0x42
+	.byte 0x61
+	.byte 0x6D
+	.byte 0x7F
+sigsize:.word	44	
 buffer:	.space	2421	
+buffsize:.word 2421
 bajt:	.asciiz "Znaleziono tyle bitow od poczatku:\n"
-hello:	.asciiz "Wyszukiwanie\n"
+hello:	.asciiz "\nWyszukiwanie\n"
 input:	.asciiz "dane.dat"
 
 	.text
 	.globl main
-# 2420
 
 
 findsig:
@@ -25,10 +24,12 @@ findsig:
 	move	$t1, $a0 	#temp dla buf
 	move	$t2, $a1 	#temp dla sig
 	lw	$t5, ($a2)	# dlugosc sygnatury
+	lw	$t7, ($a3)	# dlugosc bufora
+	subu	$t7, $t7, $t5
 	sub	$t5, $t5, 32
 	li	$s3, 0xFFFFFFFF	# zaladuj jedynki
 	srl	$s3, $s3, $t5	# zrob (siglen-32) zer w masce
-	
+		
 	
 	
 
@@ -62,7 +63,7 @@ findsig:
 	addu	$s2, $s2, $t9
 	addiu	$t2, $t2, 1
 	or	$s2, $s2, $s3	# utnij drugie slowo sygnatury do dodlugosci
-				# maska dl sygnatury
+	
 
 	lbu	$s4, ($t1)	# pierwsze 4 bajty bufora 
 	addiu	$t1, $t1, 1
@@ -110,13 +111,14 @@ findsig:
 	addiu	$t1, $t1, 1
 	
 	li	$t8, 0		# zeruj licznik przesuniecia
+	li 	$t6, 0		# zeruj licznik ciagu
 
 loop:
 	# t1 to wskaznik na bufor
 	# t2 to wskazanie na sygnature
 	# t3 na poczatku sprawdza czy ciag sie nie skonczyl
 	# t4 licznik przesuniecia sygnatury
-	
+	# t6 licznik ciagu	
 	# t8 licznik przesuniecia
 	# t9 temp 
 
@@ -130,7 +132,9 @@ loop:
 	
 
 	# czy to nie koniec ciagu przeszukiwanego?
-	beq	$t8, 75, loopend
+	
+	beq	$t6, $t7 , loopend	
+	addu	$t6, $t6, 1		# zwieksz licznik
 	bne 	$s1, $s4, nextloop	#jesli rozni sie pierwze slowo
 	move 	$s7, $s5		# temp dla $s5
 	or 	 $s7, $s7, $s3		# utnij do dlugosci sygnatury 
@@ -138,9 +142,7 @@ loop:
 	b success
 
 nextloop:	# nie udalo sie, przesun o jeden
-	lw	$t6, mask
 	sll	$s4, $s4, 1	# przesun pierwsze slowo bufora o jeden	
-	and	$s4, $s4, $t6 
 	move	$t9, $s5	# temp
 	srl	$t9, $t9, 31	# wez ostatni
 	addu	$s4, $s4, $t9	# wpisz pierwszy z s5 jako ostatni w s4
@@ -158,22 +160,21 @@ nextloop:	# nie udalo sie, przesun o jeden
 	b loop
 
 nextword:
-	addiu	$t1, 1
-	lb	$s6, ($t1)	# kolejne 4  bajty bufora
+	lbu	$s6, ($t1)	# kolejne 4  bajty bufora
 	addiu	$t1, $t1, 1
-	sll	$s6, $s2,8
-	lb	$t9, ($t1)
-	addu	$s6, $s2, $t9
+	sll	$s6, $s6,8
+	lbu	$t9, ($t1)
+	addu	$s6, $s6, $t9
 	addiu	$t1, $t1, 1
-	sll	$s6, $s2,8
-	lb	$t9, ($t1)
-	addu	$s6, $s2, $t9
+	sll	$s6, $s6,8
+	lbu	$t9, ($t1)
+	addu	$s6, $s6, $t9
 	addiu	$t1, $t1, 1
-	sll	$s6, $s2,8
-	lb	$t9, ($t1)
-	addu	$s6, $s2, $t9
+	sll	$s6, $s6,8
+	lbu	$t9, ($t1)
+	addu	$s6, $s6, $t9
 	addiu	$t1, $t1, 1
-
+	li 	$t8, 0
 	b loop
 
 
@@ -183,7 +184,7 @@ success:
 	la	$a1, buffer # zapisz poczatkowy bit 
 	move	$v0, $t1	# wpsiz bajt na ktorym znaleziono
 	subu	$v0, $v0, $a1	# odejmij
-	mulou	$v0, $v0, 8	# ile to bitow?
+	sll	$v0, $v0, 3	# ile to bitow?
 	addu	$v0, $v0, $t8
 	jr	$ra
 
@@ -205,7 +206,8 @@ main:
 	# czytaj
 	move	$a0, $v0
 	la	$a1, buffer
-	li	$a2, 2421
+	lw	$a2, buffsize
+	#li	$a2, 2421
 	li	$v0, 14
 	syscall
 
@@ -221,6 +223,7 @@ main:
 	la	$a0, buffer 
 	la	$a1, sig
 	la	$a2, sigsize		 
+	la	$a3, buffsize
 	jal	findsig
 
 	move	$a0, $v0	# wypisz wynik
