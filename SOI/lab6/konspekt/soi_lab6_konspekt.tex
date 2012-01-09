@@ -1,0 +1,115 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[OT4]{polski}
+\usepackage[utf8x]{inputenc}
+\usepackage{ifthen}
+\usepackage{anysize}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\pagestyle{fancy}
+\headheight 1cm
+\marginsize{2cm}{2cm}{0.5cm}{2cm}
+\lhead{SOI - laboratorium nr 6 - system plików} 
+\rhead{Jakub Król, R3I2}
+\fancyheadoffset{0cm}
+% komendy
+\newcounter{ind}
+\newcommand*{\wylicz}[2]{#1_1,#1_2,\dots,#1_{#2}} 
+\newcommand*{\ndots}[1]{
+\setcounter{ind}{1}
+\whiledo{\value{ind}<#1}{. \stepcounter{ind}}} 
+
+\renewcommand{\arraystretch}{1.5}
+
+\begin{document}
+
+\section{Treść zadania}
+Napisać w środowisku systemu Minix program w języku C realizujący podstawowe funkcje systemu plików, oraz skrypt demonstrujący wykorzystanie tego programu.
+
+% ------ ZALOZENIA ------------------
+\section{Założenia}
+Napisany program ma realizować następujące funkcje:
+\begin{itemize}
+\item tworzenie wirtualnego dysku
+\item kopiowanie pliku z dysku systemu \texttt{Minix} na dysk wirtualny
+\item kopiowanie pliku z dysku wirtualnego na dysk systemu \texttt{Minix}
+\item wyświetlanie katalogu dysku wirtualnego
+\item usuwanie pliku z wirtualnego dysku
+\item usuwanie wirtualnego dysku
+\item wyświetlanie zestawienia z aktualną mapą zajętości dysku
+\end{itemize}
+Wirtualny dysk ma mieć strukturę jednopoziomowego katalogu
+
+% ------- REALIZACJA ----------------
+\section{Dysk wirtualny}
+Organizacja dysku będzie analogiczna do uproszczonego systemu plików FAT:\\
+
+\begin{tabular}{c|c|c|c}
+Długość: & 1 blok & sizeof(int)*liczba bloków danych & pozostałe\\\hline
+Zawartość & Sektor informacyjny & Tablica Alokacji & Dane
+\end{tabular}\\
+
+\subsection{Sektor informacyjny}
+Sektor informacyjny zawierać będzie dane na temat:
+\begin{itemize}
+\item rozmiaru dysku wirtualnego
+\item ilości wolnego miejsca na dysku
+\item liczby plików na dysku
+\item adresu pierwszego bloku, w którym zapisane są deskryptory plików
+\end{itemize}
+
+\subsection{Tablica alokacji}
+Tablica alokacji zapewnia połączenie między blokami zajmowanymi przez jeden plik.
+\subsection{Dane}
+Część podzielona na bloki, zawierająca dane umieszczane na dysku wirtualnym.
+
+\section{Realizacja}
+Zostanie napisany moduł, zawierający funkcje odpowiedzialne za realizacje działań podanych w założeniach. Moduł ten będzie dołączony przez program odpowiedzialny za zarządzanie dyskiem wirtualnym i który, w zależności od parametrów wywołania, będzie używał funkcji z modułu do wykonywania żądanych operacji dyskowych.
+
+\subsection{Struktury}
+\paragraph{\texttt{fileDescriptor}}
+Reprezentuje deksryptor pliku, przechowując dane na temat jego:
+\begin{itemize}
+\item nazwy
+\item wielkości
+\item bloku początkowego
+\end{itemize}
+\paragraph{\texttt{informationSector}}
+Reprezentuje sektor informacyjny przechowując odpowiednie wartości
+\paragraph{\texttt{fatElement}}
+Reprezentuje element tablicy alokacji - zawiera:
+\begin{itemize}
+\item informację o numerze następnego bloku z nim powiązanego
+\item 1, jeśli jest to ostatni element łańcuch
+\item 0, jeśli blok jest pusty
+\end{itemize}
+
+\subsection{Funkcje}
+\paragraph{\texttt{createVirtualDisk}}
+Realizuje tworzenie dysku wirtualnego o zadanym rozmiarze
+\paragraph{\texttt{deleteVirtualDisk}}
+Usuwa wirtualny sysk
+\paragraph{\texttt{copyFromVirtualToMinix}}
+Kopiuje plik z dysku wirtualnego do dysku systemu \texttt{Minix}
+\paragraph{\texttt{copyFromMinixToVirtual}}
+Przeprowadza operację kopiowania pliku z dysku systemu \texttt{Minix} do dysku wirtualnego. Dba przy tym o kontrolę przekroczenia wielkości dysku wirtualnego oraz o zachowanie unikalności nazw plików.
+\paragraph{\texttt{listFiles}}
+Wyświetla wszystkie pliki znajdujące się w katalogu na dysku wirtualnym
+\paragraph{\texttt{removeFile}}
+Usuwa plik o zadanej nazwie 
+\paragraph{\texttt{showMap}}
+Pokazuje mapę zajętości
+`
+% --------------- TESTY ------------------
+\section{Testy}
+Poprawność wykonanego zadania zamierzam przetestować za pomocą skryptu powłoki sprawdzającego następujące aspekty programu:
+\begin{itemize}
+\item poprawność tworzenia i usuwania dysku wirtualnego
+\item kopiowanie jednego lub więcej plików na dysk wirtualny
+\item kopiowanie jedengo lub więcej plików z dysku wirtualnego
+\item zabezpieczenie przed kopiowaniem pliku większego niż pojemność dysku
+\item zabezpieczenie przed kopiowaniem kilku plików o łącznej wielkości większej niż pojemność dysku
+\end{itemize}
+
+\end{document}
