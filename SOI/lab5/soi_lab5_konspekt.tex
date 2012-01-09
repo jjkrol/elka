@@ -1,0 +1,144 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[OT4]{polski}
+\usepackage[utf8x]{inputenc}
+\usepackage{ifthen}
+\usepackage{anysize}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\pagestyle{fancy}
+\headheight 1cm
+\marginsize{2cm}{2cm}{0.5cm}{2cm}
+\lhead{SOI - laboratorium nr 5 - zarządzanie pamięcią} 
+\rhead{Jakub Król, R3I2}
+\fancyheadoffset{0cm}
+% komendy
+\newcounter{ind}
+\newcommand*{\wylicz}[2]{#1_1,#1_2,\dots,#1_{#2}} 
+\newcommand*{\ndots}[1]{
+\setcounter{ind}{1}
+\whiledo{\value{ind}<#1}{. \stepcounter{ind}}} 
+
+\renewcommand{\arraystretch}{1.5}
+%\makeatletter
+%\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+%  {-3.25ex\@plus -1ex \@minus -.2ex}%
+%  {1.5ex \@plus .2ex}%
+%  {\normalfont\normalsize\bfseries}}
+%\makeatother
+%
+
+\begin{document}
+
+\section{Treść zadania}
+Zmienić domyślny algorytm przydziału pamięci w systemie minix na dający możliwość wyboru pomiędzy \emph{worst fit} a \emph{first fit}.
+Zademonstrować i zinterpretować różnice w działaniu algorytmów.
+
+% ------ ZALOZENIA ------------------
+\section{Założenia}
+Modyfikowane są tylko następujące pliki:
+\begin{itemize}
+\item \texttt{/usr/src/mm/proto.h}
+\item \texttt{/usr/src/mm/alloc.c}
+\item \texttt{/usr/src/mm/table.c}
+\item \texttt{/usr/src/fs/table.c}
+\item \texttt{/usr/include/minix/callnr.h}
+\end{itemize}
+
+% ------- REALIZACJA ----------------
+\section{Realizacja}
+\subsection{Funkcje systemowe}
+Aby zaimplementować funkcje systemowe konieczne były następujące zmiany:
+\begin{itemize}
+	\item \texttt{mm/table.c} - oraz \texttt{fs/table.c} dodanie funkcji do tablicy
+	\item \texttt{mm/proto.h} - dodanie prototypów funkcji w sekcji \texttt{alloc.c}
+	\item \texttt{/usr/include/minix/callnr.h} - zwiększenie tablicy wywołań
+	\item \texttt{mm/alloc.c} - dodanie kodu obu funkcji na końcu pliku
+\end{itemize}
+\subsubsection{hole\_map}
+Funkcja zapisuje do bufora adres i wielkość kolejnych bloków pamięci, po czym kopiuje je do zadanego bufora za pomocą systemowej funkcji \texttt{sys\_copy}.
+\begin{verbatim}
+int do_hole_map(){
+
+	phys_clicks buffer[1024];
+	struct hole * hp;
+	int i = 0;
+	int counter; 
+
+	int nbytes = mm_in.m1_i1;
+	char * usr_buff = mm_in.m1_p1;
+	int usr_pid = mm_in.m_source;
+
+	hp = hole_head;
+	if(hp == NIL_HOLE) return -1;
+
+	if(nbytes%2==0) nbytes-=2; /* sprawdz czy jest miejsce dla 0 */
+	counter = nbytes/2;
+
+	do{
+		buffer[i++]=hp->h_len; /* dlugosc */
+		buffer[i++]=hp->h_base; /* adres */
+		hp=hp->h_next; /* nastepny */
+		counter--;
+	}
+	while(hp != NIL_HOLE && counter > 0);
+	buffer[i]=0; /* dopisz zero */
+	sys_copy(0,D,(phys_bytes) buffer, usr_pid, D, (phys_bytes) usr_buff, nbytes);
+	return 0;
+
+}
+\end{verbatim}
+\subsubsection{worst\_fit} 
+Funkcja ustawia wartość zmiennej \texttt{worstFit}
+\begin{verbatim}
+int do_worst_fit(){
+	if(mm_in.m1_i1 == 0 || mm_in.m1_i1 == 1)
+		worstFit = mm_in.m1_i1;
+	return mm_in.m1_i1;
+}
+\end{verbatim}
+\subsection{Algorytm worst fit}
+Implementacja polegała na modyfikacji funkcji \texttt{alloc\_mem} w pliku \texttt{alloc.c} i modyfikacji istniejącego algorytmu przydzielania pamięci w następujący sposób:
+Dodania warunku, który w zależności od wartości zmiennej \texttt{worstFit} wybierał odpowiedni algorytm
+Realizacji algorytmu \emph{worst fit}, który przeszukiwał wszystkie dostępne bloki pamięci i porównywał je z największym jaki dotąd znalazł. Po dotarciu do końca listy, zwracał największy znaleziony blok i zmniejszał jego długość i początkowy adres w liście (analogicznie dla istniejącego już algorytmu).
+\begin{verbatim}
+register struct hole * max_hole, *prev_max_hole;
+if(hp!=NIL_HOLE){ /* jest miejsce? */
+	max_hole = hp;
+	prev_max_hole = NIL_HOLE;
+}
+else{
+	return(NO_MEM); /* nie ma */
+}
+
+while(hp!=NIL_HOLE){
+	if(hp->h_len > max_hole->h_len){
+		prev_max_hole = max_hole;
+		max_hole = hp;
+		}
+	hp = hp->h_next;
+} /* while */
+if(max_hole->h_len >= clicks){
+	old_base = max_hole->h_base;
+	max_hole->h_base += clicks;
+	max_hole->h_len -= clicks;
+
+	if(max_hole->h_len == 0 && prev_max_hole!=NIL_HOLE)
+	del_slot(prev_max_hole, max_hole);
+	return(old_base);
+	}
+\end{verbatim}
+% --------------- TESTY ------------------
+\section{Testy}
+Poprawność wykonywanego zadania przetestowałem za pomocą programów przygotowanych w skrypcie laboratoryjnym: \texttt{t.c}, \texttt{w.c}, \texttt{x.c} oraz \texttt{skrypt\_testowy}.
+
+% -------------------- WNIOSKI ----------------------------- %
+\section{Wnioski}
+Wyniki działania programu \texttt{skrypt\_testowy} są zgodne z przewidywaniami teoretycznymi. Po ich przeanalizowaniu widoczne stają się różnice w działaniu dwóch algorytmów.
+
+W przypadku algorytmu \emph{first fit} kolejno uruchamiane procesy programu \texttt{x}, zajmują pamięć z pierwszego wystarczająco dużego, wolnego bloku, a po 10 sekundach, kiedy pierwszy uruchomiony program kończy działanie, po kolei zwalniają zajęte bloki pamięci, co widoczne jest na listingu.
+
+Przy użyciu algorytmu \emph{worst fit}, widoczne jest, że każdy kolejny uruchomiony program \texttt{x}, zajmuje blok pamięci będący częścią ostatniego wolnego bloku, ktory jest największy.
+
+\end{document}
