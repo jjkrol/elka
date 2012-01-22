@@ -34,15 +34,19 @@ typedef struct
 	unsigned long  biClrUsed; 
 	unsigned long  biClrImportant;
 } bmpHdr;
-
+extern "C"{
+int putLine(int, int, int, imgInfo *, int *, int *);
+}
 void* freeResources(FILE* pFile, void* pFirst, void* pSnd)
 {
+/*
 	if (pFile != 0)
-		fclose(pFile);
+	//	fclose(pFile);
 	if (pFirst != 0)
-		free(pFirst);
+	//	free(pFirst);
 	if (pSnd !=0)
-		free(pSnd);
+	//	free(pSnd);
+*/
 	return 0;
 }
 
@@ -73,10 +77,10 @@ imgInfo * copyImage(const imgInfo* pImg)
 
 void FreeImage(imgInfo* pInfo)
 {
-	if (pInfo && pInfo->pImg)
-		free(pInfo->pImg);
+/*	if (pInfo && pInfo->pImg)
+	//	free(pInfo->pImg);
 	if (pInfo)
-		free(pInfo);
+	//	free(pInfo);*/
 }
 
 
@@ -248,9 +252,11 @@ void drawQuad(imgInfo *pInfo, Vertex v[4])
 		horzdlt[0] = (rtrgb[0] - horzrgb[0]) / xlength;
 		horzdlt[1] = (rtrgb[1] - horzrgb[1]) / xlength;
 		horzdlt[2] = (rtrgb[2] - horzrgb[2]) / xlength;
+		printf("%d = %d\n",horzdlt[0], putLine(xstart,xstop,y,pInfo,horzrgb, horzdlt));
+//		putLine(xstart,xstop,y,pInfo, horzrgb, horzdlt);
 		for (x = xstart; x <= xstop; ++x)
 		{
-			putPixel(pInfo, x, y, horzrgb);
+//			putPixel(pInfo, x, y, horzrgb);
 			horzrgb[0] += horzdlt[0];
 			horzrgb[1] += horzdlt[1];
 			horzrgb[2] += horzdlt[2];
@@ -384,10 +390,17 @@ void DrawCircle(imgInfo *pInfo, int x, int y, int r, int n)
 
 	v[0].x = x;
 	v[0].y = y;
-	v[0].rgb[0] = v[0].rgb[1] = v[0].rgb[2] = 255;
-
+	v[0].rgb[0] = v[0].rgb[1] = v[0].rgb[2] = 123;
+/*	v[1].x = x-50;
+	v[1].y = y+50;
+	v[1].rgb[0] = v[1].rgb[1] = v[1].rgb[2] = 123;
+	v[2].x = x+50;
+	v[2].y = y+50;
+	v[2].rgb[0] = v[2].rgb[1] = v[2].rgb[2] = 123;
+*/
 	for (i=0; i < n; ++i)
 	{
+
 		v[1].x = x + (int) (r * cos(i * angle) + 0.5);
 		v[1].y = y + (int) (r * sin(i * angle) + 0.5);
 		v[1].rgb[0] = (int) (128 + 127 * cos(i * angle + 2.0 / (3.14159265359 / 3.0)) + 0.5);
@@ -396,9 +409,9 @@ void DrawCircle(imgInfo *pInfo, int x, int y, int r, int n)
 
 		v[2].x = x + (int) (r * cos((i + 1) * angle) + 0.5);
 		v[2].y = y + (int) (r * sin((i + 1) * angle) + 0.5);
-		v[2].rgb[0] = (int) (128 + 127 * cos((i + 1) * angle + 2.0 / (3.14159265359 / 3.0)) + 0.5);;
+		v[2].rgb[0] = (int) (128 + 127 * cos((i + 1) * angle + 2.0 / (3.14159265359 / 3.0)) + 0.5);
 		v[2].rgb[1] = (int) (128 + 127 * cos((i + 1) * angle + 2.0 / 3.14159265359) + 0.5);
-		v[2].rgb[2] = (int) (128 + 127 * cos((i + 1) * angle - 2.0 / (3.14159265359 / 3.0)) + 0.5);;			
+		v[2].rgb[2] = (int) (128 + 127 * cos((i + 1) * angle - 2.0 / (3.14159265359 / 3.0)) + 0.5);
 		DrawTriangle(pInfo, v);
 	}
 }
