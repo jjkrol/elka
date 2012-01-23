@@ -35,7 +35,7 @@ typedef struct
 	unsigned long  biClrImportant;
 } bmpHdr;
 extern "C"{
-int putLine(int, int, int, imgInfo *, int *, int *);
+int putLine(int *, int *, int, imgInfo *, int *, int *, int *, int *);
 }
 void* freeResources(FILE* pFile, void* pFirst, void* pSnd)
 {
@@ -240,35 +240,36 @@ void drawQuad(imgInfo *pInfo, Vertex v[4])
 
 	for (y=ystart; y <= ystop; ++y)
 	{
+// lfrgb, rtrgb, 
+/*
+printf("Xlength: %d horzR: %d dltR: %d rtRgb0: %d :: %d\n", xlength, horzrgb[0], horzdlt[0], rtrgb[0], ((rtrgb[0]-lfrgb[0])/xlength));
+		// wyznaczenie parametrów linii poziomej
+*/
 		xstart = (lfrgb[3] + 0x8000) >> 16; 
 		xstop = (rtrgb[3] + 0x8000) >> 16;
 		xlength = xstop - xstart;
 		if (xlength == 0) 
 			xlength = 1;
-		// wyznaczenie parametrów linii poziomej
 		horzrgb[0] = lfrgb[0];
 		horzrgb[1] = lfrgb[1];
 		horzrgb[2] = lfrgb[2];
+
 		horzdlt[0] = (rtrgb[0] - horzrgb[0]) / xlength;
 		horzdlt[1] = (rtrgb[1] - horzrgb[1]) / xlength;
 		horzdlt[2] = (rtrgb[2] - horzrgb[2]) / xlength;
-		printf("%d = %d\n",horzdlt[0], putLine(xstart,xstop,y,pInfo,horzrgb, horzdlt));
-//		putLine(xstart,xstop,y,pInfo, horzrgb, horzdlt);
-		for (x = xstart; x <= xstop; ++x)
-		{
-//			putPixel(pInfo, x, y, horzrgb);
-			horzrgb[0] += horzdlt[0];
-			horzrgb[1] += horzdlt[1];
-			horzrgb[2] += horzdlt[2];
-		}
-		lfrgb[0] += lfdlt[0];
-		lfrgb[1] += lfdlt[1];
-		lfrgb[2] += lfdlt[2];
-		lfrgb[3] += lfdlt[3];
-		rtrgb[0] += rtdlt[0];
-		rtrgb[1] += rtdlt[1];
-		rtrgb[2] += rtdlt[2];
-		rtrgb[3] += rtdlt[3];
+
+printf("%d, %d\n", sizeof(lfrgb), sizeof(rtrgb));
+		printf("%d =\n", rtrgb[3]+rtdlt[3]);
+		printf("%d\n", putLine(lfrgb,rtrgb,y,pInfo, lfdlt, rtdlt, horzrgb, horzdlt));
+
+//		lfrgb[0] += lfdlt[0];
+//		lfrgb[1] += lfdlt[1];
+//		lfrgb[2] += lfdlt[2];
+//		rtrgb[0] += rtdlt[0];
+//		rtrgb[1] += rtdlt[1];
+//		rtrgb[2] += rtdlt[2];
+//		lfrgb[3] += lfdlt[3];
+//		rtrgb[3] += rtdlt[3];
 	}
 }
 

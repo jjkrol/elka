@@ -1,15 +1,19 @@
 section .text
 global putLine
+
+
 putLine:
 push ebp
 mov	ebp, esp
 
+
+
+
 mov	edx,	[ebp+8]
-mov	[xstart], edx 
+mov	[lfrgb], edx 
 
 mov	edx,	[ebp+12]
-add	edx,	2
-mov	[xstop], edx
+mov	[rtrgb], edx
 
 mov	edx, [ebp+16]	;y
 mov	[y], edx
@@ -17,11 +21,76 @@ mov	[y], edx
 mov	edx, [ebp+20]	; pInfo
 mov	[imageStruct], edx
 
-mov	edx, [ebp+24]	; rgb
-mov	[rgbStruct], edx
+mov	edx, [ebp+24]	; lfdlt
+mov	[lfdlt], edx
 
-mov	edx, [ebp+28]	; rgb
-mov	[dltStruct], edx
+mov	edx, [ebp+28]	; ;lfrgb
+mov	[rtdlt], edx
+
+; get xstart
+mov	eax,	[lfrgb]
+mov	edx,	[eax+12]
+add	edx, 0x8000
+sar	edx, 16
+mov	[xstart], edx
+
+; get xstop
+mov	eax,	[rtrgb]
+mov	edx,	[eax+12]
+add	edx, 0x8000
+sar	edx, 16
+mov	[xstop], edx
+
+; width of the line drawn (in bytes)
+mov 	ecx, [xstart] 	;xstart
+mov 	edx, [xstop] 	;xstop
+sub	edx, ecx
+cmp	edx, 0
+jne	continue	; if xlength == 0, xlenngth = 1
+add	edx, 2		; 1!
+continue:
+mov	[xlength], edx
+inc	edx
+imul	edx, 3
+;add	edx, 6			dac czy nie?
+mov	[width], edx
+
+;; horizontal line parameters
+mov	eax,	[lfrgb]
+mov	edx,	[eax]
+mov	[horzR],edx
+mov	edx,	[eax+4]
+mov	[horzG],edx
+mov	edx,	[eax+8]
+mov	[horzB],edx
+
+
+mov	edx,	[rtrgb]
+mov	eax,	[edx]
+mov	ecx,	[horzR]
+mov	ebx,	[xlength]
+sub	eax,	ecx
+cdq
+idiv	ebx	
+mov	[dltR],	eax
+
+mov	edx,	[rtrgb]
+mov	eax,	[edx+4]
+mov	ecx,	[horzG]
+mov	ebx,	[xlength]
+sub	eax,	ecx
+cdq
+idiv	ebx
+mov	[dltG],	eax
+;
+mov	edx,	[rtrgb]
+mov	eax,	[edx+8]
+mov	ecx,	[horzB]
+mov	ebx,	[xlength]
+sub	eax,	ecx
+cdq
+idiv	ebx			; eax / ebx
+mov	[dltB],	eax
 
 ; get line width in bytes
 mov	edx, [imageStruct]
@@ -39,33 +108,8 @@ imul	ecx, edx
 mov	eax, [xstart]
 imul	eax, 3
 add	ecx, eax
+sub	ecx, 3
 mov	[offset], ecx
-
-; red green blue
-mov	edx, [rgbStruct]
-mov	eax, [edx]
-mov	dword [horzR], eax
-mov	eax, [edx+4]
-mov	dword [horzG], eax
-mov	eax, [edx+8]
-mov	dword [horzB], eax
-
-; dlts: red  green blue
-mov	edx, [dltStruct]
-mov	eax, [edx]
-mov	dword [dltR], eax
-mov	eax, [edx+4]
-mov	dword [dltG], eax
-mov	eax, [edx+8]
-mov	dword [dltB], eax
-
-; width of the line drawn (in bytes)
-mov 	ecx, [xstart] 	;xstart
-mov 	edx, [xstop] 	;xstop
-sub	edx, ecx
-inc	edx
-imul	edx, 3
-mov	[width], edx
 
 ; prepare for loop
 mov	ecx, 0
@@ -114,9 +158,38 @@ add	ecx, 3
 cmp	ecx, [width]
 jb	loop
 
+
+; incrementation
+;lfrgb[0] += lfdlt[0]
+mov	esi,	0
+mov	eax,	[lfdlt]
+mov	ecx,	[lfrgb]
+lfrgbloop:
+mov	edx,	[eax+esi*4]
+mov	ebx, 	[ecx+esi*4] 
+add	ebx,	edx
+mov	dword 	[ecx+esi*4], ebx
+inc	esi
+cmp	esi,	4
+jb	lfrgbloop
+
+
+; rtrgb[i] += rtdlt[i]
+mov	esi,	0
+mov	eax,	[rtdlt]
+mov	ecx,	[rtrgb]
+rtrgbloop:
+mov	edx,	[eax+esi*4]
+mov	ebx,	[ecx+esi*4] 
+add	ebx,	edx
+mov	[ecx+esi*4], ebx
+inc	esi
+cmp	esi, 4
+jb	rtrgbloop
+
 ; exit
 
-mov 	eax, dword [dltR] 
+mov 	eax, [dltR] 
 
 mov 	ebp, esp
 pop 	ebp
@@ -126,14 +199,22 @@ section .data
 imageStruct	dd 	0
 width		dd 	0
 lineWidth 	dd 	0
-fullstartx	dd	0
+xlength		dd	0
+
+lfrgb		dd	0
+rtrgb		dd	0
+lfdlt		dd	0
+rtdlt		dd	0
+
 xstart		dd 	0
 xstop		dd	0
 y		dd	0
+
 rgbStruct	dd	0
 horzR		dd	0
 horzG		dd	0
 horzB		dd	0
+
 dltStruct	dd	0
 dltR		dd	0
 dltG		dd	0
