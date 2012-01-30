@@ -1,0 +1,152 @@
+\documentclass[10pt,i,twocolumn,a4paper]{article}
+
+%\usepackage{mathptmx}
+
+\usepackage[OT4]{polski}
+\usepackage[utf8x]{inputenc}
+%\usepackage{fullpage}
+%\usepackage{booktabs}
+%\usepackage{graphicx} %grafiki
+%\usepackage[all]{xy} % do prostych diagramów
+%\usepackage{tikz}
+%\usetikzlibrary{shapes,arrows}
+%\usepackage{color}
+\usepackage{amsmath} % matematyka
+\usepackage{mathtools} % matematyka
+\usepackage{amssymb} % symbole, np. triangleeq
+%\usepackage{caption}
+%\usepackage{subfig}
+\usepackage{anysize} % marginesy
+% header
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\headheight 1cm
+\marginsize{2cm}{2cm}{0.5cm}{2cm}
+\lhead{TSI - egzamin}
+\fancyheadoffset{0cm}
+
+
+% z analizy
+%---\usepackage{fullpage}
+%\usepackage{amsfonts}
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{txfonts}
+%\usepackage{pxfonts}
+%\usepackage{verbatim}
+%\usepackage{multicol}
+% --
+
+
+
+% komendy
+\renewcommand{\arraystretch}{1.5}
+\newcommand*{\wylicz}[2]{#1_1,#1_2,\dots,#1_{#2}} 
+\newcommand*{\wyliczn}[2]{\{#1_1,#1_2,\dots,#1_{#2}\}} 
+\makeatletter
+%\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}% %		{-3.25ex\@plus -1ex \@minus -.2ex}% %		{1.5ex \@plus .2ex}% %		{\normalfont\normalsize\bfseries}} %		\makeatother %
+
+
+\begin{document}
+\author{Jakub Król}
+\date{Semestr zimowy 2011}
+\section{Dyskretny} 
+Wzór Byesa
+\begin{align*}
+	P(x_i|y_k) = \frac{P(y_k|x_i) P(x_i)}{P(y_k)}
+\end{align*}
+P-wo warunkowe
+\begin{align*}
+	P(A|B) = \frac{P(A.B)}{P(B)}
+\end{align*}
+Entropia
+\begin{align*}
+	H(x) = \sum P(x_i) \log_a{\frac{1}{P(x_i)}}
+\end{align*}
+Transinformacja
+\begin{align*}
+	I(\xi,\eta) & = H(\xi)-H(\xi|\eta) \\
+				& =H(\eta)-H(\eta|\xi)\\
+				& = H(\xi,\eta)-H(\eta)-H(\xi)
+\end{align*}
+Sprawność kodu
+\begin{align*}
+	\kappa = \frac{H(\xi)}{\overline{L}}
+\end{align*}
+
+\begin{align*}
+	C = \log_2{M} - \left[\sum_{i=1}^M d_i\log_2{\frac{1}{d_i}} \right]
+\end{align*}
+Sprawność transmisji
+\begin{align*}
+	\kappa = \frac{I(\xi,\eta)}{C}
+\end{align*}
+Średnia długość słowa
+\begin{align*}
+	\overline{L} = \sum P(x_i)L(x_i)
+\end{align*}
+Prawdopodobieństwo wystąpienia jedynki
+\begin{align*}
+	P(1) = \frac{\sum L_i(1)P(x_i)}{\overline{L}}
+\end{align*}
+Szybkość transmisji
+\begin{align*}
+	v = \frac{H(\xi)}{\overline{L}t_0} = I\frac{H(\xi)v_0}{\overline{L}} = v_0H(\alpha) (\xi,\eta)f_s \overline{L}
+\end{align*}
+
+\section{Kod korekcyjny}
+\begin{align*}
+	m \le 2^k-k-1
+\end{align*}
+
+\section{Rozkład ciągły}
+\begin{align*}
+SNR = 10\lg{\frac{S}{n}}
+\end{align*}
+\begin{align*}
+	y(t) = A(1+m\cos{2\pi f})\cos{2\pi f}
+\end{align*}
+Przepustowość łącza
+\begin{align*}
+	C_0 = \frac{1}{2}\log_2(1+\frac{S}{N})
+\end{align*}
+\begin{align*}
+	C=B\log_2(1+\frac{S}{N})
+\end{align*}
+\begin{align*}
+	C_{\infty} = \frac{S}{N_0}\log_2{e}
+\end{align*}
+Sygnał gaussowski
+\begin{align*}
+	f_\xi(x) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left\{-\frac{(x-m)^2}{2\sigma^2}\right\}
+\end{align*}
+Moc sygnału
+\begin{align*}
+	S = \frac{1}{2} X_m^2 = \frac{1}{2} A^2 = \sigma^2
+\end{align*}
+
+\section{Filtry} 
+\section{A/C} 
+\begin{align*}
+	SNR = 10 \lg(3\cdot2^{2b-1})
+\end{align*}
+\begin{align*}
+	N = \frac{X_m^2}{3\cdot2^{2b}}
+\end{align*}
+
+Wartość kwantu
+\begin{align*}
+	q = \frac{X_m}{2^b-1}
+\end{align*}
+
+
+\section{Inne} 
+\begin{align*}
+	\kappa_{modulacji} = \frac{m^2}{2+m^2}
+\end{align*}
+\begin{align*}
+	\frac{E_i}{N_0} \ge \ln{2}
+\end{align*}
+
+\end{document}
+
