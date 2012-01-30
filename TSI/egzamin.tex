@@ -1,4 +1,4 @@
-\documentclass[10pt,i,twocolumn,a4paper]{article}
+\documentclass[10pt,twocolumn,a4paper,fleqn]{article}
 
 %\usepackage{mathptmx}
 
@@ -21,10 +21,12 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \headheight 1cm
-\marginsize{2cm}{2cm}{0.5cm}{2cm}
+\marginsize{1cm}{1cm}{0.5cm}{2cm}
 \lhead{TSI - egzamin}
 \fancyheadoffset{0cm}
 
+\setlength{\columnsep}{0.5cm}
+%\setlength{\columnseprule}{1pt}
 
 % z analizy
 %---\usepackage{fullpage}
@@ -50,7 +52,7 @@
 \begin{document}
 \author{Jakub Król}
 \date{Semestr zimowy 2011}
-\section{Dyskretny} 
+\section{Rozkład dyskretny} 
 Wzór Byesa
 \begin{align*}
 	P(x_i|y_k) = \frac{P(y_k|x_i) P(x_i)}{P(y_k)}
@@ -58,6 +60,12 @@ Wzór Byesa
 P-wo warunkowe
 \begin{align*}
 	P(A|B) = \frac{P(A.B)}{P(B)}
+\end{align*}
+\begin{align*}
+[P(y_k,x_i)] =	[P_{\eta|\xi}(y_k|x_i)]\times diag[P(x_i)]
+\end{align*}
+\begin{align*}
+[P(y_k)] =	[P_{\eta|\xi}(y_k|x_i)]\times [P(x_i)]
 \end{align*}
 Entropia
 \begin{align*}
@@ -67,7 +75,7 @@ Transinformacja
 \begin{align*}
 	I(\xi,\eta) & = H(\xi)-H(\xi|\eta) \\
 				& =H(\eta)-H(\eta|\xi)\\
-				& = H(\xi,\eta)-H(\eta)-H(\xi)
+				& = H(\eta)+H(\xi)-H(\xi,\eta)
 \end{align*}
 Sprawność kodu
 \begin{align*}
@@ -91,17 +99,76 @@ Prawdopodobieństwo wystąpienia jedynki
 \end{align*}
 Szybkość transmisji
 \begin{align*}
-	v = \frac{H(\xi)}{\overline{L}t_0} = I\frac{H(\xi)v_0}{\overline{L}} = v_0H(\alpha) (\xi,\eta)f_s \overline{L}
+	v 	& = \frac{H(\xi)}{\overline{L}t_0}\\
+   		& = I\frac{H(\xi)v_0}{\overline{L}}\\
+	 	& = v_0H(\alpha)=I(\xi,\eta)f_s \overline{L}
 \end{align*}
 
+%KOD KOREKCYJNY
 \section{Kod korekcyjny}
 \begin{align*}
-	m \le 2^k-k-1
+	m &\le 2^k-k-1 \\
+	L & = m+k \\
+	m & - \text{bity informacyjne}\\
+	k & - \text{bity korekcyjne}\\
 \end{align*}
 
+P-wo poprawnej transmisji przy korekcji 1 błędu:
+\begin{align*}
+	P_{popr} = d^L + Ld^{L-1}(d-1)
+\end{align*}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+k & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\\hline
+1 & x &   & x &   & x &   & x \\\hline
+2 &   & x & x &   &   & x & x \\\hline
+4 &   &   &   & x & x & x & x \\\hline
+m &   &   & m &   & m & m & m \\\hline
+\end{tabular}\\
+
+%FILTRY
+\section{Filtry} 
+Reaktancje:
+\begin{align*}
+	X_L & = \omega L\\
+	X_C & = - \frac{1}{\omega C}
+\end{align*}
+
+%PRÓBKOWANIE
+\section{A/C} 
+\begin{align*}
+	SNR = 10 \lg(3\cdot2^{2b-1})
+\end{align*}
+\begin{align*}
+	N = \frac{X_m^2}{3\cdot2^{2b}}
+\end{align*}
+Wartość kwantu
+\begin{align*}
+	q = \frac{X_m}{2^{b-1}}
+\end{align*}
+Częstotliwość próbkowania
+\begin{align*}
+	f_s = 2 \cdot f_{max}
+\end{align*}
+
+%INNE
+\section{Inne} 
+Sprawność modulacji
+\begin{align*}
+	\kappa = \frac{m^2}{2+m^2}
+\end{align*}
+\begin{align*}
+	\frac{E_i}{N_0} \ge \ln{2}
+\end{align*}
+
+%ROZKŁAD CIĄGŁY
 \section{Rozkład ciągły}
 \begin{align*}
-SNR = 10\lg{\frac{S}{n}}
+SNR = 10\lg{\frac{S}{N}}
+\end{align*}
+\begin{align*}
+	N =	N_0 \cdot B
 \end{align*}
 \begin{align*}
 	y(t) = A(1+m\cos{2\pi f})\cos{2\pi f}
@@ -116,37 +183,32 @@ Przepustowość łącza
 \begin{align*}
 	C_{\infty} = \frac{S}{N_0}\log_2{e}
 \end{align*}
-Sygnał gaussowski
-\begin{align*}
-	f_\xi(x) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left\{-\frac{(x-m)^2}{2\sigma^2}\right\}
-\end{align*}
+
 Moc sygnału
 \begin{align*}
 	S = \frac{1}{2} X_m^2 = \frac{1}{2} A^2 = \sigma^2
 \end{align*}
-
-\section{Filtry} 
-\section{A/C} 
-\begin{align*}
-	SNR = 10 \lg(3\cdot2^{2b-1})
-\end{align*}
-\begin{align*}
-	N = \frac{X_m^2}{3\cdot2^{2b}}
-\end{align*}
-
-Wartość kwantu
-\begin{align*}
-	q = \frac{X_m}{2^b-1}
-\end{align*}
-
-
-\section{Inne} 
-\begin{align*}
-	\kappa_{modulacji} = \frac{m^2}{2+m^2}
-\end{align*}
-\begin{align*}
-	\frac{E_i}{N_0} \ge \ln{2}
-\end{align*}
+Maksymalne entropie \\
+\begin{tabular}{c|c|c}
+	odcniek	&	entropia & wzór \\\hline
+	$x\in[c;d]$ & $\log_a(d-c)$ & $f_\xi(x)=
+		\begin{cases}
+		\frac{1}{d-c} & \text{ dla } 0\le x\le d\\
+		0 & \text{ wpp}
+		\end{cases}
+		$
+		\\\hline
+	$x\in[0;\infty)$ & $log_ae\cdot\overline{\xi}$ & $f_{\xi}(x)=
+		\begin{cases}
+		\frac{1}{\xi}e^{-\frac{x}{\xi}} & \text{ dla }0\le x <\infty\\
+		0 & \text{ wpp}
+		\end{cases}
+		$
+		\\\hline
+	$x\in(-\infty;\infty)$ & $\log_a\sqrt{2\pi e\sigma^2}$ &
+	$f_\xi(x) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left\{-\frac{(x-m)^2}{2\sigma^2}\right\}$
+	\\
+\end{tabular}
 
 \end{document}
 
