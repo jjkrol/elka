@@ -53,13 +53,13 @@
 \author{Jakub Król}
 \date{Semestr zimowy 2011}
 \section{Rozkład dyskretny} 
-Wzór Byesa
+Wzór Bayesa
 \begin{align*}
 	P(x_i|y_k) = \frac{P(y_k|x_i) P(x_i)}{P(y_k)}
 \end{align*}
 P-wo warunkowe
 \begin{align*}
-	P(A|B) = \frac{P(A.B)}{P(B)}
+	P(A|B) = \frac{P(A,B)}{P(B)}
 \end{align*}
 \begin{align*}
 [P(y_k,x_i)] =	[P_{\eta|\xi}(y_k|x_i)]\times diag[P(x_i)]
@@ -67,9 +67,19 @@ P-wo warunkowe
 \begin{align*}
 [P(y_k)] =	[P_{\eta|\xi}(y_k|x_i)]\times [P(x_i)]
 \end{align*}
+\begin{align*}
+	[P(y_k|x_i)] = [P(y_k,x_i) \times diag[P(\frac{1}{x_i})]
+\end{align*}
 Entropia
 \begin{align*}
 	H(x) = \sum P(x_i) \log_a{\frac{1}{P(x_i)}}
+\end{align*}
+\begin{align*}
+	H_{\eta|\xi} = \sum \sum P(y_k,x_i) \log_2\frac{1}{P(y_k|x_i)}
+\end{align*}
+Entropia alfabetu
+\begin{align*}
+	H(\alpha) = \frac{H(\xi)}{\overline{L}}
 \end{align*}
 Transinformacja
 \begin{align*}
@@ -83,7 +93,7 @@ Sprawność kodu
 \end{align*}
 
 \begin{align*}
-	C = \log_2{M} - \left[\sum_{i=1}^M d_i\log_2{\frac{1}{d_i}} \right]
+	C = \log_2{M} - \left[\sum_{i=1}^M d_i\log_2{\frac{1}{d_i}} \right] = \max_{p} I(\xi,\eta)
 \end{align*}
 Sprawność transmisji
 \begin{align*}
@@ -100,7 +110,7 @@ Prawdopodobieństwo wystąpienia jedynki
 Szybkość transmisji
 \begin{align*}
 	v 	& = \frac{H(\xi)}{\overline{L}t_0}\\
-   		& = I\frac{H(\xi)v_0}{\overline{L}}\\
+   		& = \frac{H(\xi)v_0}{\overline{L}}\\
 	 	& = v_0H(\alpha)=I(\xi,\eta)f_s \overline{L}
 \end{align*}
 
@@ -138,8 +148,9 @@ Reaktancje:
 %PRÓBKOWANIE
 \section{A/C} 
 \begin{align*}
-	SNR = 10 \lg(3\cdot2^{2b-1})
+	SNR = 10 \log(3\cdot2^{2b-1})
 \end{align*}
+Szum kwantowania
 \begin{align*}
 	N = \frac{X_m^2}{3\cdot2^{2b}}
 \end{align*}
@@ -158,6 +169,7 @@ Sprawność modulacji
 \begin{align*}
 	\kappa = \frac{m^2}{2+m^2}
 \end{align*}
+Energia bitu
 \begin{align*}
 	\frac{E_i}{N_0} \ge \ln{2}
 \end{align*}
@@ -186,7 +198,7 @@ Przepustowość łącza
 
 Moc sygnału
 \begin{align*}
-	S = \frac{1}{2} X_m^2 = \frac{1}{2} A^2 = \sigma^2
+	S = \frac{1}{2} X_m^2 = \sigma^2
 \end{align*}
 Maksymalne entropie \\
 \begin{tabular}{c|c|c}
