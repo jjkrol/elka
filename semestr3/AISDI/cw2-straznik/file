@@ -1,0 +1,7 @@
+#!/bin/bash
+while (true) 
+{
+	date | awk {print }
+	sleep 1
+	clear
+}

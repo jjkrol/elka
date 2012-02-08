@@ -1,0 +1,221 @@
+\documentclass[12pt,a4paper]{article}
+
+\setcounter{secnumdepth}{-1} 
+\usepackage[OT4]{polski}
+\usepackage[utf8x]{inputenc}
+\usepackage{ifthen}
+\usepackage{anysize}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\headheight 1cm
+%\footheight 1cm
+\marginsize{2cm}{2cm}{0.5cm}{2cm}
+\fancyheadoffset{0cm}
+
+% komendy
+\newcounter{ind}
+\newcommand*{\ndots}[1]{
+\setcounter{ind}{1}
+\whiledo{\value{ind}<#1}{. \stepcounter{ind}}} 
+
+\renewcommand{\arraystretch}{1.5}
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+% nieuniwersalne
+
+\lhead{SOI - kolokwium}
+\rhead{Jakub Król}
+\begin{document}
+	\section{Definicje podstawowe} % (fold)
+	
+	\paragraph{system operacyjny} % (fold)
+	
+	jest to zbiór programów i procedur spełniających dwie podstawowe funkcje:
+	\begin{itemize}
+		\item zarządzanie zasobami systemu komputerowego
+		\item tworzenie maszyny wirtualnej
+	\end{itemize}
+	% paragraph system operacyjny (end)
+	\paragraph{Zasób systemu} % (fold)
+	
+	każdy element sprzętowy lub programowy, który może być przydzielony danemu procesowi
+	% paragraph Zasób systemu (end)
+	\paragraph{Proces} % (fold)
+	
+	wykonujący się program wraz z jego środowiskiem obliczeniowym. Proces stanowi podstawowy obiekt dynamiczny w systemie operacyjnym
+	% paragraph Proces (end)
+	\paragraph{Semafor} % (fold)
+	
+	Zmienna inicjowana nieujemną wartością całkowitą, zliczająca sygnały \emph{wakeup}, zdefiniowana poprzez definicje niepodzielnych operacji P(s) i V(s):
+		P(s):
+		\begin{verbatim}
+			while S leq 0 do
+			;
+			S:=-1
+		\end{verbatim}
+		V(s):
+		\begin{verbatim}
+S:=S+1
+		\end{verbatim}
+	% paragraph Semafor (end)
+	\paragraph{Monitor} % (fold)
+	
+	Stanowi zbiór procedur, zmiennych i struktur danych, które są zgrupowane w specjalnym module. W kazdej chwili tylko jeden proces aktywny może przebywać w danym monitorze
+	% paragraph Monitor (end)
+	\paragraph{Sekcja krytyczna} % (fold)
+	
+		fragment programu, w którym występując instrukcje dostępu do zasobów dzielonych. Instrukcje tworzące sekcje krytyczne musza być poprzedzone i zakończone operacjami realizującymi wzajemne wykluczanie.
+	% paragraph Sekcja krytyczna (end)
+	% section Definicje podstawowe (end)
+
+	\section{Procesy i Wątki} % (fold)
+	
+	\paragraph{Pojęcia} % (fold)
+	
+	\begin{itemize}
+		\item współbieżność - nie musi razem
+		\item równoległość - kiedys sie wykona fizycznie na raz
+		\item rozproszoność - wiele srodowisk
+	\end{itemize}
+	% paragraph Pojęcia (end)
+	\paragraph{Przejścia stanów} % (fold)
+	
+		\begin{itemize}
+			\item uruchomiony w trybie użytkownika
+			\item uruchomiony w trybie jądra
+			\item gotowy, w pamięci
+			\item wstrzymany, w pamięci
+			\item gotowy, wymieciony
+			\item wstrzymany, wymieciony
+			\item wywłaszczony
+			\item utworzony
+			\item zombie
+		\end{itemize}
+	% paragraph Przejścia stanów (end)
+	\paragraph{Procesy i wątki} % (fold)
+	
+		Grupa procesów:
+		\begin{itemize}
+			\item ochrona - zaleta
+			\item komunikacja - wada
+			\item zasoby - wada
+			\item wydajność - wada (chyba że równolegle)
+		\end{itemize}
+		Wątki:
+		\begin{itemize}
+			\item ochrona - wada
+			\item komunikacja - zaleta
+			\item zasoby - zaleta
+		\end{itemize}
+	% paragraph Procesy i wątki (end)
+	\paragraph{Wątki poziomu jądra i użytkownika} % (fold)
+	
+	\begin{itemize}
+		\item z poziomy użytkownika - tablica wątków jest zawarta w obrębie danego procesu
+		\item z poziomu jądra - tablica wątków jest zawarta w jądrze
+	\end{itemize}
+	% paragraph Wątki poziomu jądra i użytkownika (end)
+	\paragraph{Wątki w systemie solaris} % (fold)
+	
+	\begin{itemize}
+		\item Procesy - standardowo
+		\item Wątki poz użytkownika - biblioteczne, niewidoczne dla jądra
+		\item Procesy lekkie - odwzorowanie między wątkami poz użytkownika, a jądra (LWP:wątek jądra)
+		\item wątki jądra
+	\end{itemize}
+	% paragraph Wątki w systemie solaris (end)
+	\paragraph{Serwery usług} % (fold)
+	
+	\begin{itemize}
+		\item Wielowątkowe - współbieżność, blokujące wywołania systemowe
+		\item jednowątkowe - brak współbieżności, blokujące wywołania systemowe
+		\item automaty skończone - współbieżnośc, nieblokujące wywołania systemowe, przerwania
+	\end{itemize}
+	% paragraph Serwery usług (end)
+	\paragraph{Szeregowanie procesów} % (fold)
+	
+	Techniki:
+	\begin{itemize}
+		\item bez wywłaszczania
+		\item z wywłaszczaniem
+	\end{itemize}
+	Dobre szeregowanie:
+	\begin{itemize}
+		\item sprawiedliwe
+		\item zgodne z polityką
+		\item wyrównane
+	\end{itemize}
+	Wsadowe:
+	\begin{itemize}
+		\item przepustowe
+		\item czas w systemie
+		\item wykorzystanie procesora
+	\end{itemize}
+	Interaktywne:
+	\begin{itemize}
+		\item czas odpowiedzi
+		\item proporcjonalność
+	\end{itemize}
+	Czasu rzeczywistego:
+	\begin{itemize}
+		\item spełnianie wymagań
+		\item przewidywalność 
+		\item Dla zdarzeń okresowych: $\sum^m_{i=1} \frac{C_i}{P_i} \leq 1$
+	\end{itemize}
+	% paragraph Szeregowanie procesów (end)
+	\section{Synchronizacja} % (fold)
+	
+	\paragraph{Wyścig} % (fold)
+	
+		Sytuacja, w której dwa lub więcej procesów wykonuje operację na zasobach dzielonych, a ostateczny wynik tej operacji jest zależny od momentu jej realizacji.
+	% paragraph Wyścig (end)
+	\paragraph{Warunki konieczne SK} % (fold)
+	
+	\begin{itemize}
+		\item wewnątrz SK może przebywać tylko jeden proces
+		\item jakikolwiek proces znajdujący się poza SK nie może zablokować innego procesu pragnącego wejść do SK
+		\item każdy proces oczekujący na wejście do Sk powinien otrzymać prawo dostępu w rozsądnym czasie
+	\end{itemize}
+	% paragraph Warunki konieczne SK (end)
+	\paragraph{Mechanizmy z aktywnym oczekiwaniem} % (fold)
+	
+	\begin{itemize}
+		\item Blokowanie przerwań - źle, bo może zablokować i nie odblokować
+		\item Zmienne blokujące - źle, bo wyścig
+		\item Ścisłe następstwo - źle, bo zagłodzenie
+		\item Algorytm petersona - połączenie powyższych, kolejne trzymane w tablicy
+		\item TSL - poniżej
+	\end{itemize}
+	% paragraph Mechanizmy z aktywnym oczekiwaniem (end)
+	\paragraph{Mechanizmy z zawieszaniem} % (fold)
+	
+	\begin{itemize}
+		\item sleep/wakeup - sygnał może nie zostac przechwycony (wyścig) - blokada
+		\item semafory
+		\item monitory
+		\item komunikaty
+	\end{itemize}
+	% paragraph Mechanizmy z zawieszaniem (end)
+	\paragraph{TSL} % (fold)
+	
+	Zaimplementowana sprzętowo.
+	\begin{itemize}
+		\item Czyta zawartość słowa z pamięci do rejestru
+		\item Zapamiętuje wartość rejestru w panięci
+	\end{itemize}
+	Operacje czytania i pisania niepodzielne
+	% paragraph TSL (end)
+	\paragraph{Pięciu filozofów} % (fold)
+	
+	
+	% paragraph Pięciu filozofów (end)
+	% section Synchronizacja (end)
+	% section Procesy i Wątki (end)
+
+\end{document}

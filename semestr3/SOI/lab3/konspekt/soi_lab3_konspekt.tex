@@ -1,0 +1,89 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[OT4]{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{ifthen}
+\usepackage{anysize}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\headheight 1cm
+\marginsize{2cm}{2cm}{0.5cm}{2cm}
+\lhead{SOI - laboratorium nr 3 - semafory}
+\rhead{Jakub Król, RI2}
+\fancyheadoffset{0cm}
+% komendy
+\newcounter{ind}
+\newcommand*{\wylicz}[2]{#1_1,#1_2,\dots,#1_{#2}} 
+\newcommand*{\ndots}[1]{
+\setcounter{ind}{1}
+\whiledo{\value{ind}<#1}{. \stepcounter{ind}}} 
+
+\renewcommand{\arraystretch}{1.5}
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
+\makeatother
+%
+
+\begin{document}
+\section{Treœæ zadania}
+Implementacja "bufora komunikacyjnego" - struktury danych mieszcz¹cej maksymalnie \texttt{M} elementów, pozwalaj¹cej na  wyjmowanie elementów w kolejnoœci umieszczania i odwrotnej. Nale¿y zadbaæ o zabezpieczenie przed czytaniem z pustego bufora, zapisem do pe³nego bufora i jednoczesnym u¿yciem bufora przez ró¿ne procesy.
+\section{Za³o¿enia}
+\begin{enumerate}
+\item Sta³a \texttt{M} jest okreœlona przy uruchamianiu programu \texttt{\#define}
+\item Typ elementów jest okreœlony przed rozpoczêciem implementacji
+\end{enumerate}
+\section{Realizacja}
+\subsection{Semafory}
+\paragraph{full}
+Semafor inicjalizowany wartoœci¹ \texttt{M}, dekrementowany przy umieszczeniu elementu w buforze, a inkrementowany przy wyjêciu elementu z bufora. Po wype³nieniu bufora, semafor zablokuje mo¿liwoœæ umieszczenia kolejnego elementu w kolejce.
+\paragraph{empty}
+Semafor inicjalizowany wartoœci¹ zero, inkrementowany przy dodawniu elemntów, a dekrementowany przy usuwaniu elementów z kolejki. Zabezpiecza przed usuniêciem elementu z pustej kolejki.
+\paragraph{mutex}
+Semafor binarny, zabezpieczaj¹cy przed jednoczesnym korzystaniem z bufora. Przyjmuje nastêpuj¹ce wartoœci:
+\begin{itemize}
+\item 0 dla zablokowanego dostêpu
+\item 1 dla otwartego dostêpu
+\end{itemize}
+\subsection{Kolejka}
+Kolejka zostanie zrealizowana za pomoc¹ tablicy wskaŸników o d³ugoœci \texttt{M+2}. Zerowy i pierwszy element tablicy bêd¹ przechowywaæ informacje odpowiednio o po³o¿eniu pustego elementu przed pocz¹tkiem oraz koñca kolejki. Przy dodawaniu i usuwaniu elementów kolejki, pocz¹tek i koniec s¹ odpowiednio przesuwane, tak aby zapewniæ prawid³owy dostêp.
+\section{Planowana implementacja}
+\subsection{Obs³uga semaforów}
+Do prawid³owej realizacji semaforów potrzebne s¹ nastêpuj¹ce funkcje:
+\paragraph{\texttt{semalloc} i \texttt{semdealloc}}
+Dwie funkcje odpowiadaj¹ce za alokacjê i dealokajcê semaforów.
+\paragraph{\texttt{seminit}}
+Funkcja odpowiedzialna za inicjalizacjê semafora zadan¹ wartoœci¹.
+\paragraph{\texttt{proberen}}
+Funkcja sprawdzaj¹ca wartoœæ zadanego semafora i w przypadku, gdy ta wartoœæ jest mniejsza lub równa zero, wstrzymuj¹ca program. Jeœli wartoœæ jest wiêksza od zera, funkcja dekrementuje semafor.
+\paragraph{\texttt{verhogen}}
+Funkcja inkrementuj¹ca semafor.
+\subsection{Obs³uga kolejki}
+Do obs³ugi kolejki potrzebne s¹ trzy funkcje u¿ytkowe i dwie funkcje pomocnicze.
+\paragraph{\texttt{push}}
+Funkcja umieszczaj¹ca element w miejscu wskazywanym przez zerowy element tablicy.
+\paragraph{\texttt{pop\_front}}
+Funkcja pobieraj¹ca element z pierwszego miejsca tablicy (nastêpnego za elementem wskazywanym przez zerowy element tablicy).
+\paragraph{\texttt{pop\_back}}
+Funkcja pobieraj¹ca element z ostatniego miejsca tablicy (wskazywanego przez jej pierwszy element)
+\paragraph{\texttt{increment} i \texttt{decrement}}
+Funkcje modyfikuj¹ce wartoœci zerowego i pierwszego elementu tablicy, bior¹ce pod uwagê jej wielkoœæ. Funkcja \texttt{increment}, wywo³ywana jest podczas u¿ycia \texttt{pop\_front} w celu przesuniêcia wskazania na pusty element. Funkcja \texttt{decrement}, wywo³ywana jest przy \texttt{push} i \texttt{pop\_back} aby przesun¹æ odpowiednio wskazanie na pusty element oraz na koniec kolejki.
+
+\subsection{Funkcje dostêpu}
+Funkcje \texttt{pop\_front}, \texttt{pop\_back} i \texttt{push} realizuj¹ce powy¿sze operacje, ale zabezpieczone za pomoc¹ semaforów. Te funkcje daj¹ mo¿liwoœæ implementowania kilku buforów.
+\section{Testowanie}
+Konieczne jest przetestowanie nastêpuj¹cych aspektów implementacji:
+\begin{itemize}
+\item jednoczesne pisanie do bufora kilku producentów
+\item jednoczesne pisanie i czytanie przez producenta i konsumenta
+\item jednoczesne czytanie przez kilk konsumentów
+\item zapisywanie do pe³nego bufora
+\item czytanie pustego bufora
+\item czytanie i pisanie w prawid³owych warunkach
+\end{itemize}
+
+
+\end{document}

@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <math.h>
+ 
+int main()
+{
+  double x = 1.047198;
+  double result = cos(x);
+  printf("The cosine of %lf is %lf\n", x, result);
+  return 0;
+}
+
+/*#include <stdio.h>
+#include <math.h>
+#include<unistd.h>
+#include<stdlib.h>
+#include<arpa/inet.h>
+double element(int n, double x);
+double potega(double liczba, int wykladnik);
+int silnia(int liczba);
+int main(){
+	double wynik;
+	int i;
+	double wynik_biblioteka;
+	system("clear");
+	printf("#########################################################\n");
+	printf("# Program licz±cy cosinus                               #\n");
+	printf("#########################################################\n\n");
+	int n; //dokladnosc
+	double x; //kat
+	printf("Podaj k±t: ");
+	scanf("%lf",&x);
+	printf("Podaj dok³adno¶æ: ");
+	scanf("%d",&n);
+	wynik=1;
+	for(i=1;i<=n;i++){
+		printf("aktualny wynik: %lf\n",wynik);
+		wynik=wynik-element(i,x);
+		}
+	wynik_biblioteka=cos(x);
+	printf("Wynik ostateczny: %lf\n",wynik);
+	printf("Wynik z funkcji: %lf\n", wynik_biblioteka);
+	return 0;
+	}
+
+double element(int n, double x){
+	double element;
+	double mianownik;
+	double licznik;
+	licznik=potega(x,2*n);
+	mianownik=silnia(2*n);
+	element=licznik/mianownik;
+	return element;
+	}
+
+double potega(double liczba, int wykladnik){
+	int i;
+	float wynik=liczba;
+	if(wykladnik==0){
+		return 1;
+		}
+	for (i=2;i<=wykladnik;i++){
+		wynik=wynik*liczba;
+		}
+	return wynik;
+	}
+
+int silnia(int liczba){
+	int i;
+	int wynik=1;
+	for (i=2;i<=liczba;i++){
+		wynik=wynik*i;
+		}
+	return wynik;
+	}*/
