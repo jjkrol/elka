@@ -1,3 +1,9 @@
+/* ze względu na to, że kod był pisany cały za jednym razem, wszystko jest w jednym pliku 
+ * 
+ * program realizuje graf nieskierowany, a powinien być skierowany (inaczej wtedy można trzymać krawędzie i wierzchołki
+ * zabrali mi za to jeden punkt
+ * */
+
 #include<iostream>
 #include<string>
 #include<sstream>

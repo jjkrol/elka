@@ -127,7 +127,6 @@ class TreeMapDetail //Helper
 // TreeMap and TreeMap::iterator methods
 //////////////////////////////////////////////////////////////////////////////
 
-//constructor
 TreeMap::TreeMap()
 {
 //	std::cout<<"Konstruktor"<<std::endl;
@@ -136,7 +135,6 @@ TreeMap::TreeMap()
 	detail->afterLast = new TreeNode(std::make_pair<int, std::string>(-1,"wartownik"));
 };
 
-/// Content of existing TreeMap object is copied into the new object. 
 TreeMap::TreeMap( const TreeMap& m )
 {
 	root = NULL;

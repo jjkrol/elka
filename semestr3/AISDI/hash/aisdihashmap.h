@@ -34,11 +34,6 @@ public:
 };
 
 
-/// Default keys' comparing function for AISDIHashMap - it uses
-/// operator== by default.
-/// @returns 0 if keys are equal, non-zero otherwise.
-/// @param key1 First key to compare. 
-/// @param key2 Second key to compare. 
 template <class Key>   
 inline int _compFunc(const Key& key1,const Key& key2)
 {
@@ -65,13 +60,11 @@ class List{
 	public:
 	Node<K, V> *first; //pierwszy element listy, "straznik"
 
-	//konstruktor
 	List() : first(NULL){
 		//tworzenie pierwszego elementu o indeksie -1 (przed reszta)
 		first = new Node<K,V>(std::make_pair(K(),V()),NULL,NULL);
 	}
 
-	//konstruktor kopiujacy
 	List(const List& l){ 
 	Node<K,V> *mn = l.first; //skopiuj pierwszy element
 	first = new Node<K,V>(mn->data, NULL, NULL); //stworz go
@@ -86,12 +79,10 @@ class List{
 	}
 	}
 
-	//destruktor
 	~List(){
 		clear();
 	}
 
-	//wstawianie do listy
 	std::pair<Node<K,V>*, bool> insert(const std::pair<K, V>& entry){
 	if (first->next==NULL){ //jesli lista pusta
 		first->next = new Node<K,V>(entry, NULL, NULL); //stworz nowy
@@ -119,7 +110,6 @@ class List{
 	return std::make_pair(new_node, true); // zwroc wstawiony element
 	}
 
-	//znajdz element po kluczu
 	Node<K,V>* find(const K& key){
 		if(first->next==NULL) return NULL; // pusta lista
 		Node<K,V> *mn = first->next; // "iterator" 
@@ -181,21 +171,17 @@ public:
    typedef K key_type;
    typedef V value_type;
    typedef unsigned size_type;
-   //konstruktor
    AISDIHashMap(){
    }
 
-   //destruktor
    ~AISDIHashMap(){
    	clear();
    }
 
-   // konstruktor kopiuj±cy 
    explicit AISDIHashMap(const AISDIHashMap<K, V, hashFunc, compFunc>& a){
 	for(int i=0; i<SIZE; i++) arr[i]=a.arr[i];
    }
 
-   // klasa const_iterator
    class const_iterator : public std::iterator<std::forward_iterator_tag, std::pair<K, V> >{
 protected:
 friend class AISDIHashMap;
@@ -213,7 +199,7 @@ const_iterator(const const_iterator& it) : node(it.node), index(it.index), arr(i
 
 // operatory inkementacji i dekrementacji
 inline const_iterator& operator++(){
-	if(node->next!=NULL){ // je¶li sa elementy dalej na liscie, wez nastepny
+	if(node->next!=NULL){ // je?li sa elementy dalej na liscie, wez nastepny
 		node = node->next;
 		return *this;
 	}
@@ -230,7 +216,7 @@ inline const_iterator& operator++(){
 
 inline const_iterator operator++(int) {return ++(*this);}
 
-// operator porównania
+// operator por?wnania
 inline bool operator<(const const_iterator& a) const{
 	if(index<a.index || node->data.first < a.node->data.first) return true;
 	return false;
@@ -247,7 +233,6 @@ const std::pair<K, V>& operator*() const{
 	}
    };
 
-   // klasa iteratora
    class iterator : public const_iterator{
 protected:
 	friend class AISDIHashMap;
@@ -276,14 +261,12 @@ public:
 
    };
 
-	// znajdz poczatek tablicy
    inline iterator begin(){
 	for(int i = 0; i<SIZE;i++){
 	if(arr[i].begin()->next!=NULL) return iterator(arr[i].begin()->next, i, arr);
 	}
 	return end();
    }
-	// znajdz poczatek tablicy i zwroc const_iterator
    inline const_iterator begin() const {
 	for(int i = 0; i<SIZE;i++){
 	if(arr[i].begin()->next!=NULL) return const_iterator(arr[i].begin()->next, i, arr);
@@ -291,27 +274,15 @@ public:
 	return end();
    }
 
-   // koniec tablicy
 inline iterator end() { return iterator(arr[SIZE].begin(), SIZE, arr); }
-   // koniec tablicy jako const_iterator
 inline const_iterator end() const { return const_iterator(arr[SIZE].begin(), SIZE, arr); }
 
-   /// Returns an iterator that addresses the location succeeding the last element in a map.
-   /// Inserts an element into the map.
-   /// @returns A pair whose bool component is true if an insertion was
-   ///          made and false if the map already contained an element
-   ///          associated with that key, and whose iterator component coresponds to
-   ///          the address where a new element was inserted or where the element
-   ///          was already located.
    std::pair<iterator, bool> insert(const std::pair<K, V>& entry){
 	   int index = hashFunc(entry.first); // oblicz indeks
 	   std::pair<Node<K,V>*, bool> pair = arr[index].insert(entry); // wstaw do listy pod danym indeksem
 	   return std::make_pair(iterator(pair.first, index, arr), pair.second); // zwroc iterator i czy sie powiodlo
    }
 
-   /// Returns an iterator addressing the location of the entry in the map
-   /// that has a key equivalent to the specified one or the location succeeding the
-   /// last element in the map if there is no match for the key.
    iterator find(const K& k){
 	Node<K,V> *mn = arr[hashFunc(k)].find(k); // oblicz indeks
 	if(mn == NULL){ // jesli nic tam nie ma
@@ -328,16 +299,12 @@ inline const_iterator end() const { return const_iterator(arr[SIZE].begin(), SIZ
 	return const_iterator(mn, hashFunc(k), arr); // jesli jest, zwroc iterator
    }
 
-   /// Inserts an element into a map with a specified key value
-   /// if one with such a key value does not exist.
-   /// @returns Reference to the value component of the element defined by the key.
    V& operator[](const K& k)   {
 	int index = hashFunc(k); // oblicz indeks
 	Node<K,V>* mn = arr[index].insert(std::make_pair(k, V())).first; //wstaw stworzona pare
 	return mn->data.second; // zwroc nowy jesli nie bylo, albo istniejacy, jesli byl
    }
 
-   /// Tests if a map is empty.
    bool empty() const {
 	   for (int i = 0; i < SIZE; i++){ // przejdz cala mape
 		if(!arr[i].empty()) return false; // jesli jeden jest niepusty, cala mapa tez
@@ -345,7 +312,6 @@ inline const_iterator end() const { return const_iterator(arr[SIZE].begin(), SIZ
 	   return true;
    }
 
-   /// Returns the number of elements in the map.
    size_type size() {
 	int ret_value = 0;
 	for(int i = 0; i < SIZE; i++){ // przejdz cala mape
@@ -354,13 +320,10 @@ inline const_iterator end() const { return const_iterator(arr[SIZE].begin(), SIZ
 	return ret_value;
    }
 
-   /// Returns the number of elements in a map whose key matches a parameter-specified key.
    size_type count(const K& _Key) const { // to nie jest multimapa, wiec jesli znajdzie, to jest jeden, jesli nie, to zero
 	   return (arr[hashFunc(_Key)].find(_Key) != NULL); 
    }
 
-   /// Removes an element from the map.
-   /// @returns The iterator that designates the first element remaining beyond any elements removed.
    iterator erase(iterator i){
 	   if(i.node==arr[i.index].begin()) return end(); // nie usuwamy straznika
 	   int index = i.index; 
@@ -378,10 +341,6 @@ inline const_iterator end() const { return const_iterator(arr[SIZE].begin(), SIZ
 	   return iterator(mn, index, arr);
    }
 
-   /// Removes a range of elements from the map.
-   /// The range is defined by the key values of the first and last iterators
-   /// first is the first element removed and last is the element just beyond the last elemnt removed.
-   /// @returns The iterator that designates the first element remaining beyond any elements removed.
    iterator erase(iterator first, iterator last){
 	   if(first==end() || !(first < last)) return end(); // jesli zakres = 0, lub bledne dane, zwroc koniec
 	   iterator i = first;
@@ -393,13 +352,10 @@ inline const_iterator end() const { return const_iterator(arr[SIZE].begin(), SIZ
 	   return last;
    }
    
-   /// Removes an element from the map.
-   /// @returns The number of elements that have been removed from the map.
-   ///          Since this is not a multimap itshould be 1 or 0.
    size_type erase(const K& key){
 	   return arr[hashFunc(key)].erase(key);
    }
-   /// Erases all the elements of a map.
+
    void clear(){
 	   erase(begin(), end());
    }
