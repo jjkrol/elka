@@ -10,19 +10,23 @@ Programy z PROI
 
 #### AISDI
 oceny (Ratkowski, Zalewski):
+
 * pierścień: 5/5
 * hash: 6/6
 * drzewo: 6/6
 * niespodzianka: 5/5
 * graf: 5/6 (ponieważ jest nieskierowany)
+
 #### ARKO
 oceny (Kożuszek):
+
 * MIPS: 6/6
 * x86: 5.5/6
 * x86-64: nie działa
 
 #### SOI
 oceny (Kozłowski):
+
 * Lab1: 4/4
 * Lab2: 6/6
 * Lab3: 6/6
